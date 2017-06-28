@@ -1,7 +1,7 @@
 .query-input textarea{
-  resize: vertical;
-  min-height: 5em;
-  font-size: 1.5em;
+    resize: vertical;
+    min-height: 5em;
+    font-size: 1.5em;
 }
 .text-wrapper{
 
@@ -9,25 +9,25 @@
 }
 
 #graphical-rs{
-  height: 500px;
+    height: 500px;
 }
 
 #tabular-rs{
-  height: 500px;
+    height: 500px;
 }
 
 #raw-rs{
-  height: 500px;
+    height: 500px;
 }
 .hidden{
-  display: none;
+    display: none;
 
 }
 
 pre{
-  overflow: auto;
-  word-wrap: normal;
-  white-space: pre;
+    overflow: auto;
+    word-wrap: normal;
+    white-space: pre;
 }
 
 
@@ -35,11 +35,47 @@ pre{
 
 
 .links line {
-  stroke: #999;
-  stroke-opacity: 0.6;
+    stroke: #999;
+    stroke-opacity: 0.6;
 }
 
 .nodes circle {
-  stroke: #fff;
-  stroke-width: 1.5px;
+    stroke: #fff;
+    stroke-width: 1.5px;
 }
+
+#hover-info {
+    width: 960px;
+    min-height: 3em;
+    margin: auto;
+}
+
+#hover-pair-template{
+    display: none;
+
+}
+.hover-pair{
+    border: 0.05em solid blue;
+    border-radius: 0.5em;
+    float: left;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    margin: 0.25em;
+}
+.hover-key{
+    float: left;
+    border-radius: 0.5em;
+    display: inline-block;
+    padding: 0.5em;
+    margin: 0;
+    background-color: black;
+    color: white;
+}
+.hover-value{
+    float: left;
+    display: inline-block;
+    padding: 0.5em;
+    margin: 0;
+}
+
+
