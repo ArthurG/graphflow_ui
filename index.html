@@ -52,6 +52,8 @@
             <!--
               <button class="col-lg-1 btn btn-info pull-right" type="button">Go</button></div>
             -->
+          </div>
+        </form>
       </div>
 
       <div class="resultset col-lg-12">
@@ -77,10 +79,7 @@
         <!-- Tab panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane" id="graphical-rs">
-            <svg width="960px" height="800px"></svg>
-
-
-
+            <svg width="960" height="600"></svg>
           </div>
           <div role="tabpanel" class="tab-pane" id="tabular-rs">
             <div class="table-responsive">
@@ -166,11 +165,9 @@ ANCESTOR,ASSETNUM,ASSETTAG,ASSETTYPE,AUTOWOGEN,BINNUM,BUDGETCOST,CALNUM,CHANGEBY
     <script src="script.js"></script>
 
     </style>
-    <svg width="960" height="600"></svg>
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
     <script>
-
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
