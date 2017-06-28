@@ -43,39 +43,23 @@ pre{
     stroke: #fff;
     stroke-width: 1.5px;
 }
-
-#hover-info {
-    width: 960px;
-    min-height: 3em;
-    margin: auto;
-}
-
-#hover-pair-template{
-    display: none;
-
-}
-.hover-pair{
-    border: 0.05em solid blue;
-    border-radius: 0.5em;
-    float: left;
-    display: inline-block;
-    padding: 0.25em 0.5em;
-    margin: 0.25em;
-}
-.hover-key{
-    float: left;
-    border-radius: 0.5em;
-    display: inline-block;
-    padding: 0.5em;
-    margin: 0;
-    background-color: black;
-    color: white;
-}
 .hover-value{
     float: left;
     display: inline-block;
     padding: 0.5em;
     margin: 0;
 }
+div.tooltip {   
+    position: absolute;         
+    text-align: center;         
+    min-height: 28px;                   
+    padding: 2px;               
+    font: 12px sans-serif;      
+    background: lightsteelblue; 
+    border: 0px;        
+    border-radius: 8px;         
+    pointer-events: none;           
+}
+
 
 
