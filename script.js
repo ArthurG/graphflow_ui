@@ -10,12 +10,19 @@ function process_query(input_str){
     console.log(input_str);
 }
 
-function showToolbar(d){
+function removeNodeProperties(d){
     var copiedNode = jQuery.extend({}, d);
     delete copiedNode.x
     delete copiedNode.y
     delete copiedNode.vy
     delete copiedNode.vx
+    delete copiedNode.fx
+    delete copiedNode.fy
+    return copiedNode;
+}
+
+function showToolbar(d){
+    var copiedNode = removeNodeProperties(d);
     div.transition()        
         .duration(200)      
         .style("opacity", .9);      
@@ -47,15 +54,12 @@ function unhoverNode(d){
     }
 }
 
-//Handling hover nodes
+//Handling clicking nodes
 function clickNode(d){
-    if(stickyNode){
-        hideToolbar();
-    }
-    else{
-        showToolbar(d);
-        stickyNode = d;
-    }
+    $("#updateNodeModal").modal('show');
+    var copiedNode = removeNodeProperties(d);
+    $("#node-properties-text").val(JSON.stringify(copiedNode));
+    //showUpdateNodeModal();
 }
 
 //Handling hover Edges

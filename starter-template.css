@@ -1,4 +1,4 @@
-.query-input textarea{
+.query-input textarea,.modal textarea{
     resize: vertical;
     min-height: 5em;
     font-size: 1.5em;
