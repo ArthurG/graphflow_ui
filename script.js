@@ -72,6 +72,13 @@ function unhoverItem(){
     $info.find(".hover-pair").remove()
 }
 
+//Handling clicking Edges
+function clickLink(d){
+    $("#updateNodeModal").modal('show');
+    var copiedNode = removeNodeProperties(d);
+    $("#node-properties-text").val(JSON.stringify(copiedNode));
+}
+
 
 // Define the div for the tooltip
 var div = d3.select("body").append("div")    
@@ -99,7 +106,7 @@ var simulation = d3.forceSimulation()
             .enter().append("line")
             .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
 
-        link.on("click", hoverLink);
+        link.on("click", clickLink);
         link.on("mouseover", hoverLink);
 
         var node = svg.append("g")
