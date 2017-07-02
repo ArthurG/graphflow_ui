@@ -1,3 +1,7 @@
+/*Global objects*/
+var queryResult = {};
+
+/*User actions */
 $("#query-form").keypress(function (e) {
     var input = $("#query-form textarea").val();
     if(e.which == 13 && !e.shiftKey) {        
@@ -8,7 +12,64 @@ $("#query-form").keypress(function (e) {
 
 function process_query(input_str){
     console.log(input_str);
+    $.getJSON("sample.json", function(data){
+      set_tabular_results(data);
+      set_raw_results(data);
+      set_graphical_results(data);
+    });
 }
+
+function set_tabular_results(data){
+  var records = data.records;
+  if (records.length === 0){
+    return
+  }
+  /*Remove old result-table-header*/
+  var header_old = $("#query-result-table th.cloned");
+  header_old.remove();
+
+  /*Set the result-table-header*/
+  var keys = records[0].keys;
+  var header_template = $("#query-result-table thead th#template");
+  var header_elem = $("#query-result-table thead tr");
+  for(var i = 0;i<keys.length;i++){
+    var clone = header_template.clone().removeAttr("id").attr("class", "cloned");
+    clone.text(keys[i]);
+    header_elem.append(clone);
+  }
+  console.log(keys);
+
+  /*Remove old result-table-data*/
+  var rows_old = $("#query-result-table tbody tr.cloned");
+
+
+  var table_elem = $("#query-result-table tbody");
+
+  var row_template = $("#query-result-table tbody tr#template");
+  var row_data_template = $("#query-result-table tbody tr td#template");
+  var row_counter_template = $("#query-result-table tbody th#template");
+
+  for(var i = 0;i<records.length;i++){
+    var currRecord = records[i];
+    var fields = currRecord._fields;
+    var row_elem = row_template.clone().removeAttr("id").attr("class", "cloned");
+    var row_counter_template = row_counter_template.clone().removeAttr("id").attr("class", "cloned");
+    
+    row_counter_template.text(i+1);
+    row_elem.append(row_counter_template);
+    for (var j = 0;j<fields.length;j++){
+      var row_data_elem = row_data_template.clone().removeAttr("id").attr("class", "cloned");
+      row_data_elem.text(JSON.stringify(fields[j].properties));
+      row_elem.append(row_data_elem);
+    }
+    table_elem.append(row_elem);
+  }
+
+
+  console.log("Setting tabular results");
+}
+function set_raw_results(data){}
+function set_graphical_results(data){}
 
 function removeNodeProperties(d){
     var copiedNode = jQuery.extend({}, d);
@@ -165,7 +226,5 @@ function dragended(d) {
     d.fx = null;
     d.fy = null;
 }
-
-
 
 
