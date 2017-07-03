@@ -10,6 +10,8 @@ $("#query-form").keypress(function (e) {
     }
 });
 
+
+/*Process functions*/
 function process_query(input_str){
     console.log(input_str);
     $.getJSON("sample.json", function(data){
@@ -68,12 +70,22 @@ function set_tabular_results(data){
 
   console.log("Setting tabular results");
 }
+
 function set_raw_results(data){
   var elem = $("#query-result-raw");
   elem.text(JSON.stringify(data, undefined, 2));
 
 }
+
 function set_graphical_results(data){}
+
+function copy_result_to_clipboard(elem){
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(elem).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+}
 
 function removeNodeProperties(d){
     var copiedNode = jQuery.extend({}, d);
@@ -230,5 +242,4 @@ function dragended(d) {
     d.fx = null;
     d.fy = null;
 }
-
 
