@@ -85,7 +85,7 @@
                 <li role="presentation"><a href="#raw-rs" aria-controls="raw-rs" role="tab" data-toggle="tab">Raw</a></li>
 
                 <li class="pull-right">
-                    <p class="navbar-btn" onclick="copy_result_to_clipboard('#query-result-raw')">
+                    <p class="navbar-btn" id="clipboard-btn" onclick="copy_result_to_clipboard('#query-result-raw')">
                     <a href="#" class="btn btn-default">
                         <span class="glyphicon glyphicon-copy"></span>
                     </a>
@@ -93,7 +93,7 @@
                 </li>
                 <li class="pull-right">
                     <p class="navbar-btn">
-                    <a href="#" class="btn btn-default">
+                    <a href="#" class="btn btn-default" id="download-btn">
                         <span class="glyphicon glyphicon-download-alt"></span>
                     </a>
                     </p>

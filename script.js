@@ -17,6 +17,7 @@ function process_query(input_str){
     $.getJSON("sample.json", function(data){
       set_tabular_results(data);
       set_raw_results(data);
+      set_download_results(data);
       set_graphical_results(data);
     });
 }
@@ -74,7 +75,11 @@ function set_tabular_results(data){
 function set_raw_results(data){
   var elem = $("#query-result-raw");
   elem.text(JSON.stringify(data, undefined, 2));
+}
 
+function set_download_results(data){
+  $("#download-btn").attr("href", "data:text/plain;charset=UTF-8," + encodeURIComponent(JSON.stringify(data, undefined, 2)));
+  $("#download-btn").attr("download", "query-result.txt");
 }
 
 function set_graphical_results(data){}
