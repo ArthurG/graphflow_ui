@@ -68,7 +68,11 @@ function set_tabular_results(data){
 
   console.log("Setting tabular results");
 }
-function set_raw_results(data){}
+function set_raw_results(data){
+  var elem = $("#query-result-raw");
+  elem.text(JSON.stringify(data, undefined, 2));
+
+}
 function set_graphical_results(data){}
 
 function removeNodeProperties(d){
