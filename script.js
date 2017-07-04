@@ -23,6 +23,10 @@ function process_query(input_str){
 }
 
 function set_tabular_results(data){
+  function clone_template(template){
+    return template.clone().removeAttr("id").attr("class", "cloned");
+  }
+
   var records = data.records;
   if (records.length === 0){
     return
@@ -36,16 +40,16 @@ function set_tabular_results(data){
   var header_template = $("#query-result-table thead th#template");
   var header_elem = $("#query-result-table thead tr");
   for(var i = 0;i<keys.length;i++){
-    var clone = header_template.clone().removeAttr("id").attr("class", "cloned");
+    var clone = clone_template(header_template);
     clone.text(keys[i]);
     header_elem.append(clone);
   }
-  console.log(keys);
 
   /*Remove old result-table-data*/
   var rows_old = $("#query-result-table tbody tr.cloned");
+  rows_old.remove();
 
-
+  /*Set the result-table-body*/
   var table_elem = $("#query-result-table tbody");
 
   var row_template = $("#query-result-table tbody tr#template");
@@ -55,21 +59,18 @@ function set_tabular_results(data){
   for(var i = 0;i<records.length;i++){
     var currRecord = records[i];
     var fields = currRecord._fields;
-    var row_elem = row_template.clone().removeAttr("id").attr("class", "cloned");
-    var row_counter_template = row_counter_template.clone().removeAttr("id").attr("class", "cloned");
+    var row_elem = clone_template(row_template);
+    var row_counter_template = clone_template(row_counter_template);
     
     row_counter_template.text(i+1);
     row_elem.append(row_counter_template);
     for (var j = 0;j<fields.length;j++){
-      var row_data_elem = row_data_template.clone().removeAttr("id").attr("class", "cloned");
+      var row_data_elem = clone_template(row_data_template);
       row_data_elem.text(JSON.stringify(fields[j].properties));
       row_elem.append(row_data_elem);
     }
     table_elem.append(row_elem);
   }
-
-
-  console.log("Setting tabular results");
 }
 
 function set_raw_results(data){
