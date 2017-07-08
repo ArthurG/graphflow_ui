@@ -83,7 +83,45 @@ function set_download_results(data){
   $("#download-btn").attr("download", "query-result.txt");
 }
 
-function set_graphical_results(data){}
+function set_graphical_results(data){
+  var nodes = [];
+  var edges = []; 
+  var seenItems = new Set();
+
+  var records = data.records;
+  //Manipulate the graph to be in the D3 required form
+  for(var i = 0;i<records.length;i++){
+    var fields = records[i]._fields;
+    for(var j = 0;j<fields.length;j++){
+      var currItem = fields[j];
+
+      if (seenItems.has(currItem.id)){
+        continue;
+      }else{
+        seenItems.add(currItem.id);
+      }
+
+      if(typeof currItem.startNode === "undefined"){ //Is a node
+        var copiedNode = jQuery.extend({}, currItem.properties);
+        copiedNode.id = currItem.id;
+        nodes.push(copiedNode);
+        //TODO: DO something with the type to get group
+      }
+      else{ //Is an edge
+        var copiedEdge = jQuery.extend({}, currItem.properties);
+        copiedEdge.id = currItem.id;
+        copiedEdge.source = currItem.startNode;
+        copiedEdge.target = currItem.endNode;
+        edges.push(copiedEdge);
+      }
+    }
+  }
+
+  //Render the graph
+  var graph = {nodes: nodes, links: edges};
+  render(graph);
+
+}
 
 function copy_result_to_clipboard(elem){
   var $temp = $("<input>");
@@ -179,58 +217,73 @@ var simulation = d3.forceSimulation()
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
 
-    d3.json("miserables.json", function(error, graph) {
-        if (error) throw error;
+/*
+function rerend(){
+d3.json("miserables.json", function(error, graph) {
+    if (error) throw error;
+    render(graph);
+});
+}
 
-        var link = svg.append("g")
-            .attr("class", "links")
-            .selectAll("line")
-            .data(graph.links)
-            .enter().append("line")
-            .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+//svg.append("g").attr("class", "links");
+//svg.append("g").attr("class", "nodes");
+rerend();
+*/
 
-        link.on("click", clickLink);
-        link.on("mouseover", hoverLink);
 
-        var node = svg.append("g")
-            .attr("class", "nodes")
-            .selectAll("circle")
-            .data(graph.nodes)
+function render(graph){
+    svg.selectAll(".links").remove();
+    svg.selectAll(".nodes").remove();
+
+    var link = svg.append("g")
+        .attr("class", "links")
+        .selectAll("line")
+        .data(graph.links)
+          .enter().append("line")
+          .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+      link.on("click", clickLink);
+      link.on("mouseover", hoverLink);
+
+      var node = svg.append("g")
+          .attr("class", "nodes")
+          .selectAll("circle")
+          .data(graph.nodes)
             .enter().append("circle")
             .attr("r", 10)
             .attr("fill", function(d) { return color(d.group); })
             .call(d3.drag()
-                    .on("start", dragstarted)
-                    .on("drag", dragged)
-                    .on("end", dragended));
+                  .on("start", dragstarted)
+                  .on("drag", dragged)
+                  .on("end", dragended));
 
-        node.append("title")
-            .text(function(d) { return d.id; });
+      node.append("title")
+          .text(function(d) { return d.id; });
 
-        node.on("click", clickNode);
+      node.on("click", clickNode);
 
-        node.on("mouseover", hoverNode)
-            .on("mouseout", unhoverNode);
+      node.on("mouseover", hoverNode)
+          .on("mouseout", unhoverNode);
 
-        simulation
-            .nodes(graph.nodes)
-            .on("tick", ticked);
+      simulation
+          .nodes(graph.nodes)
+          .on("tick", ticked);
 
-        simulation.force("link")
-            .links(graph.links);
+      simulation.force("link")
+          .links(graph.links);
 
-        function ticked() {
-            link
-                .attr("x1", function(d) { return d.source.x; })
-                .attr("y1", function(d) { return d.source.y; })
-                .attr("x2", function(d) { return d.target.x; })
-                .attr("y2", function(d) { return d.target.y; });
+      function ticked() {
+          link
+              .attr("x1", function(d) { return d.source.x; })
+              .attr("y1", function(d) { return d.source.y; })
+              .attr("x2", function(d) { return d.target.x; })
+              .attr("y2", function(d) { return d.target.y; });
 
-            node
-                .attr("cx", function(d) { return d.x; })
-                .attr("cy", function(d) { return d.y; });
-        }
-    });
+          node
+              .attr("cx", function(d) { return d.x; })
+              .attr("cy", function(d) { return d.y; });
+      }
+}
 
 function dragstarted(d) {
     if (!d3.event.active) simulation.alphaTarget(0.3).restart();
