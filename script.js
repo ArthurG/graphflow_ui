@@ -217,20 +217,6 @@ var simulation = d3.forceSimulation()
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
 
-/*
-function rerend(){
-d3.json("miserables.json", function(error, graph) {
-    if (error) throw error;
-    render(graph);
-});
-}
-
-//svg.append("g").attr("class", "links");
-//svg.append("g").attr("class", "nodes");
-rerend();
-*/
-
-
 function render(graph){
     svg.selectAll(".links").remove();
     svg.selectAll(".nodes").remove();
