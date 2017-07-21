@@ -1,0 +1,4458 @@
+{
+  "records": [
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        },
+        {
+          "identity": {
+            "low": 58408,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1800000000"
+          },
+          "id": "58408",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58408,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1800000000"
+          },
+          "id": "58408",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        },
+        {
+          "identity": {
+            "low": 58408,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1800000000"
+          },
+          "id": "58408",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 6,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "2800000000"
+          },
+          "id": "6",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        },
+        {
+          "identity": {
+            "low": 58408,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1800000000"
+          },
+          "id": "58408",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 58657,
+            "high": 0
+          },
+          "start": {
+            "low": 63659,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "6100000000"
+          },
+          "id": "58657",
+          "startNode": "63659",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 63659,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1BBz9Z15YpELQ4QP5sEKb1SwxkcmPb5TMs"
+          },
+          "id": "63659"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        },
+        {
+          "identity": {
+            "low": 58408,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1800000000"
+          },
+          "id": "58408",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 8,
+            "high": 0
+          },
+          "start": {
+            "low": 5575,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "100000000"
+          },
+          "id": "8",
+          "startNode": "5575",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5575,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "15NUwyBYrZcnUgTagsm1A7M2yL2GntpuaZ"
+          },
+          "id": "5575"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        },
+        {
+          "identity": {
+            "low": 58408,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1800000000"
+          },
+          "id": "58408",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 7,
+            "high": 0
+          },
+          "start": {
+            "low": 5573,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "5000000000"
+          },
+          "id": "7",
+          "startNode": "5573",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5573,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "18SH9vwx24L5cTabfkgtGMjF8A56pD9AUJ"
+          },
+          "id": "5573"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        },
+        {
+          "identity": {
+            "low": 6,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "2800000000"
+          },
+          "id": "6",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58408,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1800000000"
+          },
+          "id": "58408",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        },
+        {
+          "identity": {
+            "low": 6,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "2800000000"
+          },
+          "id": "6",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 6,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "2800000000"
+          },
+          "id": "6",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        },
+        {
+          "identity": {
+            "low": 6,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "2800000000"
+          },
+          "id": "6",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 58657,
+            "high": 0
+          },
+          "start": {
+            "low": 63659,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "6100000000"
+          },
+          "id": "58657",
+          "startNode": "63659",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 63659,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1BBz9Z15YpELQ4QP5sEKb1SwxkcmPb5TMs"
+          },
+          "id": "63659"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        },
+        {
+          "identity": {
+            "low": 6,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "2800000000"
+          },
+          "id": "6",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 8,
+            "high": 0
+          },
+          "start": {
+            "low": 5575,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "100000000"
+          },
+          "id": "8",
+          "startNode": "5575",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5575,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "15NUwyBYrZcnUgTagsm1A7M2yL2GntpuaZ"
+          },
+          "id": "5575"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        },
+        {
+          "identity": {
+            "low": 6,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "2800000000"
+          },
+          "id": "6",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 7,
+            "high": 0
+          },
+          "start": {
+            "low": 5573,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "5000000000"
+          },
+          "id": "7",
+          "startNode": "5573",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5573,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "18SH9vwx24L5cTabfkgtGMjF8A56pD9AUJ"
+          },
+          "id": "5573"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 63659,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1BBz9Z15YpELQ4QP5sEKb1SwxkcmPb5TMs"
+          },
+          "id": "63659"
+        },
+        {
+          "identity": {
+            "low": 58657,
+            "high": 0
+          },
+          "start": {
+            "low": 63659,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "6100000000"
+          },
+          "id": "58657",
+          "startNode": "63659",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58408,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1800000000"
+          },
+          "id": "58408",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 63659,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1BBz9Z15YpELQ4QP5sEKb1SwxkcmPb5TMs"
+          },
+          "id": "63659"
+        },
+        {
+          "identity": {
+            "low": 58657,
+            "high": 0
+          },
+          "start": {
+            "low": 63659,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "6100000000"
+          },
+          "id": "58657",
+          "startNode": "63659",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 6,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "2800000000"
+          },
+          "id": "6",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 63659,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1BBz9Z15YpELQ4QP5sEKb1SwxkcmPb5TMs"
+          },
+          "id": "63659"
+        },
+        {
+          "identity": {
+            "low": 58657,
+            "high": 0
+          },
+          "start": {
+            "low": 63659,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "6100000000"
+          },
+          "id": "58657",
+          "startNode": "63659",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 58657,
+            "high": 0
+          },
+          "start": {
+            "low": 63659,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "6100000000"
+          },
+          "id": "58657",
+          "startNode": "63659",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 63659,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1BBz9Z15YpELQ4QP5sEKb1SwxkcmPb5TMs"
+          },
+          "id": "63659"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 63659,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1BBz9Z15YpELQ4QP5sEKb1SwxkcmPb5TMs"
+          },
+          "id": "63659"
+        },
+        {
+          "identity": {
+            "low": 58657,
+            "high": 0
+          },
+          "start": {
+            "low": 63659,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "6100000000"
+          },
+          "id": "58657",
+          "startNode": "63659",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 8,
+            "high": 0
+          },
+          "start": {
+            "low": 5575,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "100000000"
+          },
+          "id": "8",
+          "startNode": "5575",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5575,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "15NUwyBYrZcnUgTagsm1A7M2yL2GntpuaZ"
+          },
+          "id": "5575"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 63659,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1BBz9Z15YpELQ4QP5sEKb1SwxkcmPb5TMs"
+          },
+          "id": "63659"
+        },
+        {
+          "identity": {
+            "low": 58657,
+            "high": 0
+          },
+          "start": {
+            "low": 63659,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "6100000000"
+          },
+          "id": "58657",
+          "startNode": "63659",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 7,
+            "high": 0
+          },
+          "start": {
+            "low": 5573,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "5000000000"
+          },
+          "id": "7",
+          "startNode": "5573",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5573,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "18SH9vwx24L5cTabfkgtGMjF8A56pD9AUJ"
+          },
+          "id": "5573"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5575,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "15NUwyBYrZcnUgTagsm1A7M2yL2GntpuaZ"
+          },
+          "id": "5575"
+        },
+        {
+          "identity": {
+            "low": 8,
+            "high": 0
+          },
+          "start": {
+            "low": 5575,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "100000000"
+          },
+          "id": "8",
+          "startNode": "5575",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58408,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1800000000"
+          },
+          "id": "58408",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5575,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "15NUwyBYrZcnUgTagsm1A7M2yL2GntpuaZ"
+          },
+          "id": "5575"
+        },
+        {
+          "identity": {
+            "low": 8,
+            "high": 0
+          },
+          "start": {
+            "low": 5575,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "100000000"
+          },
+          "id": "8",
+          "startNode": "5575",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 6,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "2800000000"
+          },
+          "id": "6",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5575,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "15NUwyBYrZcnUgTagsm1A7M2yL2GntpuaZ"
+          },
+          "id": "5575"
+        },
+        {
+          "identity": {
+            "low": 8,
+            "high": 0
+          },
+          "start": {
+            "low": 5575,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "100000000"
+          },
+          "id": "8",
+          "startNode": "5575",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 58657,
+            "high": 0
+          },
+          "start": {
+            "low": 63659,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "6100000000"
+          },
+          "id": "58657",
+          "startNode": "63659",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 63659,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1BBz9Z15YpELQ4QP5sEKb1SwxkcmPb5TMs"
+          },
+          "id": "63659"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5575,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "15NUwyBYrZcnUgTagsm1A7M2yL2GntpuaZ"
+          },
+          "id": "5575"
+        },
+        {
+          "identity": {
+            "low": 8,
+            "high": 0
+          },
+          "start": {
+            "low": 5575,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "100000000"
+          },
+          "id": "8",
+          "startNode": "5575",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 8,
+            "high": 0
+          },
+          "start": {
+            "low": 5575,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "100000000"
+          },
+          "id": "8",
+          "startNode": "5575",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5575,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "15NUwyBYrZcnUgTagsm1A7M2yL2GntpuaZ"
+          },
+          "id": "5575"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5575,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "15NUwyBYrZcnUgTagsm1A7M2yL2GntpuaZ"
+          },
+          "id": "5575"
+        },
+        {
+          "identity": {
+            "low": 8,
+            "high": 0
+          },
+          "start": {
+            "low": 5575,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "100000000"
+          },
+          "id": "8",
+          "startNode": "5575",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 7,
+            "high": 0
+          },
+          "start": {
+            "low": 5573,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "5000000000"
+          },
+          "id": "7",
+          "startNode": "5573",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5573,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "18SH9vwx24L5cTabfkgtGMjF8A56pD9AUJ"
+          },
+          "id": "5573"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5573,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "18SH9vwx24L5cTabfkgtGMjF8A56pD9AUJ"
+          },
+          "id": "5573"
+        },
+        {
+          "identity": {
+            "low": 7,
+            "high": 0
+          },
+          "start": {
+            "low": 5573,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "5000000000"
+          },
+          "id": "7",
+          "startNode": "5573",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 58408,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1800000000"
+          },
+          "id": "58408",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5573,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "18SH9vwx24L5cTabfkgtGMjF8A56pD9AUJ"
+          },
+          "id": "5573"
+        },
+        {
+          "identity": {
+            "low": 7,
+            "high": 0
+          },
+          "start": {
+            "low": 5573,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "5000000000"
+          },
+          "id": "7",
+          "startNode": "5573",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 58407,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "58407",
+          "startNode": "5576",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5572,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe"
+          },
+          "id": "5572"
+        },
+        {
+          "identity": {
+            "low": 6,
+            "high": 0
+          },
+          "start": {
+            "low": 5563,
+            "high": 0
+          },
+          "end": {
+            "low": 5572,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "2800000000"
+          },
+          "id": "6",
+          "startNode": "5563",
+          "endNode": "5572"
+        },
+        {
+          "identity": {
+            "low": 5563,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"
+          },
+          "id": "5563"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5573,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "18SH9vwx24L5cTabfkgtGMjF8A56pD9AUJ"
+          },
+          "id": "5573"
+        },
+        {
+          "identity": {
+            "low": 7,
+            "high": 0
+          },
+          "start": {
+            "low": 5573,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "5000000000"
+          },
+          "id": "7",
+          "startNode": "5573",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 58657,
+            "high": 0
+          },
+          "start": {
+            "low": 63659,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "RECEIVED",
+          "properties": {
+            "satoshi": "6100000000"
+          },
+          "id": "58657",
+          "startNode": "63659",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 63659,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1BBz9Z15YpELQ4QP5sEKb1SwxkcmPb5TMs"
+          },
+          "id": "63659"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5573,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "18SH9vwx24L5cTabfkgtGMjF8A56pD9AUJ"
+          },
+          "id": "5573"
+        },
+        {
+          "identity": {
+            "low": 7,
+            "high": 0
+          },
+          "start": {
+            "low": 5573,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "5000000000"
+          },
+          "id": "7",
+          "startNode": "5573",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 8,
+            "high": 0
+          },
+          "start": {
+            "low": 5575,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "100000000"
+          },
+          "id": "8",
+          "startNode": "5575",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5575,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "15NUwyBYrZcnUgTagsm1A7M2yL2GntpuaZ"
+          },
+          "id": "5575"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    },
+    {
+      "keys": [
+        "z",
+        "r1",
+        "b",
+        "r2",
+        "c",
+        "r3",
+        "d",
+        "r4",
+        "e"
+      ],
+      "length": 9,
+      "_fields": [
+        {
+          "identity": {
+            "low": 5573,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "18SH9vwx24L5cTabfkgtGMjF8A56pD9AUJ"
+          },
+          "id": "5573"
+        },
+        {
+          "identity": {
+            "low": 7,
+            "high": 0
+          },
+          "start": {
+            "low": 5573,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "5000000000"
+          },
+          "id": "7",
+          "startNode": "5573",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5576,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg"
+          },
+          "id": "5576"
+        },
+        {
+          "identity": {
+            "low": 9,
+            "high": 0
+          },
+          "start": {
+            "low": 5576,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "1000000000"
+          },
+          "id": "9",
+          "startNode": "5576",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5574,
+            "high": 0
+          },
+          "labels": [
+            "Transaction"
+          ],
+          "properties": {
+            "hash": "a3b0e9e7cddbbe78270fa4182a7675ff00b92872d8df7d14265a2b1e379a9d33"
+          },
+          "id": "5574"
+        },
+        {
+          "identity": {
+            "low": 7,
+            "high": 0
+          },
+          "start": {
+            "low": 5573,
+            "high": 0
+          },
+          "end": {
+            "low": 5574,
+            "high": 0
+          },
+          "type": "SENT",
+          "properties": {
+            "satoshi": "5000000000"
+          },
+          "id": "7",
+          "startNode": "5573",
+          "endNode": "5574"
+        },
+        {
+          "identity": {
+            "low": 5573,
+            "high": 0
+          },
+          "labels": [
+            "Wallet"
+          ],
+          "properties": {
+            "address": "18SH9vwx24L5cTabfkgtGMjF8A56pD9AUJ"
+          },
+          "id": "5573"
+        }
+      ],
+      "_fieldLookup": {
+        "z": 0,
+        "r1": 1,
+        "b": 2,
+        "r2": 3,
+        "c": 4,
+        "r3": 5,
+        "d": 6,
+        "r4": 7,
+        "e": 8
+      }
+    }
+  ],
+  "summary": {
+    "statement": {
+      "text": "MATCH (c:Wallet{address:'1ByLSV2gLRcuqUmfdYcpPQH8Npm8cccsFg'})\nOPTIONAL MATCH (z:Wallet)-[r1]->(b:Transaction)<-[r2]-(c)\nOPTIONAL MATCH (c)-[r3]->(d:Transaction)<-[r4]-(e:Wallet)\nreturn z,r1,b,r2,c,r3,d,r4,e",
+      "parameters": {}
+    },
+    "statementType": "r",
+    "counters": {
+      "_stats": {
+        "nodesCreated": 0,
+        "nodesDeleted": 0,
+        "relationshipsCreated": 0,
+        "relationshipsDeleted": 0,
+        "propertiesSet": 0,
+        "labelsAdded": 0,
+        "labelsRemoved": 0,
+        "indexesAdded": 0,
+        "indexesRemoved": 0,
+        "constraintsAdded": 0,
+        "constraintsRemoved": 0
+      }
+    },
+    "updateStatistics": {
+      "_stats": {
+        "nodesCreated": 0,
+        "nodesDeleted": 0,
+        "relationshipsCreated": 0,
+        "relationshipsDeleted": 0,
+        "propertiesSet": 0,
+        "labelsAdded": 0,
+        "labelsRemoved": 0,
+        "indexesAdded": 0,
+        "indexesRemoved": 0,
+        "constraintsAdded": 0,
+        "constraintsRemoved": 0
+      }
+    },
+    "plan": false,
+    "profile": false,
+    "notifications": [],
+    "resultConsumedAfter": {
+      "low": 520,
+      "high": 0
+    },
+    "resultAvailableAfter": {
+      "low": 133,
+      "high": 0
+    }
+  },
+  "timings": {
+    "resultAvailableAfter": 133,
+    "resultConsumedAfter": 520,
+    "type": "bolt",
+    "totalTime": 653
+  }
+}
