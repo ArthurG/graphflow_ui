@@ -24,7 +24,7 @@ function process_query(input_str){
 
 function set_tabular_results(data){
   function clone_template(template){
-    return template.clone().removeAttr("id").attr("class", "cloned");
+    return template.clone().removeClass("template").attr("class", "cloned");
   }
 
   var records = data.records;
@@ -37,7 +37,7 @@ function set_tabular_results(data){
 
   /*Set the result-table-header*/
   var keys = records[0].keys;
-  var header_template = $("#query-result-table thead th#template");
+  var header_template = $("#query-result-table thead th.template");
   var header_elem = $("#query-result-table thead tr");
   for(var i = 0;i<keys.length;i++){
     var clone = clone_template(header_template);
@@ -52,9 +52,9 @@ function set_tabular_results(data){
   /*Set the result-table-body*/
   var table_elem = $("#query-result-table tbody");
 
-  var row_template = $("#query-result-table tbody tr#template");
-  var row_data_template = $("#query-result-table tbody tr td#template");
-  var row_counter_template = $("#query-result-table tbody th#template");
+  var row_template = $("#query-result-table tbody tr.template");
+  var row_data_template = $("#query-result-table tbody tr td.template");
+  var row_counter_template = $("#query-result-table tbody th.template");
 
   for(var i = 0;i<records.length;i++){
     var currRecord = records[i];

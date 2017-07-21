@@ -13,6 +13,16 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <link href="starter-template.css" rel="stylesheet">
 
+
+        <!-- Materialize UI -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+        <!-- Underscore.js (javascript array/object/etc. help functions ) -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <!-- Custom css file -->
+        <link rel="stylesheet" href="css/plan_viewer.css">
+        <!-- Google fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson Text">
+
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -83,6 +93,7 @@
                 <li role="presentation" class="active"><a href="#graphical-rs" aria-controls="graphical-rs" role="tab" data-toggle="tab">Graphical</a></li>
                 <li role="presentation"><a href="#tabular-rs" aria-controls="tabular-rs" role="tab" data-toggle="tab">Tabular</a></li>
                 <li role="presentation"><a href="#raw-rs" aria-controls="raw-rs" role="tab" data-toggle="tab">Raw</a></li>
+                <li role="presentation"><a href="#explain-rs" aria-controls="explain-rs" role="tab" data-toggle="tab">Explain</a></li>
 
                 <li class="pull-right">
                     <p class="navbar-btn" id="clipboard-btn" onclick="copy_result_to_clipboard('#query-result-raw')">
@@ -114,13 +125,13 @@
                             <thead>
                               <tr>
                                     <th>#</th>
-                                    <th id="template">First Name</th>
+                                    <th class="template">First Name</th>
                               </tr>
                             </thead>
                             <tbody>
-                                <tr id="template"></tr>
-                                <th scope="row" id="template"></th>
-                                <td id="template"></td>
+                                <tr class="template"></tr>
+                                <th scope="row" class="template"></th>
+                                <td class="template"></td>
                             </tbody>
                         </table>
                     </div>
@@ -128,6 +139,47 @@
                 <div role="tabpanel" class="tab-pane" id="raw-rs">
                     <pre id="query-result-raw">
                     </pre>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="explain-rs">
+                    <div id="legend" class="legend">
+                        <div>
+                            <div class="graph-version-box current-graph legend-item">C</div>
+                            <p class="legend-words">: Current Graph</p>
+                        </div>
+
+                        <div>
+                            <div class="graph-version-box delta-graph legend-item">&Delta;</div>
+                            <p class="legend-words">: Delta Graph</p>
+                        </div>
+
+                        <div>
+                            <div class="new-graph legend-item">N</div>
+                            <p class="legend-words">: New Graph</p>
+                        </div>
+
+                        <div>
+                            <div class="simple-legend-entry"><b>&sigma;</b>: Filter</div>
+                        </div>
+
+                        <div>
+                            <div class="simple-legend-entry"><b>&Pi;</b>: Projection</div>
+                        </div>
+
+                        <div>
+                            <div class="simple-legend-entry"><b>&Gamma;</b>: Aggregate</div>
+                        </div>
+
+                        <div>
+                            <div class="simple-legend-entry">------>: Outgoing</div>
+                        </div>
+
+                        <div>
+                            <div class="simple-legend-entry"><------: Incoming</div>
+                        </div>
+                    </div>
+
+
+                    <div id="stageSet"></div>
                 </div>
             </div>
         </div>
@@ -140,11 +192,15 @@
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="script.js"></script>
 
-        </style>
+        <!-- D3js -->
         <script src="https://d3js.org/d3.v4.min.js"></script>
+        <!-- Constant definitions -->
+        <script type="text/javascript" src="js/constants.js"></script>
+        <!-- Utility functions -->
+        <script type="text/javascript" src="js/util.js"></script>
+        <script type="text/javascript" src="js/plan.js"></script>
 
         <script>
-        </script>
     </body>
 </html>
 
