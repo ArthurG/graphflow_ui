@@ -1,0 +1,5 @@
+CREATE (1:Person {name: "A"})-[:likes]->(2:Person {name:"B"});
+CREATE (2:Person {name: "B"})-[:likes]->(3:Person {name:"C"});
+CREATE (3:Person {name: "C"})-[:likes]->(4:Person {name:"D"});
+
+MATCH (a)-[:likes]->(b) RETURN  SUM(a),SUM(b);

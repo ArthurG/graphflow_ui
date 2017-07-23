@@ -1,0 +1,12 @@
+Edges cannot be displayed -> will be displayed at the end
+
+Glitch running query, verticies out of order
+MATCH (a)->(b), (b)->(c);
+
+
+Should have edge_data object inside for consitency
+edge.property = Object
+
+drawing multiple edges between same verticies
+
+
