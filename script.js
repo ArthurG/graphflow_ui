@@ -13,43 +13,50 @@ $("#query-form").keypress(function (e) {
 
 /*Process functions*/
 function process_query(input_str){
-    console.log(input_str);
-    $.getJSON("sample.json", function(data){
-      set_tabular_results(data);
+    $.post("http://localhost:8000/query", input_str).fail(function(){
+      alert("Graphflow server is down!");
+    });
+
+    $.getJSON("http://localhost:8000/json", function(data, status, xhr){
+      console.log(data);
       set_raw_results(data);
+      //if ("SUBGRAPHS" === data.response_type)
+      set_tabular_results(data);
       set_download_results(data);
-      set_graphical_results(data);
+      //set_graphical_results(data);
     });
 }
 
 function set_tabular_results(data){
+
   function clone_template(template){
     return template.clone().removeClass("template").attr("class", "cloned");
   }
 
-  var records = data.records;
+  var records = data.subgraphs;
   if (records.length === 0){
     return
   }
-  /*Remove old result-table-header*/
+
+  /*Remove old table headers*/
   var header_old = $("#query-result-table th.cloned");
   header_old.remove();
 
-  /*Set the result-table-header*/
-  var keys = records[0].keys;
+  /*Set the updated table headers for this query*/
+  var table_headers = data.vertex_map;
   var header_template = $("#query-result-table thead th.template");
   var header_elem = $("#query-result-table thead tr");
-  for(var i = 0;i<keys.length;i++){
+  for(var header_name in table_headers){
     var clone = clone_template(header_template);
-    clone.text(keys[i]);
+    clone.text(header_name);
     header_elem.append(clone);
   }
 
-  /*Remove old result-table-data*/
+  /*Remove old table data*/
   var rows_old = $("#query-result-table tbody tr.cloned");
   rows_old.remove();
 
-  /*Set the result-table-body*/
+  /*Set the table data*/
   var table_elem = $("#query-result-table tbody");
 
   var row_template = $("#query-result-table tbody tr.template");
@@ -58,19 +65,31 @@ function set_tabular_results(data){
 
   for(var i = 0;i<records.length;i++){
     var currRecord = records[i];
-    var fields = currRecord._fields;
+    var verticies_to_add = currRecord.vertices;
+    var edges_to_add = currRecord.edges;
     var row_elem = clone_template(row_template);
     var row_counter_template = clone_template(row_counter_template);
     
     row_counter_template.text(i+1);
     row_elem.append(row_counter_template);
-    for (var j = 0;j<fields.length;j++){
+
+    //Populate the verticies
+    for (var j = 0;j<verticies_to_add.length;j++){
       var row_data_elem = clone_template(row_data_template);
-      row_data_elem.text(JSON.stringify(fields[j].properties));
+      row_data_elem.text(JSON.stringify(data.vertex_data[verticies_to_add[j]].properties));
+      row_elem.append(row_data_elem);
+    }
+
+    //Populate the edges
+    for (var j = 0;j<edges_to_add.length;j++){
+      var row_data_elem = clone_template(row_data_template);
+      //TODO: Should I Populate the entire edge object?
+      row_data_elem.text(JSON.stringify(edges_to_add[j]));
       row_elem.append(row_data_elem);
     }
     table_elem.append(row_elem);
   }
+
 }
 
 function set_raw_results(data){
