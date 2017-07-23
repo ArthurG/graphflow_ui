@@ -18,13 +18,54 @@ function processQuery(inputStr){
   });
 
   $.getJSON("http://localhost:8000/json", function(data, status, xhr){
-    console.log(data);
     setRawResults(data);
-    //if ("SUBGRAPHS" === data.response_type)
-    setTabularResults(data);
-    setDownloadResults(data);
-    setGraphicalResults(data);
+    if ("SUBGRAPHS" === data.response_type){
+      updateTabs(["TABULAR", "GRAPHICAL", "RAW"]);
+      setTabularResults(data);
+      setDownloadResults(data);
+      setGraphicalResults(data);
+    }
+    //TODO: Tuples and strings are both rendered as message
+    /*
+    else if ("STRING" === data.response_type){
+      updateTabs(["RAW"]);
+    }
+    else if ("TUPLES" === data.response_type){
+      updateTabs(["TABULAR", "RAW"]);
+    }
+    */
+    else if ("EXPLAIN" === data.response_type){
+      updateTabs(["EXPLAIN", "RAW"]);
+    }
+    else if ("MESSAGE" === data.response_type && data.isError){
+      updateTabs(["RAW"]);
+      alert(data.message);
+    }
+    else if ("MESSAGE" === data.response_type){
+      updateTabs(["RAW"]);
+    }
   });
+}
+
+//Hides the tabs for the result-set
+function hideTabs(){
+  $(".resultset .result-tab").addClass("hidden");
+  $(".tab-pane").removeClass("active");
+}
+
+//Shows the tabs in result-set which are also in tabArr, oither tabs are hidden
+function updateTabs(tabArr){
+  hideTabs();
+  for(var i = 0;i<tabArr.length;i++){
+    var tabCssSelector = "."+tabArr[i].toLowerCase()+"-tab";
+    var tabContentCssSelector = "#"+tabArr[i].toLowerCase()+"-rs";
+    if (i === 0){
+      $(tabCssSelector).addClass("active");
+      $(tabContentCssSelector).addClass("active");
+    }
+    tab = tabArr[i];
+    $(tabCssSelector).removeClass("hidden");
+  }
 }
 
 function setTabularResults(data){
