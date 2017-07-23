@@ -5,31 +5,31 @@ var queryResult = {};
 $("#query-form").keypress(function (e) {
   var input = $("#query-form textarea").val();
   if(e.which == 13 && !e.shiftKey) {        
-    process_query(input);
+    processQuery(input);
     e.preventDefault();
   }
 });
 
 
 /*Process functions*/
-function process_query(input_str){
-  $.post("http://localhost:8000/query", input_str).fail(function(){
+function processQuery(inputStr){
+  $.post("http://localhost:8000/query", inputStr).fail(function(){
     alert("Graphflow server is down!");
   });
 
   $.getJSON("http://localhost:8000/json", function(data, status, xhr){
     console.log(data);
-    set_raw_results(data);
+    setRawResults(data);
     //if ("SUBGRAPHS" === data.response_type)
-    set_tabular_results(data);
-    set_download_results(data);
-    set_graphical_results(data);
+    setTabularResults(data);
+    setDownloadResults(data);
+    setGraphicalResults(data);
   });
 }
 
-function set_tabular_results(data){
+function setTabularResults(data){
 
-  function clone_template(template){
+  function cloneTemplate(template){
     return template.clone().removeClass("template").attr("class", "cloned");
   }
 
@@ -39,70 +39,70 @@ function set_tabular_results(data){
   }
 
   /*Remove old table headers*/
-  var header_old = $("#query-result-table th.cloned");
-  header_old.remove();
+  $("#query-result-table th.cloned").remove();
 
   /*Set the updated table headers for this query*/
-  var table_headers = data.vertex_map;
-  var header_template = $("#query-result-table thead th.template");
-  var header_elem = $("#query-result-table thead tr");
-  for(var header_name in table_headers){
-    var clone = clone_template(header_template);
-    clone.text(header_name);
-    header_elem.append(clone);
+  var header = $("#query-result-table thead tr");
+  var headerTemplate = $("#query-result-table thead th.template");
+  var vertexMap = data.vertex_map;
+  //Populate the headers for the verticies
+  //TODO: No headers are being populated for the edges
+  for(var headerName in vertexMap){
+    var headerItem = cloneTemplate(headerTemplate);
+    headerItem.text(headerName);
+    header.append(headerItem);
   }
 
   /*Remove old table data*/
-  var rows_old = $("#query-result-table tbody tr.cloned");
-  rows_old.remove();
+  $("#query-result-table tbody tr.cloned").remove();
 
   /*Set the table data*/
-  var table_elem = $("#query-result-table tbody");
+  var resultTable = $("#query-result-table tbody");
 
-  var row_template = $("#query-result-table tbody tr.template");
-  var row_data_template = $("#query-result-table tbody tr td.template");
-  var row_counter_template = $("#query-result-table tbody th.template");
+  var rowTemplate = $("#query-result-table tbody tr.template");
+  var rowDataTemplate = $("#query-result-table tbody tr td.template");
+  var rowCounterTemplate = $("#query-result-table tbody th.template");
 
+  //Populate the rows
   for(var i = 0;i<records.length;i++){
     var currRecord = records[i];
-    var verticies_to_add = currRecord.vertices;
-    var edges_to_add = currRecord.edges;
-    var row_elem = clone_template(row_template);
-    var row_counter_template = clone_template(row_counter_template);
+    var newRow = cloneTemplate(rowTemplate);
+    var rowCounter = cloneTemplate(rowCounterTemplate);
 
-    row_counter_template.text(i+1);
-    row_elem.append(row_counter_template);
+    rowCounter.text(i+1);
+    newRow.append(rowCounter);
 
     //Populate the verticies
-    for (var j = 0;j<verticies_to_add.length;j++){
-      var row_data_elem = clone_template(row_data_template);
-      row_data_elem.text(JSON.stringify(data.vertex_data[verticies_to_add[j]].properties));
-      row_elem.append(row_data_elem);
+    var verticiesToAdd = currRecord.vertices;
+    for (var j = 0;j<verticiesToAdd.length;j++){
+      var rowDataCell = cloneTemplate(rowDataTemplate);
+      rowDataCell.text(JSON.stringify(data.vertex_data[verticiesToAdd[j]].properties));
+      newRow.append(rowDataCell);
     }
 
     //Populate the edges
-    for (var j = 0;j<edges_to_add.length;j++){
-      var row_data_elem = clone_template(row_data_template);
+    var edgesToAdd = currRecord.edges;
+    for (var j = 0;j<edgesToAdd.length;j++){
+      var rowDataCell = cloneTemplate(rowDataTemplate);
       //TODO: Should I Populate the entire edge object?
-      row_data_elem.text(JSON.stringify(edges_to_add[j]));
-      row_elem.append(row_data_elem);
+      rowDataCell.text(JSON.stringify(edgesToAdd[j]));
+      newRow.append(rowDataCell);
     }
-    table_elem.append(row_elem);
+    resultTable.append(newRow);
   }
-
 }
 
-function set_raw_results(data){
+function setRawResults(data){
   var elem = $("#query-result-raw");
   elem.text(JSON.stringify(data, undefined, 2));
 }
 
-function set_download_results(data){
+function setDownloadResults(data){
   $("#download-btn").attr("href", "data:text/plain;charset=UTF-8," + encodeURIComponent(JSON.stringify(data, undefined, 2)));
   $("#download-btn").attr("download", "query-result.txt");
 }
 
-function set_graphical_results(data){
+function setGraphicalResults(data){
   var nodes = [];
   var edges = []; 
   var seenItems = new Set();
@@ -130,10 +130,9 @@ function set_graphical_results(data){
   //Render the graph
   var graph = {nodes: nodes, links: edges};
   render(graph);
-
 }
 
-function copy_result_to_clipboard(elem){
+function copyResultToClipboard(elem){
   var $temp = $("<input>");
   $("body").append($temp);
   $temp.val($(elem).text()).select();
@@ -141,17 +140,20 @@ function copy_result_to_clipboard(elem){
   $temp.remove();
 }
 
+/* D3 tooltip */
+
 function removeNodeProperties(d){
   var copiedNode = jQuery.extend({}, d);
   delete copiedNode.x
-    delete copiedNode.y
-    delete copiedNode.vy
-    delete copiedNode.vx
-    delete copiedNode.fx
-    delete copiedNode.fy
-    return copiedNode;
+  delete copiedNode.y
+  delete copiedNode.vy
+  delete copiedNode.vx
+  delete copiedNode.fx
+  delete copiedNode.fy
+  return copiedNode;
 }
 
+//Show node description when node is hovered
 function showToolbar(d){
   var copiedNode = removeNodeProperties(d);
   div.transition()        
@@ -162,9 +164,6 @@ function showToolbar(d){
     .style("top", (d3.event.pageY - 28) + "px");    
 }
 
-/* D3 tooltip */
-var stickyNode; //Node to determine where the toolbar is currently placed
-
 function hideToolbar(d){
   div.transition()        
     .duration(500)      
@@ -174,15 +173,10 @@ function hideToolbar(d){
 //Handling hover nodes
 function hoverNode(d){
   showToolbar(d);
-  if(d!==stickyNode){
-    stickyNode = null;
-  }
 }
 
 function unhoverNode(d){
-  if(!stickyNode){
-    hideToolbar();
-  }
+  hideToolbar();
 }
 
 //Handling clicking nodes
@@ -190,7 +184,6 @@ function clickNode(d){
   $("#updateNodeModal").modal('show');
   var copiedNode = removeNodeProperties(d);
   $("#node-properties-text").val(JSON.stringify(copiedNode));
-  //showUpdateNodeModal();
 }
 
 //Handling hover Edges
@@ -223,63 +216,63 @@ var svg = d3.select("svg"),
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var simulation = d3.forceSimulation()
-  .force("link", d3.forceLink().id(function(d) { return d.id; }))
+  .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(100))
   .force("charge", d3.forceManyBody())
   .force("center", d3.forceCenter(width / 2, height / 2));
 
-  function render(graph){
-    svg.selectAll(".links").remove();
-    svg.selectAll(".nodes").remove();
+function render(graph){
+  svg.selectAll(".links").remove();
+  svg.selectAll(".nodes").remove();
 
-    var link = svg.append("g")
-      .attr("class", "links")
-      .selectAll("line")
-      .data(graph.links)
-      .enter().append("line")
-      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+  var link = svg.append("g")
+    .attr("class", "links")
+    .selectAll("line")
+    .data(graph.links)
+    .enter().append("line")
+    .attr("stroke-width", 5);
 
-    link.on("click", clickLink);
-    link.on("mouseover", hoverLink);
+  link.on("click", clickLink);
+  link.on("mouseover", hoverLink);
 
-    var node = svg.append("g")
-      .attr("class", "nodes")
-      .selectAll("circle")
-      .data(graph.nodes)
-      .enter().append("circle")
-      .attr("r", 10)
-      .attr("fill", function(d) { return color(d.group); })
-      .call(d3.drag()
-          .on("start", dragstarted)
-          .on("drag", dragged)
-          .on("end", dragended));
+  var node = svg.append("g")
+    .attr("class", "nodes")
+    .selectAll("circle")
+    .data(graph.nodes)
+    .enter().append("circle")
+    .attr("r", 20)
+    .attr("fill", function(d) { return color(d.group); })
+    .call(d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
 
-    node.append("title")
-      .text(function(d) { return d.id; });
+  node.append("title")
+    .text(function(d) { return d.id; });
 
-    node.on("click", clickNode);
+  node.on("click", clickNode);
 
-    node.on("mouseover", hoverNode)
-      .on("mouseout", unhoverNode);
+  node.on("mouseover", hoverNode)
+    .on("mouseout", unhoverNode);
 
-    simulation
-      .nodes(graph.nodes)
-      .on("tick", ticked);
+  simulation
+    .nodes(graph.nodes)
+    .on("tick", ticked);
 
-    simulation.force("link")
-      .links(graph.links);
+  simulation.force("link")
+    .links(graph.links);
 
-    function ticked() {
-      link
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
+  function ticked() {
+    link
+      .attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
 
-      node
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-    }
+    node
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; });
   }
+}
 
 function dragstarted(d) {
   if (!d3.event.active) simulation.alphaTarget(0.3).restart();
