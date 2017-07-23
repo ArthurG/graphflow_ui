@@ -61,7 +61,7 @@ div.tooltip {
     pointer-events: none;           
 }
 
-#template{
+.template{
     display: none;
 }
 
