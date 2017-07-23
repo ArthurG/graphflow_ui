@@ -3,28 +3,28 @@ var queryResult = {};
 
 /*User actions */
 $("#query-form").keypress(function (e) {
-    var input = $("#query-form textarea").val();
-    if(e.which == 13 && !e.shiftKey) {        
-        process_query(input);
-        e.preventDefault();
-    }
+  var input = $("#query-form textarea").val();
+  if(e.which == 13 && !e.shiftKey) {        
+    process_query(input);
+    e.preventDefault();
+  }
 });
 
 
 /*Process functions*/
 function process_query(input_str){
-    $.post("http://localhost:8000/query", input_str).fail(function(){
-      alert("Graphflow server is down!");
-    });
+  $.post("http://localhost:8000/query", input_str).fail(function(){
+    alert("Graphflow server is down!");
+  });
 
-    $.getJSON("http://localhost:8000/json", function(data, status, xhr){
-      console.log(data);
-      set_raw_results(data);
-      //if ("SUBGRAPHS" === data.response_type)
-      set_tabular_results(data);
-      set_download_results(data);
-      //set_graphical_results(data);
-    });
+  $.getJSON("http://localhost:8000/json", function(data, status, xhr){
+    console.log(data);
+    set_raw_results(data);
+    //if ("SUBGRAPHS" === data.response_type)
+    set_tabular_results(data);
+    set_download_results(data);
+    set_graphical_results(data);
+  });
 }
 
 function set_tabular_results(data){
@@ -69,7 +69,7 @@ function set_tabular_results(data){
     var edges_to_add = currRecord.edges;
     var row_elem = clone_template(row_template);
     var row_counter_template = clone_template(row_counter_template);
-    
+
     row_counter_template.text(i+1);
     row_elem.append(row_counter_template);
 
@@ -107,32 +107,23 @@ function set_graphical_results(data){
   var edges = []; 
   var seenItems = new Set();
 
-  var records = data.records;
-  //Manipulate the graph to be in the D3 required form
-  for(var i = 0;i<records.length;i++){
-    var fields = records[i]._fields;
-    for(var j = 0;j<fields.length;j++){
-      var currItem = fields[j];
+  var vertex_data = data.vertex_data;
+  for(var i in vertex_data){
+    var curr_vertex = vertex_data[i];
 
-      if (seenItems.has(currItem.id)){
-        continue;
-      }else{
-        seenItems.add(currItem.id);
-      }
-
-      if(typeof currItem.startNode === "undefined"){ //Is a node
-        var copiedNode = jQuery.extend({}, currItem.properties);
-        copiedNode.id = currItem.id;
-        nodes.push(copiedNode);
-        //TODO: DO something with the type to get group
-      }
-      else{ //Is an edge
-        var copiedEdge = jQuery.extend({}, currItem.properties);
-        copiedEdge.id = currItem.id;
-        copiedEdge.source = currItem.startNode;
-        copiedEdge.target = currItem.endNode;
-        edges.push(copiedEdge);
-      }
+    var copiedNode = jQuery.extend({type: curr_vertex.type, id: i}, curr_vertex.properties);
+    nodes.push(copiedNode);
+    i+=1;
+  }
+  for (var i = 0;i<data.subgraphs.length;i++){
+    var subgraph=data.subgraphs[i];
+    for (var j = 0;j<subgraph.edges.length;j++){
+      var edge = subgraph.edges[j];
+      var copiedEdge = {};
+      copiedEdge.id = i*subgraph.edges.length+j;
+      copiedEdge.source = edge.from_vertex_id;
+      copiedEdge.target = edge.to_vertex_id;
+      edges.push(copiedEdge);
     }
   }
 
@@ -151,8 +142,8 @@ function copy_result_to_clipboard(elem){
 }
 
 function removeNodeProperties(d){
-    var copiedNode = jQuery.extend({}, d);
-    delete copiedNode.x
+  var copiedNode = jQuery.extend({}, d);
+  delete copiedNode.x
     delete copiedNode.y
     delete copiedNode.vy
     delete copiedNode.vx
@@ -162,61 +153,61 @@ function removeNodeProperties(d){
 }
 
 function showToolbar(d){
-    var copiedNode = removeNodeProperties(d);
-    div.transition()        
-        .duration(200)      
-        .style("opacity", .9);      
-    div.html(JSON.stringify(copiedNode)+"<br/>")  
-        .style("left", (d3.event.pageX) + "px")     
-        .style("top", (d3.event.pageY - 28) + "px");    
+  var copiedNode = removeNodeProperties(d);
+  div.transition()        
+    .duration(200)      
+    .style("opacity", .9);      
+  div.html(JSON.stringify(copiedNode)+"<br/>")  
+    .style("left", (d3.event.pageX) + "px")     
+    .style("top", (d3.event.pageY - 28) + "px");    
 }
 
 /* D3 tooltip */
 var stickyNode; //Node to determine where the toolbar is currently placed
 
 function hideToolbar(d){
-    div.transition()        
-        .duration(500)      
-        .style("opacity", 0);   
+  div.transition()        
+    .duration(500)      
+    .style("opacity", 0);   
 }
 
 //Handling hover nodes
 function hoverNode(d){
-    showToolbar(d);
-    if(d!==stickyNode){
-        stickyNode = null;
-    }
+  showToolbar(d);
+  if(d!==stickyNode){
+    stickyNode = null;
+  }
 }
 
 function unhoverNode(d){
-    if(!stickyNode){
-        hideToolbar();
-    }
+  if(!stickyNode){
+    hideToolbar();
+  }
 }
 
 //Handling clicking nodes
 function clickNode(d){
-    $("#updateNodeModal").modal('show');
-    var copiedNode = removeNodeProperties(d);
-    $("#node-properties-text").val(JSON.stringify(copiedNode));
-    //showUpdateNodeModal();
+  $("#updateNodeModal").modal('show');
+  var copiedNode = removeNodeProperties(d);
+  $("#node-properties-text").val(JSON.stringify(copiedNode));
+  //showUpdateNodeModal();
 }
 
 //Handling hover Edges
 function hoverLink(d){
-    showToolbar(d);
+  showToolbar(d);
 }
 
 function unhoverItem(){
-    var $info = $("#hover-info");
-    $info.find(".hover-pair").remove()
+  var $info = $("#hover-info");
+  $info.find(".hover-pair").remove()
 }
 
 //Handling clicking Edges
 function clickLink(d){
-    $("#updateNodeModal").modal('show');
-    var copiedNode = removeNodeProperties(d);
-    $("#node-properties-text").val(JSON.stringify(copiedNode));
+  $("#updateNodeModal").modal('show');
+  var copiedNode = removeNodeProperties(d);
+  $("#node-properties-text").val(JSON.stringify(copiedNode));
 }
 
 
@@ -232,78 +223,78 @@ var svg = d3.select("svg"),
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody())
-    .force("center", d3.forceCenter(width / 2, height / 2));
+  .force("link", d3.forceLink().id(function(d) { return d.id; }))
+  .force("charge", d3.forceManyBody())
+  .force("center", d3.forceCenter(width / 2, height / 2));
 
-function render(graph){
+  function render(graph){
     svg.selectAll(".links").remove();
     svg.selectAll(".nodes").remove();
 
     var link = svg.append("g")
-        .attr("class", "links")
-        .selectAll("line")
-        .data(graph.links)
-          .enter().append("line")
-          .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+      .attr("class", "links")
+      .selectAll("line")
+      .data(graph.links)
+      .enter().append("line")
+      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
 
-      link.on("click", clickLink);
-      link.on("mouseover", hoverLink);
+    link.on("click", clickLink);
+    link.on("mouseover", hoverLink);
 
-      var node = svg.append("g")
-          .attr("class", "nodes")
-          .selectAll("circle")
-          .data(graph.nodes)
-            .enter().append("circle")
-            .attr("r", 10)
-            .attr("fill", function(d) { return color(d.group); })
-            .call(d3.drag()
-                  .on("start", dragstarted)
-                  .on("drag", dragged)
-                  .on("end", dragended));
+    var node = svg.append("g")
+      .attr("class", "nodes")
+      .selectAll("circle")
+      .data(graph.nodes)
+      .enter().append("circle")
+      .attr("r", 10)
+      .attr("fill", function(d) { return color(d.group); })
+      .call(d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended));
 
-      node.append("title")
-          .text(function(d) { return d.id; });
+    node.append("title")
+      .text(function(d) { return d.id; });
 
-      node.on("click", clickNode);
+    node.on("click", clickNode);
 
-      node.on("mouseover", hoverNode)
-          .on("mouseout", unhoverNode);
+    node.on("mouseover", hoverNode)
+      .on("mouseout", unhoverNode);
 
-      simulation
-          .nodes(graph.nodes)
-          .on("tick", ticked);
+    simulation
+      .nodes(graph.nodes)
+      .on("tick", ticked);
 
-      simulation.force("link")
-          .links(graph.links);
+    simulation.force("link")
+      .links(graph.links);
 
-      function ticked() {
-          link
-              .attr("x1", function(d) { return d.source.x; })
-              .attr("y1", function(d) { return d.source.y; })
-              .attr("x2", function(d) { return d.target.x; })
-              .attr("y2", function(d) { return d.target.y; });
+    function ticked() {
+      link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
 
-          node
-              .attr("cx", function(d) { return d.x; })
-              .attr("cy", function(d) { return d.y; });
-      }
-}
+      node
+        .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+    }
+  }
 
 function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-    d.fx = d.x;
-    d.fy = d.y;
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
 }
 
 function dragged(d) {
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
 }
 
 function dragended(d) {
-    if (!d3.event.active) simulation.alphaTarget(0);
-    d.fx = null;
-    d.fy = null;
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
 }
 
