@@ -10,11 +10,26 @@ $("#query-form").keypress(function (e) {
   }
 });
 
+$("#delete-node").click(function(){
+  var from_id = $("#from-id").text();
+  var to_id = $("#to-id").text();
+  var query = "DELETE ("+from_id+")->("+to_id+");";
+
+  $.post("http://localhost:8000/query", query).fail(function(){
+    console.log("Failed");
+  });
+  
+  console.log(query);
+});
+
 
 /*Process functions*/
 function processQuery(inputStr){
+  warning_box = $("#graphflow-alert");
+  warning_box.addClass("hidden");
   $.post("http://localhost:8000/query", inputStr).fail(function(){
-    alert("Graphflow server is down!");
+    warning_box.attr("class", "alert alert-danger col-lg-12");
+    warning_box.text("Graphflow server is down!");
   });
 
   $.getJSON("http://localhost:8000/json", function(data, status, xhr){
@@ -39,7 +54,9 @@ function processQuery(inputStr){
     }
     else if ("MESSAGE" === data.response_type && data.isError){
       updateTabs(["RAW"]);
-      alert(data.message);
+      warning_box.text(data.message);
+      warning_box.attr("class", "alert alert-warning col-lg-12");
+      warning_box.removeClass("hidden");
     }
     else if ("MESSAGE" === data.response_type){
       updateTabs(["RAW"]);
@@ -50,6 +67,7 @@ function processQuery(inputStr){
 //Hides the tabs for the result-set
 function hideTabs(){
   $(".resultset .result-tab").addClass("hidden");
+  $(".resultset .result-tab").removeClass("active");
   $(".tab-pane").removeClass("active");
 }
 
@@ -115,9 +133,13 @@ function setTabularResults(data){
 
     //Populate the verticies
     var verticiesToAdd = currRecord.vertices;
-    for (var j = 0;j<verticiesToAdd.length;j++){
+    for (var headerName in vertexMap){
+      var subgraph_vertex_idx = vertexMap[headerName];
+      var graph_vertex_idx = verticiesToAdd[subgraph_vertex_idx];
+      var vertex = data.vertex_data[graph_vertex_idx];
+
       var rowDataCell = cloneTemplate(rowDataTemplate);
-      rowDataCell.text(JSON.stringify(data.vertex_data[verticiesToAdd[j]].properties));
+      rowDataCell.text(JSON.stringify(vertex.properties));
       newRow.append(rowDataCell);
     }
 
@@ -181,6 +203,8 @@ function copyResultToClipboard(elem){
   $temp.remove();
 }
 
+
+
 /* D3 tooltip */
 
 function removeNodeProperties(d){
@@ -241,6 +265,8 @@ function unhoverItem(){
 function clickLink(d){
   $("#updateNodeModal").modal('show');
   var copiedNode = removeNodeProperties(d);
+  $("#from-id").text(copiedNode.source.id);
+  $("#to-id").text(copiedNode.target.id);
   $("#node-properties-text").val(JSON.stringify(copiedNode));
 }
 
@@ -281,7 +307,7 @@ function render(graph){
     .data(graph.nodes)
     .enter().append("circle")
     .attr("r", 20)
-    .attr("fill", function(d) { return color(d.group); })
+    .attr("fill", function(d) { return color(d.type); })
     .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)

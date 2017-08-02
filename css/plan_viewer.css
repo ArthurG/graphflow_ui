@@ -1,10 +1,5 @@
 /* General Styling */
 
-* {
-    box-sizing: initial;
-    font-family: 'Crimson Text', serif;
-}
-
 h3 {
     font-size: 1.17em;
     font-weight: bold;
@@ -18,11 +13,6 @@ h3 {
 }
 
 /* Specific Element Styling */
-
-#query {
-    width: 50%;
-}
-
 #stageSet {
     margin-left: 15%;
     margin-top: 50px;

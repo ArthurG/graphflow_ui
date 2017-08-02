@@ -1,8 +1,32 @@
-.query-input textarea,.modal textarea{
-    resize: vertical;
-    min-height: 5em;
-    font-size: 1.5em;
+* {
+    box-sizing: initial;
+    font-family: 'Roboto', sans-serif;
 }
+
+#node-id,#from-id,#to-id{
+  display: none;
+}
+
+#graphflow-alert{
+  box-sizing: border-box;    
+  -moz-box-sizing: border-box;    /* For Firefox */
+  -webkit-box-sizing: border-box; /* For Safari */
+
+}
+
+#query-form{
+  padding-bottom: 1em;
+}
+
+textarea{
+  min-width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;    
+  -moz-box-sizing: border-box;    /* For Firefox */
+  -webkit-box-sizing: border-box; /* For Safari */
+}
+
+
 .text-wrapper{
 
 
@@ -29,39 +53,3 @@ pre{
     word-wrap: normal;
     white-space: pre;
 }
-
-
-/* D3 */
-
-
-.links line {
-    stroke: #999;
-    stroke-opacity: 0.6;
-}
-
-.nodes circle {
-    stroke: #fff;
-    stroke-width: 1.5px;
-}
-.hover-value{
-    float: left;
-    display: inline-block;
-    padding: 0.5em;
-    margin: 0;
-}
-div.tooltip {   
-    position: absolute;         
-    text-align: center;         
-    min-height: 28px;                   
-    padding: 2px;               
-    font: 12px sans-serif;      
-    background: lightsteelblue; 
-    border: 0px;        
-    border-radius: 8px;         
-    pointer-events: none;           
-}
-
-.template{
-    display: none;
-}
-
