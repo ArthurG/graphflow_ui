@@ -70,6 +70,11 @@ function processQuery(inputStr){
     else if ("MESSAGE" === data.response_type){
       updateTabs(["RAW"]);
     }
+    else{
+      //Probably a planviewer result
+      renderPlan(data);
+      updateTabs(["EXPLAIN", "RAW"]);
+    }
   });
 }
 
