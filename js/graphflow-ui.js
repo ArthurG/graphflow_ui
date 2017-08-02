@@ -1,5 +1,7 @@
 /*Global objects*/
 var queryResult = {};
+var vertexData = {};
+var edgeData = {};
 
 /*User actions */
 $("#query-form").keypress(function (e) {
@@ -10,11 +12,31 @@ $("#query-form").keypress(function (e) {
   }
 });
 
+$("#delete-node").click(function(){
+  var from_id = $("#from-id").text();
+  var to_id = $("#to-id").text();
+  var query = "DELETE ("+from_id+")->("+to_id+");";
+  console.log(query);
+
+  $.post("http://localhost:8000/query", query).fail(function(){
+    warning_box.attr("class", "alert alert-danger col-lg-12");
+    warning_box.text("Deletion has failed!");
+  });
+  $.getJSON("http://localhost:8000/json", function(data, status, xhr){
+    warning_box.attr("class", "alert alert-danger col-lg-12");
+    warning_box.text(data);
+  });
+  
+});
+
 
 /*Process functions*/
 function processQuery(inputStr){
+  warning_box = $("#graphflow-alert");
+  warning_box.addClass("hidden");
   $.post("http://localhost:8000/query", inputStr).fail(function(){
-    alert("Graphflow server is down!");
+    warning_box.attr("class", "alert alert-danger col-lg-12");
+    warning_box.text("Graphflow server is down!");
   });
 
   $.getJSON("http://localhost:8000/json", function(data, status, xhr){
@@ -24,6 +46,8 @@ function processQuery(inputStr){
       setTabularResults(data);
       setDownloadResults(data);
       setGraphicalResults(data);
+      vertexData = getVertexData(data);
+      edgeData = getEdgeData(data);
     }
     //TODO: Tuples and strings are both rendered as message
     /*
@@ -39,7 +63,9 @@ function processQuery(inputStr){
     }
     else if ("MESSAGE" === data.response_type && data.isError){
       updateTabs(["RAW"]);
-      alert(data.message);
+      warning_box.text(data.message);
+      warning_box.attr("class", "alert alert-warning col-lg-12");
+      warning_box.removeClass("hidden");
     }
     else if ("MESSAGE" === data.response_type){
       updateTabs(["RAW"]);
@@ -50,6 +76,7 @@ function processQuery(inputStr){
 //Hides the tabs for the result-set
 function hideTabs(){
   $(".resultset .result-tab").addClass("hidden");
+  $(".resultset .result-tab").removeClass("active");
   $(".tab-pane").removeClass("active");
 }
 
@@ -66,6 +93,22 @@ function updateTabs(tabArr){
     tab = tabArr[i];
     $(tabCssSelector).removeClass("hidden");
   }
+}
+
+function getVertexData(data){
+  console.log(data.vertex_data);
+  return data.vertex_data;
+}
+
+function getEdgeData(data){
+  var edge = []
+  for(var i = 0;i<data.subgraphs.length;i++){
+    var subgraph = data.subgraphs[i];
+    for (var j=0;j<subgraph.edges.length;j++){
+      edge.push(subgraph.edges[j]);
+    }
+  }
+  return edge;
 }
 
 function setTabularResults(data){
@@ -115,9 +158,13 @@ function setTabularResults(data){
 
     //Populate the verticies
     var verticiesToAdd = currRecord.vertices;
-    for (var j = 0;j<verticiesToAdd.length;j++){
+    for (var headerName in vertexMap){
+      var subgraph_vertex_idx = vertexMap[headerName];
+      var graph_vertex_idx = verticiesToAdd[subgraph_vertex_idx];
+      var vertex = data.vertex_data[graph_vertex_idx];
+
       var rowDataCell = cloneTemplate(rowDataTemplate);
-      rowDataCell.text(JSON.stringify(data.vertex_data[verticiesToAdd[j]].properties));
+      rowDataCell.text(JSON.stringify(vertex.properties));
       newRow.append(rowDataCell);
     }
 
@@ -181,26 +228,30 @@ function copyResultToClipboard(elem){
   $temp.remove();
 }
 
-/* D3 tooltip */
 
-function removeNodeProperties(d){
-  var copiedNode = jQuery.extend({}, d);
-  delete copiedNode.x
-  delete copiedNode.y
-  delete copiedNode.vy
-  delete copiedNode.vx
-  delete copiedNode.fx
-  delete copiedNode.fy
-  return copiedNode;
+
+/* D3 tooltip */
+function showToolbarNode(d){
+  var currNode = vertexData[d.id.toString()];
+  showToolbar(currNode);
 }
 
-//Show node description when node is hovered
-function showToolbar(d){
-  var copiedNode = removeNodeProperties(d);
+function showToolbarEdge(d){
+  for(var i = 0;i<edgeData.length;i++){
+    if (edgeData[i].from_vertex_id.toString() === d.source.id && edgeData[i].to_vertex_id.toString() === d.target.id){
+      var edge = edgeData[i];
+      showToolbar(edge);
+      return;
+    }
+  }
+}
+
+//Show node description with toolbarData
+function showToolbar(toolbarData){
   div.transition()        
     .duration(200)      
     .style("opacity", .9);      
-  div.html(JSON.stringify(copiedNode)+"<br/>")  
+  div.html(JSON.stringify(toolbarData)+"<br/>")  
     .style("left", (d3.event.pageX) + "px")     
     .style("top", (d3.event.pageY - 28) + "px");    
 }
@@ -213,7 +264,7 @@ function hideToolbar(d){
 
 //Handling hover nodes
 function hoverNode(d){
-  showToolbar(d);
+  showToolbarNode(d);
 }
 
 function unhoverNode(d){
@@ -223,24 +274,26 @@ function unhoverNode(d){
 //Handling clicking nodes
 function clickNode(d){
   $("#updateNodeModal").modal('show');
-  var copiedNode = removeNodeProperties(d);
-  $("#node-properties-text").val(JSON.stringify(copiedNode));
+  var currNode = vertexData[d.id.toString()];
+  $("#node-properties-text").val(JSON.stringify(currNode));
 }
 
 //Handling hover Edges
 function hoverLink(d){
-  showToolbar(d);
-}
-
-function unhoverItem(){
-  var $info = $("#hover-info");
-  $info.find(".hover-pair").remove()
+  showToolbarEdge(d);
 }
 
 //Handling clicking Edges
 function clickLink(d){
   $("#updateNodeModal").modal('show');
-  var copiedNode = removeNodeProperties(d);
+  var copiedNode = {};
+  for(var i = 0;i<edgeData.length;i++){
+    if (edgeData[i].from_vertex_id.toString() === d.source.id && edgeData[i].to_vertex_id.toString() === d.target.id){
+      copiedNode = edgeData[i];
+    }
+  }
+  $("#from-id").text(copiedNode.from_vertex_id);
+  $("#to-id").text(copiedNode.to_vertex_id);
   $("#node-properties-text").val(JSON.stringify(copiedNode));
 }
 
@@ -273,7 +326,8 @@ function render(graph){
     .attr("stroke-width", 5);
 
   link.on("click", clickLink);
-  link.on("mouseover", hoverLink);
+  link.on("mouseover", hoverLink)
+      .on("mouseout", unhoverNode);
 
   var node = svg.append("g")
     .attr("class", "nodes")
@@ -281,7 +335,7 @@ function render(graph){
     .data(graph.nodes)
     .enter().append("circle")
     .attr("r", 20)
-    .attr("fill", function(d) { return color(d.group); })
+    .attr("fill", function(d) { return color(d.type); })
     .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)

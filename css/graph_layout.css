@@ -1,36 +1,3 @@
-.query-input textarea,.modal textarea{
-    resize: vertical;
-    min-height: 5em;
-    font-size: 1.5em;
-}
-.text-wrapper{
-
-
-}
-
-#graphical-rs{
-    height: 500px;
-}
-
-#tabular-rs{
-    height: 500px;
-}
-
-#raw-rs{
-    height: 500px;
-}
-.hidden{
-    display: none;
-
-}
-
-pre{
-    overflow: auto;
-    word-wrap: normal;
-    white-space: pre;
-}
-
-
 /* D3 */
 
 
