@@ -70,6 +70,11 @@ function processQuery(inputStr){
     else if ("MESSAGE" === data.response_type){
       updateTabs(["RAW"]);
     }
+    else{
+      //Probably a planviewer result
+      renderPlan(data);
+      updateTabs(["EXPLAIN", "RAW"]);
+    }
   });
 }
 
@@ -78,6 +83,7 @@ function hideTabs(){
   $(".resultset .result-tab").addClass("hidden");
   $(".resultset .result-tab").removeClass("active");
   $(".tab-pane").removeClass("active");
+  $(".tab-pane").addClass("hidden");
 }
 
 //Shows the tabs in result-set which are also in tabArr, oither tabs are hidden
@@ -92,6 +98,7 @@ function updateTabs(tabArr){
     }
     tab = tabArr[i];
     $(tabCssSelector).removeClass("hidden");
+    $(tabContentCssSelector).removeClass("hidden");
   }
 }
 
