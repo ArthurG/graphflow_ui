@@ -23,8 +23,8 @@ $("#delete-node").click(function(){
     warning_box.text("Deletion has failed!");
   });
   $.getJSON("http://localhost:8000/json", function(data, status, xhr){
-    warning_box.attr("class", "alert alert-danger col-lg-12");
-    warning_box.text(data);
+    warning_box.attr("class", "alert alert-info col-lg-12");
+    warning_box.text("Your edge was deleted. Please rerun your query");
   });
   
 });
@@ -69,6 +69,10 @@ function processQuery(inputStr){
     }
     else if ("MESSAGE" === data.response_type){
       updateTabs(["RAW"]);
+        if (data.message.includes("\n")){
+          extractTabularDataFromStringMessage(data.message);
+      updateTabs(["RAW", "TABULAR"]);
+        }
     }
     else{
       //Probably a planviewer result
@@ -117,6 +121,51 @@ function getEdgeData(data){
   }
   return edge;
 }
+
+function extractTabularDataFromStringMessage(msg){
+  /*Remove old table data*/
+  $("#query-result-table tbody tr.cloned").remove();
+
+  /*Set the table data*/
+  var resultTable = $("#query-result-table tbody");
+
+  var rowTemplate = $("#query-result-table tbody tr.template");
+  var rowDataTemplate = $("#query-result-table tbody tr td.template");
+  var rowCounterTemplate = $("#query-result-table tbody th.template");
+
+
+    var rows = msg.split("\n");
+    for (var i = 0;i<rows.length;i++){
+        var columns = rows[i].split(" ");
+
+    var newRow = cloneTemplate(rowTemplate);
+    var rowCounter = cloneTemplate(rowCounterTemplate);
+
+    rowCounter.text(i+1);
+    newRow.append(rowCounter);
+
+
+        for (var j = 0;j<columns.length;j++){
+
+      var rowDataCell = cloneTemplate(rowDataTemplate);
+      rowDataCell.text(JSON.stringify(columns[j]));
+      newRow.append(rowDataCell);
+
+        
+        }
+    
+    resultTable.append(newRow);
+    
+    }
+    
+    console.log(rows);
+
+
+}
+
+  function cloneTemplate(template){
+    return template.clone().removeClass("template").attr("class", "cloned");
+  }
 
 function setTabularResults(data){
 
