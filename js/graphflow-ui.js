@@ -19,7 +19,12 @@ $("#delete-node").click(function(){
   console.log(query);
 
   $.post("http://localhost:8000/query", query).fail(function(){
-    console.log("Failed");
+    warning_box.attr("class", "alert alert-danger col-lg-12");
+    warning_box.text("Deletion has failed!");
+  });
+  $.getJSON("http://localhost:8000/json", function(data, status, xhr){
+    warning_box.attr("class", "alert alert-danger col-lg-12");
+    warning_box.text(data);
   });
   
 });
