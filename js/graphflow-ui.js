@@ -1,5 +1,7 @@
 /*Global objects*/
 var queryResult = {};
+var vertexData = {};
+var edgeData = {};
 
 /*User actions */
 $("#query-form").keypress(function (e) {
@@ -14,12 +16,12 @@ $("#delete-node").click(function(){
   var from_id = $("#from-id").text();
   var to_id = $("#to-id").text();
   var query = "DELETE ("+from_id+")->("+to_id+");";
+  console.log(query);
 
   $.post("http://localhost:8000/query", query).fail(function(){
     console.log("Failed");
   });
   
-  console.log(query);
 });
 
 
@@ -39,6 +41,8 @@ function processQuery(inputStr){
       setTabularResults(data);
       setDownloadResults(data);
       setGraphicalResults(data);
+      vertexData = getVertexData(data);
+      edgeData = getEdgeData(data);
     }
     //TODO: Tuples and strings are both rendered as message
     /*
@@ -84,6 +88,22 @@ function updateTabs(tabArr){
     tab = tabArr[i];
     $(tabCssSelector).removeClass("hidden");
   }
+}
+
+function getVertexData(data){
+  console.log(data.vertex_data);
+  return data.vertex_data;
+}
+
+function getEdgeData(data){
+  var edge = []
+  for(var i = 0;i<data.subgraphs.length;i++){
+    var subgraph = data.subgraphs[i];
+    for (var j=0;j<subgraph.edges.length;j++){
+      edge.push(subgraph.edges[j]);
+    }
+  }
+  return edge;
 }
 
 function setTabularResults(data){
@@ -206,25 +226,27 @@ function copyResultToClipboard(elem){
 
 
 /* D3 tooltip */
-
-function removeNodeProperties(d){
-  var copiedNode = jQuery.extend({}, d);
-  delete copiedNode.x
-  delete copiedNode.y
-  delete copiedNode.vy
-  delete copiedNode.vx
-  delete copiedNode.fx
-  delete copiedNode.fy
-  return copiedNode;
+function showToolbarNode(d){
+  var currNode = vertexData[d.id.toString()];
+  showToolbar(currNode);
 }
 
-//Show node description when node is hovered
-function showToolbar(d){
-  var copiedNode = removeNodeProperties(d);
+function showToolbarEdge(d){
+  for(var i = 0;i<edgeData.length;i++){
+    if (edgeData[i].from_vertex_id.toString() === d.source.id && edgeData[i].to_vertex_id.toString() === d.target.id){
+      var edge = edgeData[i];
+      showToolbar(edge);
+      return;
+    }
+  }
+}
+
+//Show node description with toolbarData
+function showToolbar(toolbarData){
   div.transition()        
     .duration(200)      
     .style("opacity", .9);      
-  div.html(JSON.stringify(copiedNode)+"<br/>")  
+  div.html(JSON.stringify(toolbarData)+"<br/>")  
     .style("left", (d3.event.pageX) + "px")     
     .style("top", (d3.event.pageY - 28) + "px");    
 }
@@ -237,7 +259,7 @@ function hideToolbar(d){
 
 //Handling hover nodes
 function hoverNode(d){
-  showToolbar(d);
+  showToolbarNode(d);
 }
 
 function unhoverNode(d){
@@ -247,26 +269,26 @@ function unhoverNode(d){
 //Handling clicking nodes
 function clickNode(d){
   $("#updateNodeModal").modal('show');
-  var copiedNode = removeNodeProperties(d);
-  $("#node-properties-text").val(JSON.stringify(copiedNode));
+  var currNode = vertexData[d.id.toString()];
+  $("#node-properties-text").val(JSON.stringify(currNode));
 }
 
 //Handling hover Edges
 function hoverLink(d){
-  showToolbar(d);
-}
-
-function unhoverItem(){
-  var $info = $("#hover-info");
-  $info.find(".hover-pair").remove()
+  showToolbarEdge(d);
 }
 
 //Handling clicking Edges
 function clickLink(d){
   $("#updateNodeModal").modal('show');
-  var copiedNode = removeNodeProperties(d);
-  $("#from-id").text(copiedNode.source.id);
-  $("#to-id").text(copiedNode.target.id);
+  var copiedNode = {};
+  for(var i = 0;i<edgeData.length;i++){
+    if (edgeData[i].from_vertex_id.toString() === d.source.id && edgeData[i].to_vertex_id.toString() === d.target.id){
+      copiedNode = edgeData[i];
+    }
+  }
+  $("#from-id").text(copiedNode.from_vertex_id);
+  $("#to-id").text(copiedNode.to_vertex_id);
   $("#node-properties-text").val(JSON.stringify(copiedNode));
 }
 
@@ -299,7 +321,8 @@ function render(graph){
     .attr("stroke-width", 5);
 
   link.on("click", clickLink);
-  link.on("mouseover", hoverLink);
+  link.on("mouseover", hoverLink)
+      .on("mouseout", unhoverNode);
 
   var node = svg.append("g")
     .attr("class", "nodes")
