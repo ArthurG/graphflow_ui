@@ -23,8 +23,8 @@ $("#delete-node").click(function(){
     warning_box.text("Deletion has failed!");
   });
   $.getJSON("http://localhost:8000/json", function(data, status, xhr){
-    warning_box.attr("class", "alert alert-danger col-lg-12");
-    warning_box.text(data);
+    warning_box.attr("class", "alert alert-info col-lg-12");
+    warning_box.text("Your edge was deleted. Please rerun your query");
   });
   
 });
@@ -58,9 +58,11 @@ function processQuery(inputStr){
       updateTabs(["TABULAR", "RAW"]);
     }
     */
+    /* Explain isn't working, default case works for explain 
     else if ("EXPLAIN" === data.response_type){
       updateTabs(["EXPLAIN", "RAW"]);
     }
+    */
     else if ("MESSAGE" === data.response_type && data.isError){
       updateTabs(["RAW"]);
       warning_box.text(data.message);
@@ -69,6 +71,10 @@ function processQuery(inputStr){
     }
     else if ("MESSAGE" === data.response_type){
       updateTabs(["RAW"]);
+        if (data.message.includes("\n")){
+          extractTabularDataFromStringMessage(data.message);
+      updateTabs(["RAW", "TABULAR"]);
+        }
     }
     else{
       //Probably a planviewer result
@@ -86,7 +92,7 @@ function hideTabs(){
   $(".tab-pane").addClass("hidden");
 }
 
-//Shows the tabs in result-set which are also in tabArr, oither tabs are hidden
+//Shows the tabs in result-set which are also in tabArr, other tabs are hidden
 function updateTabs(tabArr){
   hideTabs();
   for(var i = 0;i<tabArr.length;i++){
@@ -103,7 +109,6 @@ function updateTabs(tabArr){
 }
 
 function getVertexData(data){
-  console.log(data.vertex_data);
   return data.vertex_data;
 }
 
@@ -118,12 +123,48 @@ function getEdgeData(data){
   return edge;
 }
 
-function setTabularResults(data){
+// Modify the tabular results if the return message is a string
+// May need to be modifed for API changes
+function extractTabularDataFromStringMessage(msg){
+  /*Remove old table data*/
+  $("#query-result-table tbody tr.cloned").remove();
 
-  function cloneTemplate(template){
-    return template.clone().removeClass("template").attr("class", "cloned");
+  /*Set the table data*/
+  var resultTable = $("#query-result-table tbody");
+
+  var rowTemplate = $("#query-result-table tbody tr.template");
+  var rowDataTemplate = $("#query-result-table tbody tr td.template");
+  var rowCounterTemplate = $("#query-result-table tbody th.template");
+
+
+  var rows = msg.split("\n");
+  for (var i = 0;i<rows.length;i++){
+    var columns = rows[i].split(" ");
+
+    var newRow = cloneTemplate(rowTemplate);
+    var rowCounter = cloneTemplate(rowCounterTemplate);
+
+    rowCounter.text(i+1);
+    newRow.append(rowCounter);
+
+
+    for (var j = 0;j<columns.length;j++){
+
+      var rowDataCell = cloneTemplate(rowDataTemplate);
+      rowDataCell.text(JSON.stringify(columns[j]));
+      newRow.append(rowDataCell);
+    }
+    resultTable.append(newRow);
   }
+}
 
+function cloneTemplate(template){
+  return template.clone().removeClass("template").attr("class", "cloned");
+}
+
+// Modify the tabular section for subbgraphs query results
+// May need to be modifed on API change
+function setTabularResults(data){
   var records = data.subgraphs;
   if (records.length === 0){
     return
@@ -154,7 +195,7 @@ function setTabularResults(data){
   var rowDataTemplate = $("#query-result-table tbody tr td.template");
   var rowCounterTemplate = $("#query-result-table tbody th.template");
 
-  //Populate the rows
+  //Populate the records (rows of the table)
   for(var i = 0;i<records.length;i++){
     var currRecord = records[i];
     var newRow = cloneTemplate(rowTemplate);
@@ -187,16 +228,20 @@ function setTabularResults(data){
   }
 }
 
+// Modify the data in the raw results tab
 function setRawResults(data){
   var elem = $("#query-result-raw");
   elem.text(JSON.stringify(data, undefined, 2));
 }
 
+// Modify the results for the download button
 function setDownloadResults(data){
   $("#download-btn").attr("href", "data:text/plain;charset=UTF-8," + encodeURIComponent(JSON.stringify(data, undefined, 2)));
   $("#download-btn").attr("download", "query-result.txt");
 }
 
+// Modify the results for Graphical results tab
+// May need to be modified after API changes
 function setGraphicalResults(data){
   var nodes = [];
   var edges = []; 
