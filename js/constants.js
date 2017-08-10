@@ -2,18 +2,18 @@
  * @type {Object.<string, string>}
  */
 var GRAPH_VERSIONS = {
-    NEW_GRAPH: 'MERGED',
-    CURRENT_GRAPH: 'PERMANENT',
-    DELTA_GRAPH_MINUS: 'DIFF_MINUS',
-    DELTA_GRAPH_PLUS: 'DIFF_PLUS'
+    MERGED: 'MERGED',
+    PERMANENT: 'PERMANENT',
+    DIFF_MINUS: 'DIFF_MINUS',
+    DIFF_PLUS: 'DIFF_PLUS'
 };
 
 /**
  * @type {Object.<string, string>}
  */
 var EDGE_DIRECTIONS = {
-    OUTGOING: 'FORWARD',
-    INCOMING: 'BACKWARD'
+    FORWARD: 'FORWARD',
+    BACKWARD: 'BACKWARD'
 };
 
 /**

@@ -48,17 +48,17 @@ function getFilters(intersectionRule) {
 function getGraphVersionBox(graphVersion) {
     result = '<div class="graph-version-box '
     switch (graphVersion) {
-        case GRAPH_VERSIONS.NEW_GRAPH:
-            result += 'new-graph">' + SYMBOLS[GRAPH_VERSIONS.NEW_GRAPH];
+        case GRAPH_VERSIONS.MERGED:
+            result += 'new-graph">' + SYMBOLS[GRAPH_VERSIONS.MERGED];
             break;
-        case GRAPH_VERSIONS.CURRENT_GRAPH:
-            result += 'current-graph">' + SYMBOLS[GRAPH_VERSIONS.CURRENT_GRAPH];
+        case GRAPH_VERSIONS.PERMANENT:
+            result += 'current-graph">' + SYMBOLS[GRAPH_VERSIONS.PERMANENT];
             break;
-        case GRAPH_VERSIONS.DELTA_GRAPH_MINUS:
-            result += 'delta-graph">' + SYMBOLS[GRAPH_VERSIONS.DELTA_GRAPH_MINUS];
+        case GRAPH_VERSIONS.DIFF_MINUS:
+            result += 'delta-graph">' + SYMBOLS[GRAPH_VERSIONS.DIFF_MINUS];
             break;
-        case GRAPH_VERSIONS.DELTA_GRAPH_PLUS:
-            result += 'delta-graph">' + SYMBOLS[GRAPH_VERSIONS.DELTA_GRAPH_PLUS];
+        case GRAPH_VERSIONS.DIFF_PLUS:
+            result += 'delta-graph">' + SYMBOLS[GRAPH_VERSIONS.DIFF_PLUS];
             break;
         default:
             return '';
@@ -75,10 +75,10 @@ function getGraphVersionBox(graphVersion) {
  */
 function getDirectionSymbol(direction) {
     switch (direction) {
-        case EDGE_DIRECTIONS.OUTGOING:
-            return ASCII_ARROW[EDGE_DIRECTIONS.OUTGOING];
-        case EDGE_DIRECTIONS.INCOMING:
-            return ASCII_ARROW[EDGE_DIRECTIONS.INCOMING];
+        case EDGE_DIRECTIONS.FORWARD:
+            return ASCII_ARROW[EDGE_DIRECTIONS.FORWARD];
+        case EDGE_DIRECTIONS.BACKWARD:
+            return ASCII_ARROW[EDGE_DIRECTIONS.BACKWARD];
         default:
             return '';
     }

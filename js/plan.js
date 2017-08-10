@@ -1,28 +1,4 @@
 /**
- * Submits the input query to the Graphflow server and render the result
- */
-function submitQuery() {
-    // empties the plan viewer
-    $('#stageSet').empty();
-    // obtains the query string
-    var query = document.getElementById('query').value.trim();
-    // sends the query to the Graphflow server
-    $.post('http://localhost:8000/query', query).fail(function() {
-        alert("Graphflow server is down!");
-    });
-    // renders the plans
-    $.getJSON('http://localhost:8000/json', function(data, status, xhr) {
-        renderPlan(data);
-    }).fail(function() {
-        $.get('http://localhost:8000/json', function(data, status, xhr) {
-            $('#stageSet').append('<div class="center">Result: ' + data + '</div>');
-        }).fail(function() {
-            alert('Graphflow server is not responding!');
-        });
-    });
-}
-
-/**
  * Renders an execution plan
  */
 function renderPlan(planArray) {
@@ -59,14 +35,16 @@ function renderPlan(planArray) {
 function renderPlanStages(plan, id) {
     var name = '<h3 class="center">' + plan.name + '</h3>';
     $('#name' + id).append(name);
-    var ordering = '<h3 class="center">Variable Ordering:<br />' + plan.var_ordering.join(', ') + '</h3>';
+    var ordering = '<h3 class="center">Variable Ordering:<br />' + 
+      plan.var_ordering.join(', ') + '</h3>';
     $('#ordering' + id).append(ordering);
 
     var stages = plan.stages;
     var stageContainers = [];
 
     // creates HTML code snippet of initial stage
-    var stage1Container = '<div id="stage1" class="center stage"><b>Scan:</b> <i>' + stages[0][0].variable + '</i> : ';
+    var stage1Container = '<div id="stage1" class="center stage"><b>Scan:</b> <i>' + 
+      stages[0][0].variable + '</i> : ';
     stage1Container += getGraphVersionBox(stages[0][0].graphVersion);
     stage1Container += getDirectionSymbol(stages[0][0].direction) + '</div>';
     stageContainers.push(stage1Container);
@@ -92,7 +70,8 @@ function renderPlanStages(plan, id) {
             if (0 != j) {
                 stageContainer += '<div>&cap;</div>';
             }
-            stageContainer += '<div class="center stage inner-stage"><i>' + intersectionRules[j].variable + '</i> : ';
+            stageContainer += '<div class="center stage inner-stage"><i>' + 
+              intersectionRules[j].variable + '</i> : ';
             stageContainer += getGraphVersionBox(intersectionRules[j].graphVersion);
             stageContainer += getDirectionSymbol(intersectionRules[j].direction) + '<br />';
             stageContainer += getFilters(intersectionRules[j]) + '</div>';
@@ -125,13 +104,15 @@ function renderPlanStages(plan, id) {
                     for (var k = 0; k < argValueArray.length; ++k) {
                         argValueString = '';
                         for (var field in argValueArray[k]) {
-                            argValueString += '<b>' + field.charAt(0).toUpperCase() + field.slice(1) + '</b>=';
+                            argValueString += '<b>' + field.charAt(0).toUpperCase() + 
+                              field.slice(1) + '</b>=';
                             argValueString += argValueArray[k][field] + ' ';
                         }
                         operatorDiv += argValueString + '<br />';
                     }
                 } else {
-                    operatorDiv += '<b>' + operatorArgs[j].name + ':</b> ' + argValueArray.join(', ') + '<br />';
+                    operatorDiv += '<b>' + operatorArgs[j].name + ':</b> ' + 
+                      argValueArray.join(', ') + '<br />';
                 }
             }
         }
@@ -146,7 +127,8 @@ function renderPlanStages(plan, id) {
     // renders the plan stages with intermediate arrows and outputs
     var orderingArrayCopy = plan.var_ordering.slice();
     for (i = stageContainers.length - 1; i >= 0; --i) {
-        var finalOutput = arrowWithOutput + orderingArrayCopy.join(', ') + ')</i></div></div>';
+        var finalOutput = arrowWithOutput + orderingArrayCopy.join(', ') + 
+          ')</i></div></div>';
         if (0 != i) {
             $('#stages' + id).append(finalOutput);
         } else {
