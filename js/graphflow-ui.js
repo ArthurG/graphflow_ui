@@ -44,21 +44,14 @@ function processQuery(inputStr) {
       vertexData = getVertexData(data);
       edgeData = getEdgeData(data);
     }
-    //TODO: Tuples and strings are both rendered as message
-    /*
-    else if ("STRING" === data.response_type){
-      updateTabs(["RAW"]);
-    }
-    */
     else if ("TUPLES" === data.response_type){
       setTuplesData(data);
       updateTabs(["TABULAR", "RAW"]);
     }
-    /* Explain isn't working, default case works for explain 
-    else if ("EXPLAIN" === data.response_type){
+    else if (data["plan"]){
+      renderPlan(data["plan"]);
       updateTabs(["EXPLAIN", "RAW"]);
     }
-    */
     else if ("MESSAGE" === data.response_type && data.isError) {
       updateTabs(["RAW"]);
       warning_box.text(data.message);
@@ -72,9 +65,7 @@ function processQuery(inputStr) {
         }
     }
     else {
-      //Probably a planviewer result
-      renderPlan(data["plan"]);
-      updateTabs(["EXPLAIN", "RAW"]);
+      updateTabs(["RAW"]);
     }
   }, "json").fail(function() {
     warning_box.attr("class", "alert alert-danger col-lg-12");
