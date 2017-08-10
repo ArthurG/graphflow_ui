@@ -252,8 +252,8 @@ function setGraphicalResults(data) {
     var copiedNode = jQuery.extend({type: curr_vertex.type, id: i}, 
         curr_vertex.properties);
     nodes.push(copiedNode);
-    i+=1;
   }
+
   //Populate the edges
   for(var i in edge_data){
       var edge = edge_data[i];
@@ -263,7 +263,6 @@ function setGraphicalResults(data) {
       copiedEdge.source = edge.from_vertex_id;
       copiedEdge.target = edge.to_vertex_id;
       edges.push(copiedEdge);
-      i+=1;
   }
 
   //Render the graph
