@@ -34,12 +34,7 @@ $("#delete-node").click(function() {
 function processQuery(inputStr) {
   warning_box = $("#graphflow-alert");
   warning_box.addClass("hidden");
-  $.post("http://localhost:8000/query", inputStr).fail(function() {
-    warning_box.attr("class", "alert alert-danger col-lg-12");
-    warning_box.text("Graphflow server is down!");
-  });
-
-  $.getJSON("http://localhost:8000/json", function(data, status, xhr) {
+  $.post("http://localhost:8000/query", inputStr, function(data, success, xhr){
     setRawResults(data);
     if ("SUBGRAPHS" === data.response_type) {
       updateTabs(["TABULAR", "GRAPHICAL", "RAW"]);
@@ -78,9 +73,12 @@ function processQuery(inputStr) {
     }
     else {
       //Probably a planviewer result
-      renderPlan(data);
+      renderPlan(data["plan"]);
       updateTabs(["EXPLAIN", "RAW"]);
     }
+  }, "json").fail(function() {
+    warning_box.attr("class", "alert alert-danger col-lg-12");
+    warning_box.text("Graphflow server is down!");
   });
 }
 
@@ -109,18 +107,11 @@ function updateTabs(tabArr) {
 }
 
 function getVertexData(data) {
-  return data.vertex_data;
+  return data.vertices;
 }
 
 function getEdgeData(data) {
-  var edge = []
-  for(var i = 0;i<data.subgraphs.length;i++) {
-    var subgraph = data.subgraphs[i];
-    for (var j=0;j<subgraph.edges.length;j++) {
-      edge.push(subgraph.edges[j]);
-    }
-  }
-  return edge;
+  return data.edges;
 }
 
 // Modify the tabular results if the return message is a string
@@ -209,7 +200,7 @@ function setTabularResults(data) {
     for (var headerName in vertexMap) {
       var subgraph_vertex_idx = vertexMap[headerName];
       var graph_vertex_idx = verticiesToAdd[subgraph_vertex_idx];
-      var vertex = data.vertex_data[graph_vertex_idx];
+      var vertex = data.vertices[graph_vertex_idx];
 
       var rowDataCell = cloneTemplate(rowDataTemplate);
       rowDataCell.text(JSON.stringify(vertex.properties));
@@ -218,12 +209,16 @@ function setTabularResults(data) {
 
     //Populate the edges
     var edgesToAdd = currRecord.edges;
+    var edges = data.edges;
     for (var j = 0;j<edgesToAdd.length;j++) {
-      var rowDataCell = cloneTemplate(rowDataTemplate);
       //TODO: Should I Populate the entire edge object?
-      rowDataCell.text(JSON.stringify(edgesToAdd[j]));
+      var subgraph_edge = edges[edgesToAdd[j]];
+
+      var rowDataCell = cloneTemplate(rowDataTemplate);
+      rowDataCell.text(JSON.stringify(subgraph_edge));
       newRow.append(rowDataCell);
     }
+
     resultTable.append(newRow);
   }
 }
@@ -249,7 +244,10 @@ function setGraphicalResults(data) {
   var edges = []; 
   var seenItems = new Set();
 
-  var vertex_data = data.vertex_data;
+  var vertex_data = data.vertices;
+  var edge_data = data.edges;
+  
+  //Populate the nodes
   for(var i in vertex_data){
     var curr_vertex = vertex_data[i];
 
@@ -258,16 +256,16 @@ function setGraphicalResults(data) {
     nodes.push(copiedNode);
     i+=1;
   }
-  for (var i = 0;i<data.subgraphs.length;i++) {
-    var subgraph=data.subgraphs[i];
-    for (var j = 0;j<subgraph.edges.length;j++) {
-      var edge = subgraph.edges[j];
+  //Populate the edges
+  for(var i in edge_data){
+      var edge = edge_data[i];
+
       var copiedEdge = {};
-      copiedEdge.id = i*subgraph.edges.length+j;
+      copiedEdge.id = i;
       copiedEdge.source = edge.from_vertex_id;
       copiedEdge.target = edge.to_vertex_id;
       edges.push(copiedEdge);
-    }
+      i+=1;
   }
 
   //Render the graph
