@@ -12,7 +12,7 @@ $("#query-form").keypress(function (e) {
   }
 });
 
-$("#delete-node").click(function(){
+$("#delete-node").click(function() {
   var from_id = $("#from-id").text();
   var to_id = $("#to-id").text();
   var query = "DELETE ("+from_id+")->("+to_id+");";

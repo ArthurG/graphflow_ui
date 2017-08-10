@@ -42,3 +42,4 @@ var FILTER_TYPES = {
     FROM_VERTEX_TYPE: 'fromVertexType',
     TO_VERTEX_TYPE: 'toVertexType'
 };
+
