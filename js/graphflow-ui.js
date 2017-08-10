@@ -322,34 +322,10 @@ function unhoverNode(d) {
   hideToolbar();
 }
 
-//Handling clicking nodes
-function clickNode(d) {
-  $("#updateNodeModal").modal('show');
-  var currNode = vertexData[d.id.toString()];
-  $("#node-properties-text").val(JSON.stringify(currNode));
-}
-
 //Handling hover Edges
 function hoverLink(d) {
   showToolbarEdge(d);
 }
-
-//Handling clicking Edges
-function clickLink(d) {
-  $("#updateNodeModal").modal('show');
-  var copiedNode = {};
-  for(var i in edgeData){
-    if (edgeData[i].from_vertex_id.toString() === d.source.id && 
-        edgeData[i].to_vertex_id.toString() === d.target.id) {
-      copiedNode = edgeData[i];
-      break;
-    }
-  }
-  $("#from-id").text(copiedNode.from_vertex_id);
-  $("#to-id").text(copiedNode.to_vertex_id);
-  $("#node-properties-text").val(JSON.stringify(copiedNode));
-}
-
 
 // Define the div for the tooltip
 var div = d3.select("body").append("div")    
@@ -378,7 +354,6 @@ function render(graph) {
     .enter().append("line")
     .attr("stroke-width", 5);
 
-  link.on("click", clickLink);
   link.on("mouseover", hoverLink)
       .on("mouseout", unhoverNode);
 
@@ -396,8 +371,6 @@ function render(graph) {
 
   node.append("title")
     .text(function(d) { return d.id; });
-
-  node.on("click", clickNode);
 
   node.on("mouseover", hoverNode)
     .on("mouseout", unhoverNode);
