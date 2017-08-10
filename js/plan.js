@@ -59,7 +59,7 @@ function renderPlan(planArray) {
 function renderPlanStages(plan, id) {
     var name = '<h3 class="center">' + plan.name + '</h3>';
     $('#name' + id).append(name);
-    var ordering = '<h3 class="center">Variable Ordering:<br />' + plan.variableOrdering.join(', ') + '</h3>';
+    var ordering = '<h3 class="center">Variable Ordering:<br />' + plan.var_ordering.join(', ') + '</h3>';
     $('#ordering' + id).append(ordering);
 
     var stages = plan.stages;
@@ -105,7 +105,7 @@ function renderPlanStages(plan, id) {
     var arrow = '<div class="center arrow"></div>';
     var arrowWithOutput = '<div class="center arrow"><div class="output">Output: <i>(';
     // creates HTML code snippet of operators
-    var operators = plan.nextOperators;
+    var operators = plan.next_operators;
     for (i = operators.length - 1; i >= 0; --i) {
         var operator = operators[i];
         var operatorDiv = '<div class="center stage">';
@@ -144,7 +144,7 @@ function renderPlanStages(plan, id) {
         }
     }
     // renders the plan stages with intermediate arrows and outputs
-    var orderingArrayCopy = plan.variableOrdering.slice();
+    var orderingArrayCopy = plan.var_ordering.slice();
     for (i = stageContainers.length - 1; i >= 0; --i) {
         var finalOutput = arrowWithOutput + orderingArrayCopy.join(', ') + ')</i></div></div>';
         if (0 != i) {

@@ -34,12 +34,7 @@ $("#delete-node").click(function() {
 function processQuery(inputStr) {
   warning_box = $("#graphflow-alert");
   warning_box.addClass("hidden");
-  $.post("http://localhost:8000/query", inputStr).fail(function() {
-    warning_box.attr("class", "alert alert-danger col-lg-12");
-    warning_box.text("Graphflow server is down!");
-  });
-
-  $.getJSON("http://localhost:8000/json", function(data, status, xhr) {
+  $.post("http://localhost:8000/query", inputStr, function(data, success, xhr){
     setRawResults(data);
     if ("SUBGRAPHS" === data.response_type) {
       updateTabs(["TABULAR", "GRAPHICAL", "RAW"]);
@@ -49,20 +44,14 @@ function processQuery(inputStr) {
       vertexData = getVertexData(data);
       edgeData = getEdgeData(data);
     }
-    //TODO: Tuples and strings are both rendered as message
-    /*
-    else if ("STRING" === data.response_type){
-      updateTabs(["RAW"]);
-    }
     else if ("TUPLES" === data.response_type){
+      setTuplesData(data);
       updateTabs(["TABULAR", "RAW"]);
     }
-    */
-    /* Explain isn't working, default case works for explain 
-    else if ("EXPLAIN" === data.response_type){
+    else if (data["plan"]){
+      renderPlan(data["plan"]);
       updateTabs(["EXPLAIN", "RAW"]);
     }
-    */
     else if ("MESSAGE" === data.response_type && data.isError) {
       updateTabs(["RAW"]);
       warning_box.text(data.message);
@@ -72,15 +61,15 @@ function processQuery(inputStr) {
     else if ("MESSAGE" === data.response_type) {
       updateTabs(["RAW"]);
         if (data.message.includes("\n")) {
-          extractTabularDataFromStringMessage(data.message);
       updateTabs(["RAW", "TABULAR"]);
         }
     }
     else {
-      //Probably a planviewer result
-      renderPlan(data);
-      updateTabs(["EXPLAIN", "RAW"]);
+      updateTabs(["RAW"]);
     }
+  }, "json").fail(function() {
+    warning_box.attr("class", "alert alert-danger col-lg-12");
+    warning_box.text("Graphflow server is down!");
   });
 }
 
@@ -109,49 +98,49 @@ function updateTabs(tabArr) {
 }
 
 function getVertexData(data) {
-  return data.vertex_data;
+  return data.vertices;
 }
 
 function getEdgeData(data) {
-  var edge = []
-  for(var i = 0;i<data.subgraphs.length;i++) {
-    var subgraph = data.subgraphs[i];
-    for (var j=0;j<subgraph.edges.length;j++) {
-      edge.push(subgraph.edges[j]);
-    }
-  }
-  return edge;
+  return data.edges;
 }
 
 // Modify the tabular results if the return message is a string
 // May need to be modifed for API changes
-function extractTabularDataFromStringMessage(msg) {
+function setTuplesData(data) {
   /*Remove old table data*/
   $("#query-result-table tbody tr.cloned").remove();
+  $("#query-result-table thead tr th.cloned").remove();
 
   /*Set the table data*/
   var resultTable = $("#query-result-table tbody");
 
+  var header = $("#query-result-table thead tr");
+  var headerTemplate = $("#query-result-table thead th.template");
   var rowTemplate = $("#query-result-table tbody tr.template");
   var rowDataTemplate = $("#query-result-table tbody tr td.template");
   var rowCounterTemplate = $("#query-result-table tbody th.template");
 
+  //Setup the headers
+  for(var headerName in data.column_names) {
+    var headerItem = cloneTemplate(headerTemplate);
+    headerItem.text(data.column_names[headerName]);
+    header.append(headerItem);
+  }
 
-  var rows = msg.split("\n");
-  for (var i = 0;i<rows.length;i++) {
-    var columns = rows[i].split(" ");
-
+  //Setup the data
+  for (var i = 0;i<data.tuples.length;i++) {
     var newRow = cloneTemplate(rowTemplate);
     var rowCounter = cloneTemplate(rowCounterTemplate);
 
     rowCounter.text(i+1);
     newRow.append(rowCounter);
 
-
-    for (var j = 0;j<columns.length;j++) {
+    var column = data.tuples[i];
+    for (var j = 0;j<column.length;j++) {
 
       var rowDataCell = cloneTemplate(rowDataTemplate);
-      rowDataCell.text(JSON.stringify(columns[j]));
+      rowDataCell.text(JSON.stringify(column[j]));
       newRow.append(rowDataCell);
     }
     resultTable.append(newRow);
@@ -209,7 +198,7 @@ function setTabularResults(data) {
     for (var headerName in vertexMap) {
       var subgraph_vertex_idx = vertexMap[headerName];
       var graph_vertex_idx = verticiesToAdd[subgraph_vertex_idx];
-      var vertex = data.vertex_data[graph_vertex_idx];
+      var vertex = data.vertices[graph_vertex_idx];
 
       var rowDataCell = cloneTemplate(rowDataTemplate);
       rowDataCell.text(JSON.stringify(vertex.properties));
@@ -218,12 +207,16 @@ function setTabularResults(data) {
 
     //Populate the edges
     var edgesToAdd = currRecord.edges;
+    var edges = data.edges;
     for (var j = 0;j<edgesToAdd.length;j++) {
-      var rowDataCell = cloneTemplate(rowDataTemplate);
       //TODO: Should I Populate the entire edge object?
-      rowDataCell.text(JSON.stringify(edgesToAdd[j]));
+      var subgraph_edge = edges[edgesToAdd[j]];
+
+      var rowDataCell = cloneTemplate(rowDataTemplate);
+      rowDataCell.text(JSON.stringify(subgraph_edge));
       newRow.append(rowDataCell);
     }
+
     resultTable.append(newRow);
   }
 }
@@ -249,25 +242,27 @@ function setGraphicalResults(data) {
   var edges = []; 
   var seenItems = new Set();
 
-  var vertex_data = data.vertex_data;
+  var vertex_data = data.vertices;
+  var edge_data = data.edges;
+  
+  //Populate the nodes
   for(var i in vertex_data){
     var curr_vertex = vertex_data[i];
 
     var copiedNode = jQuery.extend({type: curr_vertex.type, id: i}, 
         curr_vertex.properties);
     nodes.push(copiedNode);
-    i+=1;
   }
-  for (var i = 0;i<data.subgraphs.length;i++) {
-    var subgraph=data.subgraphs[i];
-    for (var j = 0;j<subgraph.edges.length;j++) {
-      var edge = subgraph.edges[j];
+
+  //Populate the edges
+  for(var i in edge_data){
+      var edge = edge_data[i];
+
       var copiedEdge = {};
-      copiedEdge.id = i*subgraph.edges.length+j;
+      copiedEdge.id = i;
       copiedEdge.source = edge.from_vertex_id;
       copiedEdge.target = edge.to_vertex_id;
       edges.push(copiedEdge);
-    }
   }
 
   //Render the graph
@@ -292,7 +287,7 @@ function showToolbarNode(d) {
 }
 
 function showToolbarEdge(d) {
-  for(var i = 0;i<edgeData.length;i++) {
+  for(var i in edgeData) {
     if (edgeData[i].from_vertex_id.toString() === d.source.id && 
         edgeData[i].to_vertex_id.toString() === d.target.id) {
       var edge = edgeData[i];
@@ -343,10 +338,11 @@ function hoverLink(d) {
 function clickLink(d) {
   $("#updateNodeModal").modal('show');
   var copiedNode = {};
-  for(var i = 0;i<edgeData.length;i++) {
+  for(var i in edgeData){
     if (edgeData[i].from_vertex_id.toString() === d.source.id && 
         edgeData[i].to_vertex_id.toString() === d.target.id) {
       copiedNode = edgeData[i];
+      break;
     }
   }
   $("#from-id").text(copiedNode.from_vertex_id);
