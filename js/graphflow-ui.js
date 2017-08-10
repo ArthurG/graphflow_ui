@@ -49,10 +49,11 @@ function processQuery(inputStr) {
     else if ("STRING" === data.response_type){
       updateTabs(["RAW"]);
     }
+    */
     else if ("TUPLES" === data.response_type){
+      setTuplesData(data);
       updateTabs(["TABULAR", "RAW"]);
     }
-    */
     /* Explain isn't working, default case works for explain 
     else if ("EXPLAIN" === data.response_type){
       updateTabs(["EXPLAIN", "RAW"]);
@@ -67,7 +68,6 @@ function processQuery(inputStr) {
     else if ("MESSAGE" === data.response_type) {
       updateTabs(["RAW"]);
         if (data.message.includes("\n")) {
-          extractTabularDataFromStringMessage(data.message);
       updateTabs(["RAW", "TABULAR"]);
         }
     }
@@ -116,33 +116,40 @@ function getEdgeData(data) {
 
 // Modify the tabular results if the return message is a string
 // May need to be modifed for API changes
-function extractTabularDataFromStringMessage(msg) {
+function setTuplesData(data) {
   /*Remove old table data*/
   $("#query-result-table tbody tr.cloned").remove();
+  $("#query-result-table thead tr th.cloned").remove();
 
   /*Set the table data*/
   var resultTable = $("#query-result-table tbody");
 
+  var header = $("#query-result-table thead tr");
+  var headerTemplate = $("#query-result-table thead th.template");
   var rowTemplate = $("#query-result-table tbody tr.template");
   var rowDataTemplate = $("#query-result-table tbody tr td.template");
   var rowCounterTemplate = $("#query-result-table tbody th.template");
 
+  //Setup the headers
+  for(var headerName in data.column_names) {
+    var headerItem = cloneTemplate(headerTemplate);
+    headerItem.text(data.column_names[headerName]);
+    header.append(headerItem);
+  }
 
-  var rows = msg.split("\n");
-  for (var i = 0;i<rows.length;i++) {
-    var columns = rows[i].split(" ");
-
+  //Setup the data
+  for (var i = 0;i<data.tuples.length;i++) {
     var newRow = cloneTemplate(rowTemplate);
     var rowCounter = cloneTemplate(rowCounterTemplate);
 
     rowCounter.text(i+1);
     newRow.append(rowCounter);
 
-
-    for (var j = 0;j<columns.length;j++) {
+    var column = data.tuples[i];
+    for (var j = 0;j<column.length;j++) {
 
       var rowDataCell = cloneTemplate(rowDataTemplate);
-      rowDataCell.text(JSON.stringify(columns[j]));
+      rowDataCell.text(JSON.stringify(column[j]));
       newRow.append(rowDataCell);
     }
     resultTable.append(newRow);
