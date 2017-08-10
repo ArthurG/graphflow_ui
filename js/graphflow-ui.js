@@ -287,7 +287,7 @@ function showToolbarNode(d) {
 }
 
 function showToolbarEdge(d) {
-  for(var i = 0;i<edgeData.length;i++) {
+  for(var i in edgeData) {
     if (edgeData[i].from_vertex_id.toString() === d.source.id && 
         edgeData[i].to_vertex_id.toString() === d.target.id) {
       var edge = edgeData[i];
@@ -338,10 +338,11 @@ function hoverLink(d) {
 function clickLink(d) {
   $("#updateNodeModal").modal('show');
   var copiedNode = {};
-  for(var i = 0;i<edgeData.length;i++) {
+  for(var i in edgeData){
     if (edgeData[i].from_vertex_id.toString() === d.source.id && 
         edgeData[i].to_vertex_id.toString() === d.target.id) {
       copiedNode = edgeData[i];
+      break;
     }
   }
   $("#from-id").text(copiedNode.from_vertex_id);
