@@ -35,30 +35,30 @@ function processQuery(inputStr) {
   warning_box.addClass("hidden");
   $.post("http://localhost:8000/query", inputStr, function(data, success, xhr){
     setRawResults(data);
-    if ("SUBGRAPHS" === data.response_type) {
-      updateTabs(["TABULAR", "GRAPHICAL", "RAW"]);
+    if (QUERY_RESPONSE_TYPES.SUBGRAPHS === data.response_type) {
+      updateTabs([UI_TABS.TABULAR, UI_TABS.GRAPHICAL, UI_TABS.RAW]);
       setTabularResults(data);
       setDownloadResults(data);
       setGraphicalResults(data);
       vertexData = getVertexData(data);
       edgeData = getEdgeData(data);
     }
-    else if ("TUPLES" === data.response_type){
+    else if (QUERY_RESPONSE_TYPES.TUPLES === data.response_type){
       setTuplesData(data);
-      updateTabs(["TABULAR", "RAW"]);
+      updateTabs([UI_TABS.TABULAR, UI_TABS.RAW]);
     }
     else if (data["plan"]){
       renderPlan(data["plan"]);
-      updateTabs(["EXPLAIN", "RAW"]);
+      updateTabs([UI_TABS.EXPLAIN, UI_TABS.RAW]);
     }
-    else if ("MESSAGE" === data.response_type && data.isError) {
-      updateTabs(["RAW"]);
+    else if (QUERY_RESPONSE_TYPES.MESSAGE === data.response_type && data.isError) {
+      updateTabs([UI_TABS.RAW]);
       warning_box.text(data.message);
       warning_box.attr("class", "alert alert-warning col-lg-12");
       warning_box.removeClass("hidden");
     }
     else {
-      updateTabs(["RAW"]);
+      updateTabs([UI_TABS.RAW]);
     }
   }, "json").fail(function() {
     warning_box.attr("class", "alert alert-danger col-lg-12");
