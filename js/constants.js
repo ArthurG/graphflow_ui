@@ -43,3 +43,15 @@ var FILTER_TYPES = {
     TO_VERTEX_TYPE: 'toVertexType'
 };
 
+var QUERY_RESPONSE_TYPES = {
+    SUBGRAPHS: 'SUBGRAPHS',
+    TUPLES: 'TUPLES',
+    MESSAGE: 'MESSAGE',
+}
+
+var UI_TABS = {
+    TABULAR: 'TABULAR',
+    GRAPHICAL: 'GRAPHICAL',
+    RAW: 'RAW',
+    EXPLAIN: 'EXPLAIN',
+}
