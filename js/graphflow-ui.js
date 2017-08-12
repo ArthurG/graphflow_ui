@@ -28,7 +28,6 @@ $("#delete-node").click(function() {
     });
 });
 
-
 // Processing functions
 function processQuery(inputStr) {
     warning_box = $("#graphflow-alert");
@@ -103,7 +102,13 @@ function setTuplesData(data) {
     updateTable(data.column_names, data.tuples)
 }
 
+// Mutates the DOM Tabular View to have headers as headers and dataArr as the
+// displayed data
 function updateTable(headers, dataArr){
+    function cloneTemplate(template) {
+        return template.clone().removeClass("template").attr("class", "cloned");
+    }
+
     //Remove old table data
     $("#query-result-table tbody tr.cloned").remove();
     $("#query-result-table thead tr th.cloned").remove();
@@ -118,9 +123,9 @@ function updateTable(headers, dataArr){
     var rowCounterTemplate = $("#query-result-table tbody th.template");
 
     //Setup the headers
-    for (var headerName in data.column_names) {
+    for (var headerName in headers) {
         var headerItem = cloneTemplate(headerTemplate);
-        headerItem.text(data.column_names[headerName]);
+        headerItem.text(headerName);
         header.append(headerItem);
     }
 
@@ -140,10 +145,6 @@ function updateTable(headers, dataArr){
     }
 }
 
-function cloneTemplate(template) {
-    return template.clone().removeClass("template").attr("class", "cloned");
-}
-
 // Modify the tabular section for subbgraphs query results
 function setTabularResults(data) {
     var records = data.subgraphs;
@@ -151,32 +152,27 @@ function setTabularResults(data) {
         return
     }
 
-    // Remove old table headers*/
-    $("#query-result-table th.cloned").remove();
-
     // Set the updated table headers for this query
-    var header = $("#query-result-table thead tr");
-    var headerTemplate = $("#query-result-table thead th.template");
     var vertexMap = data.vertex_map;
+    var headerStrings = [];
+
     // Populate the headers for the verticies
     // TODO: No headers are being populated for the edges
     for(var headerName in vertexMap) {
-        headerStrings.append(headerName);
-        var headerItem = cloneTemplate(headerTemplate);
-        headerItem.text(headerName);
-        header.append(headerItem);
+        headerStrings.push(headerName);
     }
 
     // Populate the records (rows of the table)
-    dataArr = []
+    var dataArr = []
     for(var i = 0;i<records.length;i++) {
-        row = []
+        var row = [];
+        var currRecord = records[i];
         var verticiesToAdd = currRecord.vertices;
         for (var headerName in vertexMap) {
             var subgraph_vertex_idx = vertexMap[headerName];
             var graph_vertex_idx = verticiesToAdd[subgraph_vertex_idx];
             var vertex = data.vertices[graph_vertex_idx];
-            row.append(vertex.properties));
+            row.push(vertex.properties);
         }
 
         // Populate the edges
@@ -185,11 +181,11 @@ function setTabularResults(data) {
         for (var j = 0;j<edgesToAdd.length;j++) {
             // TODO: Should I Populate the entire edge object?
             var subgraph_edge = edges[edgesToAdd[j]];
-            row.append(subgraph_edge);
+            row.push(subgraph_edge);
         }
-        dataArr.append(row)
+        dataArr.push(row)
     }
-    updateTable(headers, dataArr);
+    updateTable(headerStrings, dataArr);
 }
 
 // Modify the data in the raw results tab
