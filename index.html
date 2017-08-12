@@ -5,32 +5,22 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
         <title>Graphflow UI</title>
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-        <!-- Underscore.js (javascript array/object/etc. help functions ) -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-        <!-- Custom css file -->
-        <link rel="stylesheet" href="css/graphflow-ui.css">
-        <link rel="stylesheet" href="css/plan_viewer.css">
-        <link rel="stylesheet" href="css/graph_layout.css">
         <!-- Google fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <!-- Custom css file -->
+        <link rel="stylesheet" href="css/graphflow_ui.css">
+        <link rel="stylesheet" href="css/plan_viewer.css">
+        <link rel="stylesheet" href="css/graph_layout.css">
     </head>
+
     <body>
-
-
         <!-- Modal -->
         <div class="modal fade" id="updateNodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -57,133 +47,135 @@
         <div class="container">
 
             <div class="col-lg-12">
-              <p class="alert alert-danger hidden" role="alert" id="graphflow-alert"></p>
+                <p class="alert alert-danger hidden" role="alert" id="graphflow-alert"></p>
             </div>
 
             <div class="query-input col-lg-12">
                 <form id="query-form">
                     <textarea class="form-control animated" placeholder="Query"></textarea>
-                        <!--
-                            <button class="col-lg-1 btn btn-info pull-right" type="button">Go</button>
-                        -->
                 </form>
-        </div>
-
-        <div class="resultset col-lg-12">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active result-tab graphical-tab"><a href="#graphical-rs" aria-controls="graphical-rs" role="tab" data-toggle="tab">Graphical</a></li>
-                <li role="presentation" class="result-tab tabular-tab"><a href="#tabular-rs" aria-controls="tabular-rs" role="tab" data-toggle="tab" >Tabular</a></li>
-                <li role="presentation" class="result-tab raw-tab"><a href="#raw-rs" aria-controls="raw-rs" role="tab" data-toggle="tab">Raw</a></li>
-                <li role="presentation" class="result-tab explain-tab"><a href="#explain-rs" aria-controls="explain-rs" role="tab" data-toggle="tab">Explain</a></li>
-
-                <li class="pull-right">
-                    <p class="navbar-btn" id="clipboard-btn" onclick="copyResultToClipboard('#query-result-raw')">
-                    <a href="#" class="btn btn-default">
-                        <span class="glyphicon glyphicon-copy"></span>
-                    </a>
-                    </p>
-                </li>
-                <li class="pull-right">
-                    <p class="navbar-btn">
-                    <a href="#" class="btn btn-default" id="download-btn">
-                        <span class="glyphicon glyphicon-download-alt"></span>
-                    </a>
-                    </p>
-                </li>
-
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="graphical-rs">
-                    <div class="col-lg-12 col-md-12">
-                        <svg width="960" height="600"></svg>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tabular-rs">
-                    <div class="table-responsive">
-                        <table class="table table-sm" id="query-result-table">
-                            <thead>
-                              <tr>
-                                    <th>#</th>
-                                    <th class="template">First Name</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="template"></tr>
-                                <th scope="row" class="template"></th>
-                                <td class="template"></td>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="raw-rs">
-                    <pre id="query-result-raw">
-                    </pre>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="explain-rs">
-                  <div id="explain-contents">
-                    <div id="legend" class="legend">
-                        <div>
-                            <div class="graph-version-box current-graph legend-item">C</div>
-                            <p class="legend-words">: Current Graph</p>
-                        </div>
-
-                        <div>
-                            <div class="graph-version-box delta-graph legend-item">&Delta;</div>
-                            <p class="legend-words">: Delta Graph</p>
-                        </div>
-
-                        <div>
-                            <div class="new-graph legend-item">N</div>
-                            <p class="legend-words">: New Graph</p>
-                        </div>
-
-                        <div>
-                            <div class="simple-legend-entry"><b>&sigma;</b>: Filter</div>
-                        </div>
-
-                        <div>
-                            <div class="simple-legend-entry"><b>&Pi;</b>: Projection</div>
-                        </div>
-
-                        <div>
-                            <div class="simple-legend-entry"><b>&Gamma;</b>: Aggregate</div>
-                        </div>
-
-                        <div>
-                            <div class="simple-legend-entry">------>: Outgoing</div>
-                        </div>
-
-                        <div>
-                            <div class="simple-legend-entry"><------: Incoming</div>
-                        </div>
-                    </div>
-
-
-                    <div id="stageSet"></div>
-                </div>
             </div>
-        </div>
-        </div><!-- /.container -->
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="https://d3js.org/d3.v4.min.js"></script>
+            <div class="resultset col-lg-12">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active result-tab graphical-tab">
+                        <a href="#graphical-rs" aria-controls="graphical-rs" role="tab" data-toggle="tab">Graphical</a>
+                    </li>
+                    <li role="presentation" class="result-tab tabular-tab">
+                        <a href="#tabular-rs" aria-controls="tabular-rs" role="tab" data-toggle="tab" >Tabular</a>
+                    </li>
+                    <li role="presentation" class="result-tab raw-tab">
+                        <a href="#raw-rs" aria-controls="raw-rs" role="tab" data-toggle="tab">Raw</a>
+                    </li>
+                    <li role="presentation" class="result-tab explain-tab">
+                        <a href="#explain-rs" aria-controls="explain-rs" role="tab" data-toggle="tab">Explain</a>
+                    </li>
 
-        <script type="text/javascript" src="js/graphflow-ui.js"></script>
-        <!-- D3js -->
-        <script src="https://d3js.org/d3.v4.min.js"></script>
-        <!-- Constant definitions -->
-        <script type="text/javascript" src="js/constants.js"></script>
-        <!-- Utility functions -->
-        <script type="text/javascript" src="js/util.js"></script>
-        <script type="text/javascript" src="js/plan.js"></script>
+                    <li class="pull-right">
+                        <p class="navbar-btn" id="clipboard-btn" onclick="copyResultToClipboard('#query-result-raw')">
+                            <a href="#" class="btn btn-default">
+                                <span class="glyphicon glyphicon-copy"></span>
+                            </a>
+                        </p>
+                    </li>
+                    <li class="pull-right">
+                        <p class="navbar-btn">
+                            <a href="#" class="btn btn-default" id="download-btn">
+                                <span class="glyphicon glyphicon-download-alt"></span>
+                            </a>
+                        </p>
+                    </li>
 
-        <script>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="graphical-rs">
+                        <div class="col-lg-12 col-md-12">
+                            <svg width="960" height="600"></svg>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tabular-rs">
+                        <div class="table-responsive">
+                            <table class="table table-sm" id="query-result-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="template">First Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="template"></tr>
+                                    <th scope="row" class="template"></th>
+                                    <td class="template"></td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="raw-rs">
+                        <pre id="query-result-raw"></pre>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="explain-rs">
+                        <div id="explain-contents">
+                            <div id="legend" class="legend">
+                                <div>
+                                    <div class="graph-version-box current-graph legend-item">C</div>
+                                    <p class="legend-words">: Current Graph</p>
+                                </div>
+
+                                <div>
+                                    <div class="graph-version-box delta-graph legend-item">&Delta;</div>
+                                    <p class="legend-words">: Delta Graph</p>
+                                </div>
+
+                                <div>
+                                    <div class="new-graph legend-item">N</div>
+                                    <p class="legend-words">: New Graph</p>
+                                </div>
+
+                                <div>
+                                    <div class="simple-legend-entry"><b>&sigma;</b>: Filter</div>
+                                </div>
+
+                                <div>
+                                    <div class="simple-legend-entry"><b>&Pi;</b>: Projection</div>
+                                </div>
+
+                                <div>
+                                    <div class="simple-legend-entry"><b>&Gamma;</b>: Aggregate</div>
+                                </div>
+
+                                <div>
+                                    <div class="simple-legend-entry">------>: Outgoing</div>
+                                </div>
+
+                                <div>
+                                    <div class="simple-legend-entry"><------: Incoming</div>
+                                </div>
+                            </div>
+
+                            <div id="stageSet"></div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.container -->
+
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            <!-- D3.js -->
+            <script src="https://d3js.org/d3.v4.min.js"></script>
+            <!-- Constant definitions -->
+            <script type="text/javascript" src="js/constants.js"></script>
+            <!-- Utility functions -->
+            <script type="text/javascript" src="js/util.js"></script>
+            <!-- Underscore.js (javascript array/object/etc. help functions ) -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+            <!-- Custom JavaScript -->
+            <script type="text/javascript" src="js/plan.js"></script>
+            <script type="text/javascript" src="js/graphflow-ui.js"></script>
     </body>
 </html>
 

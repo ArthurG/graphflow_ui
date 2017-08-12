@@ -25,15 +25,7 @@ textarea {
     -webkit-box-sizing: border-box; /* For Safari */
 }
 
-#graphical-rs {
-    height: 500px;
-}
-
-#tabular-rs {
-    height: 500px;
-}
-
-#raw-rs {
+#graphical-rs, #tabular-rs, #raw-rs {
     height: 500px;
 }
 
@@ -47,3 +39,6 @@ pre {
     white-space: pre;
 }
 
+.template {
+    display: none;
+}

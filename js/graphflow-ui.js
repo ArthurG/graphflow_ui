@@ -1,9 +1,9 @@
-/*Global objects*/
+// Global objects
 var queryResult = {};
 var vertexData = {};
 var edgeData = {};
 
-/*User actions */
+// User actions
 $("#query-form").keypress(function (e) {
   var input = $("#query-form textarea").val();
   if(e.which == 13 && !e.shiftKey) {        
@@ -26,11 +26,10 @@ $("#delete-node").click(function() {
     warning_box.attr("class", "alert alert-info col-lg-12");
     warning_box.text("Your edge was deleted. Please rerun your query");
   });
-  
 });
 
 
-/*Process functions*/
+// Processing functions
 function processQuery(inputStr) {
   warning_box = $("#graphflow-alert");
   warning_box.addClass("hidden");
@@ -57,12 +56,6 @@ function processQuery(inputStr) {
       warning_box.text(data.message);
       warning_box.attr("class", "alert alert-warning col-lg-12");
       warning_box.removeClass("hidden");
-    }
-    else if ("MESSAGE" === data.response_type) {
-      updateTabs(["RAW"]);
-        if (data.message.includes("\n")) {
-      updateTabs(["RAW", "TABULAR"]);
-        }
     }
     else {
       updateTabs(["RAW"]);
@@ -106,13 +99,12 @@ function getEdgeData(data) {
 }
 
 // Modify the tabular results if the return message is a string
-// May need to be modifed for API changes
 function setTuplesData(data) {
-  /*Remove old table data*/
+  //Remove old table data
   $("#query-result-table tbody tr.cloned").remove();
   $("#query-result-table thead tr th.cloned").remove();
 
-  /*Set the table data*/
+  //Set the table data
   var resultTable = $("#query-result-table tbody");
 
   var header = $("#query-result-table thead tr");
@@ -122,7 +114,7 @@ function setTuplesData(data) {
   var rowCounterTemplate = $("#query-result-table tbody th.template");
 
   //Setup the headers
-  for(var headerName in data.column_names) {
+  for (var headerName in data.column_names) {
     var headerItem = cloneTemplate(headerTemplate);
     headerItem.text(data.column_names[headerName]);
     header.append(headerItem);
@@ -159,32 +151,32 @@ function setTabularResults(data) {
     return
   }
 
-  /*Remove old table headers*/
+  // Remove old table headers*/
   $("#query-result-table th.cloned").remove();
 
-  /*Set the updated table headers for this query*/
+  // Set the updated table headers for this query
   var header = $("#query-result-table thead tr");
   var headerTemplate = $("#query-result-table thead th.template");
   var vertexMap = data.vertex_map;
-  //Populate the headers for the verticies
-  //TODO: No headers are being populated for the edges
+  // Populate the headers for the verticies
+  // TODO: No headers are being populated for the edges
   for(var headerName in vertexMap) {
     var headerItem = cloneTemplate(headerTemplate);
     headerItem.text(headerName);
     header.append(headerItem);
   }
 
-  /*Remove old table data*/
+  // Remove old table data
   $("#query-result-table tbody tr.cloned").remove();
 
-  /*Set the table data*/
+  // Set the table data
   var resultTable = $("#query-result-table tbody");
 
   var rowTemplate = $("#query-result-table tbody tr.template");
   var rowDataTemplate = $("#query-result-table tbody tr td.template");
   var rowCounterTemplate = $("#query-result-table tbody th.template");
 
-  //Populate the records (rows of the table)
+  // Populate the records (rows of the table)
   for(var i = 0;i<records.length;i++) {
     var currRecord = records[i];
     var newRow = cloneTemplate(rowTemplate);
@@ -193,7 +185,7 @@ function setTabularResults(data) {
     rowCounter.text(i+1);
     newRow.append(rowCounter);
 
-    //Populate the verticies
+    // Populate the verticies
     var verticiesToAdd = currRecord.vertices;
     for (var headerName in vertexMap) {
       var subgraph_vertex_idx = vertexMap[headerName];
@@ -205,11 +197,11 @@ function setTabularResults(data) {
       newRow.append(rowDataCell);
     }
 
-    //Populate the edges
+    // Populate the edges
     var edgesToAdd = currRecord.edges;
     var edges = data.edges;
     for (var j = 0;j<edgesToAdd.length;j++) {
-      //TODO: Should I Populate the entire edge object?
+      // TODO: Should I Populate the entire edge object?
       var subgraph_edge = edges[edgesToAdd[j]];
 
       var rowDataCell = cloneTemplate(rowDataTemplate);

@@ -1,6 +1,6 @@
 /* General Styling */
 
-#explain-contents{
+#explain-contents {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 3em;
@@ -138,5 +138,3 @@ h3 {
 .simple-legend-entry {
     margin-left: 8px;
 }
-
-
