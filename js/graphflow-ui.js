@@ -12,6 +12,24 @@ $("#query-form").keypress(function (e) {
     }
 });
 
+$("#delete-node").click(function() {
+        var from_id = $("#from-id").text();
+        var to_id = $("#to-id").text();
+        var query = "DELETE ("+from_id+")->("+to_id+");";
+        console.log(query);
+
+        $.post("http://localhost:8000/query", query).fail(function() {
+            warning_box.attr("class", "alert alert-danger col-lg-12");
+            warning_box.text("Deletion has failed!");
+        });
+
+        $.getJSON("http://localhost:8000/json", function(data, status, xhr) {
+            warning_box.attr("class", "alert alert-info col-lg-12");
+            warning_box.text("Your edge was deleted. Please rerun your query");
+        });
+});
+
+
 // Processing functions
 function processQuery(inputStr) {
     warning_box = $("#graphflow-alert");
@@ -272,9 +290,31 @@ function unhoverNode(d) {
     hideToolbar();
 }
 
+function clickNode(d) {
+    $("#updateNodeModal").modal('show');
+    var currNode = vertexData[d.id.toString()];
+    $("#node-properties-text").val(JSON.stringify(currNode));
+}
+
 //Handling hover Edges
 function hoverLink(d) {
     showToolbarEdge(d);
+}
+
+function clickLink(d) {
+    $("#updateNodeModal").modal('show');
+    var copiedNode = {};
+    for(var i in edgeData){
+        if (edgeData[i].from_vertex_id.toString() === d.source.id && 
+                edgeData[i].to_vertex_id.toString() === d.target.id) {
+            copiedNode = edgeData[i];
+            break;
+        }
+    }
+
+    $("#from-id").text(copiedNode.from_vertex_id);
+    $("#to-id").text(copiedNode.to_vertex_id);
+    $("#node-properties-text").val(JSON.stringify(copiedNode));
 }
 
 // Define the div for the tooltip
@@ -307,6 +347,8 @@ function render(graph) {
     link.on("mouseover", hoverLink)
         .on("mouseout", unhoverNode);
 
+    link.on("click", clickLink);
+
     var node = svg.append("g")
         .attr("class", "nodes")
         .selectAll("circle")
@@ -324,6 +366,8 @@ function render(graph) {
 
     node.on("mouseover", hoverNode)
         .on("mouseout", unhoverNode);
+
+    node.on("click", clickNode);
 
     simulation
         .nodes(graph.nodes)
