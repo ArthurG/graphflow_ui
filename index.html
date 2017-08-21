@@ -4,28 +4,20 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
         <title>Graphflow UI</title>
-
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
         <!-- Google fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-
         <!-- Custom css file -->
         <link rel="stylesheet" href="css/graphflow_ui.css">
     </head>
 
     <body>
-
         <div class="container">
-
             <div class="col-lg-12">
                 <p class="alert alert-danger hidden" role="alert" id="graphflow-alert"></p>
             </div>
-
             <div class="query-input col-lg-12">
                 <form id="query-form">
                     <textarea class="form-control animated" placeholder="Query"></textarea>
@@ -47,7 +39,6 @@
                     <li role="presentation" class="result-tab explain-tab">
                         <a href="#explain-rs" aria-controls="explain-rs" role="tab" data-toggle="tab">Explain</a>
                     </li>
-
                     <li class="pull-right">
                         <p class="navbar-btn" id="clipboard-btn" onclick="copyResultToClipboard('#query-result-raw')">
                             <a href="#" class="btn btn-default">
@@ -62,7 +53,6 @@
                             </a>
                         </p>
                     </li>
-
                 </ul>
 
                 <!-- Tab panes -->
@@ -99,60 +89,50 @@
                                     <div class="graph-version-box current-graph legend-item">C</div>
                                     <p class="legend-words">: Current Graph</p>
                                 </div>
-
                                 <div>
                                     <div class="graph-version-box delta-graph legend-item">&Delta;</div>
                                     <p class="legend-words">: Delta Graph</p>
                                 </div>
-
                                 <div>
                                     <div class="new-graph legend-item">N</div>
                                     <p class="legend-words">: New Graph</p>
                                 </div>
-
                                 <div>
                                     <div class="simple-legend-entry"><b>&sigma;</b>: Filter</div>
                                 </div>
-
                                 <div>
                                     <div class="simple-legend-entry"><b>&Pi;</b>: Projection</div>
                                 </div>
-
                                 <div>
                                     <div class="simple-legend-entry"><b>&Gamma;</b>: Aggregate</div>
                                 </div>
-
                                 <div>
                                     <div class="simple-legend-entry">------>: Outgoing</div>
                                 </div>
-
                                 <div>
                                     <div class="simple-legend-entry"><------: Incoming</div>
                                 </div>
                             </div>
-
                             <div id="stageSet"></div>
                         </div>
                     </div>
                 </div>
             </div><!-- /.container -->
 
-            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <!-- jQuery -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <!-- Bootstrap -->
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
             <!-- D3.js -->
             <script src="https://d3js.org/d3.v4.min.js"></script>
+            <!-- Underscore.js (javascript array/object/etc. help functions ) -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
             <!-- Constant definitions -->
             <script type="text/javascript" src="js/constants.js"></script>
             <!-- Utility functions -->
             <script type="text/javascript" src="js/util.js"></script>
-            <!-- Underscore.js (javascript array/object/etc. help functions ) -->
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
             <!-- Custom JavaScript -->
             <script type="text/javascript" src="js/plan.js"></script>
             <script type="text/javascript" src="js/graphflow-ui.js"></script>
     </body>
 </html>
-
-
