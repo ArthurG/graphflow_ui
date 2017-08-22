@@ -13,20 +13,34 @@ $("#query-form").keypress(function (e) {
 });
 
 $("#delete-node").click(function() {
+    function failDelete(){
+        warning_box.attr("class", "alert alert-danger col-lg-12");
+        warning_box.text("Deletion has failed!");
+    }
+    function successDelete(){
+        warning_box.attr("class", "alert alert-info col-lg-12");
+        warning_box.text("Your edge was deleted. Please rerun your query");
+    }
+
+    var type = $(".delete-type").text();
+    var query = "";
+    if (type === "Node"){
+        var node_id = $("#node-id").text();
+        query = "DELETE ("+node_id+")";
+    }
+    else if (type === "Link"){
         var from_id = $("#from-id").text();
         var to_id = $("#to-id").text();
         var query = "DELETE ("+from_id+")->("+to_id+");";
-        console.log(query);
-
-        $.post("http://localhost:8000/query", query).fail(function() {
-            warning_box.attr("class", "alert alert-danger col-lg-12");
-            warning_box.text("Deletion has failed!");
-        });
-
-        $.getJSON("http://localhost:8000/json", function(data, status, xhr) {
-            warning_box.attr("class", "alert alert-info col-lg-12");
-            warning_box.text("Your edge was deleted. Please rerun your query");
-        });
+    }
+    $.post("http://localhost:8000/query", query, function(data, success, xhr){
+        if (data.is_error){
+            failDelete();
+        }
+        else{
+            successDelete();
+        }
+    }, "json").fail(failDelete);
 });
 
 
@@ -292,7 +306,11 @@ function unhoverNode(d) {
 
 function clickNode(d) {
     $("#updateNodeModal").modal('show');
+
     var currNode = vertexData[d.id.toString()];
+    $(".delete-type").text("Node");
+    $("#node-id").text(currNode.id);
+
     $("#node-properties-text").val(JSON.stringify(currNode));
 }
 
@@ -314,6 +332,7 @@ function clickLink(d) {
 
     $("#from-id").text(copiedNode.from_vertex_id);
     $("#to-id").text(copiedNode.to_vertex_id);
+    $(".delete-type").text("Link");
     $("#node-properties-text").val(JSON.stringify(copiedNode));
 }
 
