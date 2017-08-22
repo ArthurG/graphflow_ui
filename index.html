@@ -89,15 +89,16 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="graphical-rs">
-                        <div class="col-lg-12">
-                            <svg width="960" height="600"></svg>
-                        </div>
-                        <div class="list-group add-buttons">
-                              <button type="button" class="list-group-item">Cras justo odio</button>
-                              <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
-                              <button type="button" class="list-group-item">Morbi leo risus</button>
-                              <button type="button" class="list-group-item">Porta ac consectetur ac</button>
-                              <button type="button" class="list-group-item">Vestibulum at eros</button>
+                        <div id="graphical-content">
+                            <div id="d3-wrapper">
+                                <svg width="960" height="600"></svg>
+                            </div>
+                            <div id="node-manipulators">
+                                <div class="list-group add-buttons">
+                                      <button type="button" class="list-group-item">Add Edge</button>
+                                      <button type="button" class="list-group-item">Add Node</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tabular-rs">
