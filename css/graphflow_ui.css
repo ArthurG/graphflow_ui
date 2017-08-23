@@ -66,6 +66,12 @@ pre {
     grid-column: 1 / 7;
     grid-row: 1 / 5;
 }
+
+.modal-body {
+    overflow: auto;
+
+}
+
 /* Graphical Layout 
  * For styling D3 code (node-edge link graph) */
 
