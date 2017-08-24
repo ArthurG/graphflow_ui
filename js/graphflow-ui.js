@@ -12,6 +12,33 @@ $("#query-form").keypress(function (e) {
     }
 });
 
+function addNode(){
+  console.log("Hi")
+}
+
+function addPropertySection(btn){
+   function cloneTemplate(template) {
+        return template.clone().removeClass("template").addClass("cloned");
+    }
+
+    //Make a new key-value pair form template
+    var propTemplate = $(".node-prop-pair.template");
+    var cloned = cloneTemplate(propTemplate);
+
+    //Generate unique IDs for fields 
+    var idUnique = Math.floor(Math.random()*1000);
+    cloned.find("#nodeKey").attr("id", "nodeKey"+idUnique);
+    cloned.find("#nodeKeyLabel").attr("id", "nodeKeyLabel"+idUnique)
+                                .attr("for", "nodeKey"+idUnique);
+    cloned.find("#nodeVal").attr("id", "nodeVal"+idUnique);
+    cloned.find("#nodeValLabel").attr("id", "nodeValLabel"+idUnique)
+                                .attr("for", "nodeVal"+idUnique);
+    //Append the divs properly
+    var relatedSection = $(btn).attr("data-related");
+    var divToAddTo = $("#"+relatedSection + "-properties");
+    divToAddTo.append(cloned);
+}
+
 function deleteData() {
     //TODO: This is currently not working on Node
     function failDelete(){
