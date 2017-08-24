@@ -12,10 +12,6 @@ $("#query-form").keypress(function (e) {
     }
 });
 
-function addNode(){
-  console.log("Hi")
-}
-
 function addPropertySection(btn){
    function cloneTemplate(template) {
         return template.clone().removeClass("template").addClass("cloned");
@@ -34,14 +30,19 @@ function addPropertySection(btn){
     cloned.find("#nodeVal").attr("id", "nodeVal"+idUnique);
     cloned.find("#nodeValLabel").attr("id", "nodeValLabel"+idUnique)
                                 .attr("for", "nodeVal"+idUnique);
-    //Append the divs properly
+    //Append the new key-value input fields to the right section
     var relatedSection = $(btn).attr("data-related");
     var divToAddTo = $("#"+relatedSection + "-properties");
     divToAddTo.append(cloned);
 }
 
+function addNode(){
+  console.log("Hi")
+}
+
 function addEdge(){
-    //Returns an object denoting the properties as key-value pairs
+
+    //Returns an object with the properties required required by the fields
     function getProperties(propertiesSection){
         var children = propertiesSection.children();
         var obj = {};
@@ -54,6 +55,8 @@ function addEdge(){
         return obj;
     }
 
+    //Takes an object and converts it into its string representation as accepted
+    //by Graphflow
     function createPropertyString(properties){
         var answer = "{";
         for(var key in properties){
@@ -72,6 +75,7 @@ function addEdge(){
         }
     }
 
+    //Get the requested properties
     var sourceNodeId = $("#node1Id").val();
     var sourceNodeType = $("#node1Type").val();
     var sourceNodePropElem = $("#node1-properties");
@@ -86,13 +90,17 @@ function addEdge(){
     var edgePropElem = $("#edge-properties");
     var edgeProps = getProperties(edgePropElem);
 
+    //Build up the query
     var query = "CREATE ("+sourceNodeId+":"+sourceNodeType+" " + 
       createPropertyString(sourceProps) +")"+"-[:"+edgeType+" "+
       createPropertyString(edgeProps)+"]->("+destNodeId+":"+destNodeType+" "+
       createPropertyString(destProps)+");";  
+
+    //Run the query
     processQueryNoUpdate(query);
 }
 
+//Handles the deletion of a node or edge
 function deleteData() {
     //TODO: This is currently not working on Node
     var type = $(".edit-type:first").text();
@@ -109,6 +117,30 @@ function deleteData() {
     processQueryNoUpdate(query);
 }
 
+//Handles updating properties of a node or edge
+function saveChange(){
+    //TODO: This is currently not working
+    var newString = $("#node-properties-text").val();
+
+    var query="";
+    var type = $(".edit-type:first").text();
+    if (type === "Node"){
+        var node_id = $("#node-id").text();
+        query = "DELETE ("+node_id+")";
+    }
+    else if (type === "Link"){
+        var from_id = $("#from-id").text();
+        var to_id = $("#to-id").text();
+        var query = "DELETE ("+from_id+")->("+to_id+");";
+    }
+    console.log("Will run " + query);
+    console.log("To update values to be " + newString);
+}
+
+
+// Processing functions
+
+// Runs a query and displays result at the top of the screen
 function processQueryNoUpdate(query){
     warning_box = $("#graphflow-alert");
     warning_box.addClass("hidden");
@@ -132,27 +164,7 @@ function processQueryNoUpdate(query){
     }, "json").fail(failQuery);
 }
 
-function saveChange(){
-    //TODO: This is currently not working
-    var newString = $("#node-properties-text").val();
-
-    var query="";
-    var type = $(".edit-type:first").text();
-    if (type === "Node"){
-        var node_id = $("#node-id").text();
-        query = "DELETE ("+node_id+")";
-    }
-    else if (type === "Link"){
-        var from_id = $("#from-id").text();
-        var to_id = $("#to-id").text();
-        var query = "DELETE ("+from_id+")->("+to_id+");";
-    }
-    console.log("Will run " + query);
-    console.log("To update values to be " + newString);
-}
-
-
-// Processing functions
+// Runs a query and displays result in the tabs as needed
 function processQuery(inputStr) {
     warning_box = $("#graphflow-alert");
     warning_box.addClass("hidden");
@@ -327,7 +339,6 @@ function setDownloadResults(data) {
 }
 
 // Modify the results for Graphical results tab
-// May need to be modified after API changes
 function setGraphicalResults(data) {
     var nodes = [];
     var edges = []; 
