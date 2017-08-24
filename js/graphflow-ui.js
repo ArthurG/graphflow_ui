@@ -39,6 +39,34 @@ function addPropertySection(btn){
     divToAddTo.append(cloned);
 }
 
+function addEdge(){
+    //Returns an object denoting the properties as key-value pairs
+    function getProperties(propertiesSection){
+        var children = propertiesSection.children();
+        var obj = {};
+        for(var i = 0;i<children.size();i++){
+          var child = $(children[i]);
+          var key = child.find(".nodeKey").val();
+          var val = child.find(".nodeVal").val();
+          obj[key] = val;
+        }
+        return obj;
+    }
+    var sourceNodeId = $("#node1Id").val();
+    var sourceNodeType = $("#node1Id").val();
+    var sourceNodePropElem = $("#node1-properties");
+    var sourceProps = getProperties(sourceNodePropElem);
+
+    var destNodeId = $("#node2Id").val();
+    var destNodeType = $("#node2Id").val();
+    var destNodePropElem = $("#node2-properties");
+    var destNodeProperties = getProperties(destNodePropElem);
+
+    var edgeType = $("#node1Id").val();
+    var edgePropElem = $("#edge-properties");
+    var edgeProperties = getProperties(edgePropElem);
+}
+
 function deleteData() {
     //TODO: This is currently not working on Node
     function failDelete(){
