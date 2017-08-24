@@ -16,7 +16,7 @@
     </head>
 
     <body>
-        <!-- Modal -->
+        <!-- Updating Modal -->
         <div class="modal fade" id="updateNodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -25,10 +25,15 @@
                         <h4 class="modal-title" id="myModalLabel"><span class="edit-type">Node</span> Property Update</h4>
                     </div>
                     <div class="modal-body">
-                          <textarea class="col-lg-12 form-control animated" placeholder="Properties JSON" id="node-properties-text"></textarea>
+                        <form>
+                            <div class="form-group">
+                                <textarea class="col-lg-12 form-control animated" placeholder="Properties JSON" id="node-properties-text"></textarea>
+                            </div>
+                        </form>
                         <p id="node-id"></p>
                         <p id="from-id"></p>
                         <p id="to-id"></p>
+                        <div class="clearfix"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -38,6 +43,89 @@
                 </div>
             </div>
         </div>
+
+        <!-- Creation Modal -->
+        <div class="modal fade" id="createNodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Add Edge</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body"> 
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Source Node</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="node1Id">Node ID</label>
+                                    <input type="text" class="form-control" id="node1Id" placeholder="Ex: 4">
+                                </div>
+                                <div class="form-group">
+                                    <label for="node1Type">Node Type</label>
+                                    <input type="text" class="form-control" id="node1Type" placeholder="Ex: Person">
+                                </div>
+                                <div id="node1-properties"></div>
+
+                                <div class="form-group row template node-prop-pair">
+                                    <div class="prop-key col-lg-5">
+                                        <label id="nodeKeyLabel" for="nodeKey">Node Property Key</label>
+                                        <input type="text" class="form-control" id="nodeKey" placeholder="Ex: name">
+                                    </div>
+                                    <div class="prop-val col-lg-5">
+                                        <label id="nodeValLabel" for="nodeVal">Node Property Value</label>
+                                        <input type="text" class="form-control" id="nodeVal" placeholder='Ex: "a"'>
+                                    </div>
+                                </div>
+
+                                <button onclick="addPropertySection(this)" data-related="node1"  class="col-lg-12 btn btn-primary">
+                                    Add Node Property
+                                  </button>
+                            </div>
+                        </div>
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Destination Node</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="node2Id">Node ID</label>
+                                    <input type="text" class="form-control" id="node2Id" placeholder="Ex: 4">
+                                </div>
+                                <div class="form-group">
+                                    <label for="node2Type">Node Type</label>
+                                    <input type="text" class="form-control" id="node2Type" placeholder="Ex: Person">
+                                </div>
+                                <div id="node2-properties"></div>
+                                <button onclick="addPropertySection(this)" data-related="node2"  class="col-lg-12 btn btn-primary">
+                                    Add Node Property
+                                  </button>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Edge</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="node2Type">Edge Type</label>
+                                    <input type="text" class="form-control" id="edgeType" placeholder="Ex: likes">
+                                </div>
+                                <div id="edge-properties"></div>
+                                <button onclick="addPropertySection(this)" data-related="edge"  class="col-lg-12 btn btn-primary">
+                                    Add Edge Property
+                                  </button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" onclick="addEdge()" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container">
             <div class="col-lg-12">
                 <p class="alert alert-danger hidden" role="alert" id="graphflow-alert"></p>
@@ -93,7 +181,7 @@
                             </div>
                             <div id="node-manipulators">
                                 <div class="list-group add-buttons">
-                                      <button type="button" class="list-group-item" onclick="addEdge">Add Edge</button>
+                                      <button type="button" class="list-group-item" onclick="$('#createNodeModal').modal()">Add Edge</button>
                                       <button type="button" class="list-group-item" onclick="addNode">Add Node</button>
                                 </div>
                             </div>

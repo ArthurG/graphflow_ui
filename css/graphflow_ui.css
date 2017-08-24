@@ -28,6 +28,10 @@ textarea {
     -webkit-box-sizing: border-box; /* For Safari */
 }
 
+.node-prop-pair{
+  float: left;
+}
+
 #graphical-rs, #tabular-rs, #raw-rs {
     height: 500px;
 }
@@ -44,6 +48,10 @@ pre {
 
 .template {
     display: none;
+}
+
+input, button, .form-group {
+  box-sizing: border-box;
 }
 
 /* Graphical content */
@@ -67,10 +75,6 @@ pre {
     grid-row: 1 / 5;
 }
 
-.modal-body {
-    overflow: auto;
-
-}
 
 /* Graphical Layout 
  * For styling D3 code (node-edge link graph) */
