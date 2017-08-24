@@ -21,6 +21,7 @@ function addPropertySection(btn){
         return template.clone().removeClass("template").addClass("cloned");
     }
 
+
     //Make a new key-value pair form template
     var propTemplate = $(".node-prop-pair.template");
     var cloned = cloneTemplate(propTemplate);
@@ -52,32 +53,48 @@ function addEdge(){
         }
         return obj;
     }
+
+    function createPropertyString(properties){
+        var answer = "{";
+        for(var key in properties){
+            if(key === ""){
+                continue;
+            }
+            answer+=key;
+            answer+=':';
+            answer+=properties[key];
+            answer+=','
+        }
+        if(answer.length > 1){
+          return answer.slice(0, answer.length-1)+"}";
+        }else{
+          return "{}";
+        }
+    }
+
     var sourceNodeId = $("#node1Id").val();
-    var sourceNodeType = $("#node1Id").val();
+    var sourceNodeType = $("#node1Type").val();
     var sourceNodePropElem = $("#node1-properties");
     var sourceProps = getProperties(sourceNodePropElem);
 
     var destNodeId = $("#node2Id").val();
-    var destNodeType = $("#node2Id").val();
+    var destNodeType = $("#node2Type").val();
     var destNodePropElem = $("#node2-properties");
-    var destNodeProperties = getProperties(destNodePropElem);
+    var destProps = getProperties(destNodePropElem);
 
-    var edgeType = $("#node1Id").val();
+    var edgeType = $("#edgeType").val();
     var edgePropElem = $("#edge-properties");
-    var edgeProperties = getProperties(edgePropElem);
+    var edgeProps = getProperties(edgePropElem);
+
+    var query = "CREATE ("+sourceNodeId+":"+sourceNodeType+" " + 
+      createPropertyString(sourceProps) +")"+"-[:"+edgeType+" "+
+      createPropertyString(edgeProps)+"]->("+destNodeId+":"+destNodeType+" "+
+      createPropertyString(destProps)+");";  
+    processQueryNoUpdate(query);
 }
 
 function deleteData() {
     //TODO: This is currently not working on Node
-    function failDelete(){
-        warning_box.attr("class", "alert alert-danger col-lg-12");
-        warning_box.text("Deletion has failed!");
-    }
-    function successDelete(){
-        warning_box.attr("class", "alert alert-info col-lg-12");
-        warning_box.text("Your edge was deleted. Please rerun your query");
-    }
-
     var type = $(".edit-type:first").text();
     var query = "";
     if (type === "Node"){
@@ -89,14 +106,30 @@ function deleteData() {
         var to_id = $("#to-id").text();
         var query = "DELETE ("+from_id+")->("+to_id+");";
     }
+    processQueryNoUpdate(query);
+}
+
+function processQueryNoUpdate(query){
+    warning_box = $("#graphflow-alert");
+    warning_box.addClass("hidden");
+
+    function failQuery(){
+        warning_box.attr("class", "alert alert-danger col-lg-12");
+        warning_box.text("Query has failed!");
+    }
+    function successDelete(){
+        warning_box.attr("class", "alert alert-info col-lg-12");
+        warning_box.text("Query sucess! ");
+    }
+
     $.post("http://localhost:8000/query", query, function(data, success, xhr){
         if (data.is_error){
-            failDelete();
+            failQuery()();
         }
         else{
             successDelete();
         }
-    }, "json").fail(failDelete);
+    }, "json").fail(failQuery);
 }
 
 function saveChange(){
@@ -116,8 +149,6 @@ function saveChange(){
     }
     console.log("Will run " + query);
     console.log("To update values to be " + newString);
-
-
 }
 
 
