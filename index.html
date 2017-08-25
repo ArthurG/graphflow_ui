@@ -4,50 +4,156 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
         <title>Graphflow UI</title>
-
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+              crossorigin="anonymous">
         <!-- Google fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,900">
         <!-- Custom css file -->
         <link rel="stylesheet" href="css/graphflow_ui.css">
     </head>
 
     <body>
-        <!-- Modal -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="navbar-brand"><a id="logo-name" href="http://graphflow.io">Graphflow </a> <span id="logo-by">By <a href="http://dsg.uwaterloo.ca/">UWaterloo DSG</a></span></span>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="top-right-nav">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="https://github.com/graphflow/graphflow">GitHub</a></li>
+                        <li><a href="http://graphflow.io/">Website</a></li>
+                        <li><a href="mailto:graphflow@uwaterloo.ca">Contact</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <!-- Updating Modal -->
         <div class="modal fade" id="updateNodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Node Property Update</h4>
+                        <h4 class="modal-title" id="myModalLabel"><span class="edit-type">Node</span> Property Update</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <textarea class="col-lg-12 form-control animated" placeholder="Properties JSON" id="node-properties-text"></textarea>
+                            </div>
+                        </form>
                         <p id="node-id"></p>
                         <p id="from-id"></p>
                         <p id="to-id"></p>
-                    </div>
-                    <div class="modal-body">
-                        <textarea class="col-lg-12 form-control animated" placeholder="Properties JSON" id="node-properties-text"></textarea>
+                        <div class="clearfix"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete-node">Delete Node</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" onclick="deleteData()" class="btn btn-danger" data-dismiss="modal" id="delete-node">Delete <span class="edit-type">Node</span></button>
+                        <button type="button" onclick="saveChange()" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container">
+        <!-- Creation Modal -->
+        <div class="modal fade" id="createNodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Add Edge</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body"> 
 
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Source Node</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="node1Id">Node ID</label>
+                                    <input type="text" class="form-control" id="node1Id" placeholder="Ex: 4">
+                                </div>
+                                <div class="form-group">
+                                    <label for="node1Type">Node Type</label>
+                                    <input type="text" class="form-control" id="node1Type" placeholder="Ex: Person">
+                                </div>
+                                <div id="node1-properties"></div>
+
+                                <div class="form-group row template node-prop-pair">
+                                    <div class="prop-key col-lg-6">
+                                        <label id="nodeKeyLabel" for="nodeKey">Node Property Key</label>
+                                        <input type="text" class="form-control nodeKey" id="nodeKey" placeholder="Ex: name">
+                                    </div>
+                                    <div class="prop-val col-lg-6">
+                                        <label id="nodeValLabel" for="nodeVal">Node Property Value</label>
+                                        <input type="text" class="form-control nodeVal" id="nodeVal" placeholder='Ex: "a"'>
+                                    </div>
+                                </div>
+
+                                <button onclick="addPropertySection(this)" data-related="node1"  class="col-lg-12 btn btn-primary">
+                                    Add Node Property
+                                  </button>
+                            </div>
+                        </div>
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Destination Node</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="node2Id">Node ID</label>
+                                    <input type="text" class="form-control" id="node2Id" placeholder="Ex: 4">
+                                </div>
+                                <div class="form-group">
+                                    <label for="node2Type">Node Type</label>
+                                    <input type="text" class="form-control" id="node2Type" placeholder="Ex: Person">
+                                </div>
+                                <div id="node2-properties"></div>
+                                <button onclick="addPropertySection(this)" data-related="node2"  class="col-lg-12 btn btn-primary">
+                                    Add Node Property
+                                  </button>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Edge</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="node2Type">Edge Type</label>
+                                    <input type="text" class="form-control" id="edgeType" placeholder="Ex: likes">
+                                </div>
+                                <div id="edge-properties"></div>
+                                <button onclick="addPropertySection(this)" data-related="edge"  class="col-lg-12 btn btn-primary">
+                                    Add Edge Property
+                                  </button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" onclick="addEdge()" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="content">
             <div class="col-lg-12">
                 <p class="alert alert-danger hidden" role="alert" id="graphflow-alert"></p>
             </div>
-
             <div class="query-input col-lg-12">
                 <form id="query-form">
                     <textarea class="form-control animated" placeholder="Query"></textarea>
@@ -58,20 +164,24 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active result-tab graphical-tab">
-                        <a href="#graphical-rs" aria-controls="graphical-rs" role="tab" data-toggle="tab">Graphical</a>
+                        <a href="#graphical-rs" aria-controls="graphical-rs" 
+                          role="tab" data-toggle="tab">Graphical</a>
                     </li>
                     <li role="presentation" class="result-tab tabular-tab">
-                        <a href="#tabular-rs" aria-controls="tabular-rs" role="tab" data-toggle="tab" >Tabular</a>
+                        <a href="#tabular-rs" aria-controls="tabular-rs" 
+                          role="tab" data-toggle="tab" >Tabular</a>
                     </li>
                     <li role="presentation" class="result-tab raw-tab">
-                        <a href="#raw-rs" aria-controls="raw-rs" role="tab" data-toggle="tab">Raw</a>
+                        <a href="#raw-rs" aria-controls="raw-rs" 
+                          role="tab" data-toggle="tab">Raw</a>
                     </li>
                     <li role="presentation" class="result-tab explain-tab">
-                        <a href="#explain-rs" aria-controls="explain-rs" role="tab" data-toggle="tab">Explain</a>
+                        <a href="#explain-rs" aria-controls="explain-rs"
+                          role="tab" data-toggle="tab">Explain</a>
                     </li>
-
                     <li class="pull-right">
-                        <p class="navbar-btn" id="clipboard-btn" onclick="copyResultToClipboard('#query-result-raw')">
+                        <p class="navbar-btn" id="clipboard-btn" 
+                        onclick="copyResultToClipboard('#query-result-raw')">
                             <a href="#" class="btn btn-default">
                                 <span class="glyphicon glyphicon-copy"></span>
                             </a>
@@ -84,14 +194,21 @@
                             </a>
                         </p>
                     </li>
-
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="graphical-rs">
-                        <div class="col-lg-12 col-md-12">
-                            <svg width="960" height="600"></svg>
+                        <div id="graphical-content">
+                            <div id="d3-wrapper">
+                                <svg width="960" height="600"></svg>
+                            </div>
+                            <div id="node-manipulators">
+                                <div class="list-group add-buttons">
+                                      <button type="button" class="list-group-item" 
+                                        onclick="$('#createNodeModal').modal()">Add Edge</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tabular-rs">
@@ -121,60 +238,63 @@
                                     <div class="graph-version-box current-graph legend-item">C</div>
                                     <p class="legend-words">: Current Graph</p>
                                 </div>
-
                                 <div>
                                     <div class="graph-version-box delta-graph legend-item">&Delta;</div>
                                     <p class="legend-words">: Delta Graph</p>
                                 </div>
-
                                 <div>
                                     <div class="new-graph legend-item">N</div>
                                     <p class="legend-words">: New Graph</p>
                                 </div>
-
                                 <div>
                                     <div class="simple-legend-entry"><b>&sigma;</b>: Filter</div>
                                 </div>
-
                                 <div>
                                     <div class="simple-legend-entry"><b>&Pi;</b>: Projection</div>
                                 </div>
-
                                 <div>
                                     <div class="simple-legend-entry"><b>&Gamma;</b>: Aggregate</div>
                                 </div>
-
                                 <div>
                                     <div class="simple-legend-entry">------>: Outgoing</div>
                                 </div>
-
                                 <div>
                                     <div class="simple-legend-entry"><------: Incoming</div>
                                 </div>
                             </div>
-
                             <div id="stageSet"></div>
                         </div>
                     </div>
                 </div>
-            </div><!-- /.container -->
+            </div><!-- /.resultset-->
+        </div><!-- /.container -->
+        <footer>
+          <p class="copyright">
+              Copyright © 2017 
+              <a target="_blank" href="https://github.com/graphflow">GRAPHFLOW</a>
+          </p>
+          <p class="copyright">
+              Released under <a href="https://github.com/graphflow/graphflow-dev/blob/master/LICENSE">Apache 2.0 Licence</a>
+          </p>
 
-            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <!-- Include all compiled plugins (below), or include individual files as needed -->
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-            <!-- D3.js -->
-            <script src="https://d3js.org/d3.v4.min.js"></script>
-            <!-- Constant definitions -->
-            <script type="text/javascript" src="js/constants.js"></script>
-            <!-- Utility functions -->
-            <script type="text/javascript" src="js/util.js"></script>
-            <!-- Underscore.js (javascript array/object/etc. help functions ) -->
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-            <!-- Custom JavaScript -->
-            <script type="text/javascript" src="js/plan.js"></script>
-            <script type="text/javascript" src="js/graphflow-ui.js"></script>
+        </footer>
+
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+             crossorigin="anonymous"></script>
+        <!-- D3.js -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <!-- Underscore.js (javascript array/object/etc. help functions ) -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <!-- Constant definitions -->
+        <script type="text/javascript" src="js/constants.js"></script>
+        <!-- Utility functions -->
+        <script type="text/javascript" src="js/util.js"></script>
+        <!-- Custom JavaScript -->
+        <script type="text/javascript" src="js/plan.js"></script>
+        <script type="text/javascript" src="js/graphflow-ui.js"></script>
     </body>
 </html>
-
-

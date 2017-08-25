@@ -12,27 +12,159 @@ $("#query-form").keypress(function (e) {
     }
 });
 
-$("#delete-node").click(function() {
-    var from_id = $("#from-id").text();
-    var to_id = $("#to-id").text();
-    var query = "DELETE ("+from_id+")->("+to_id+");";
-    console.log(query);
+function addPropertySection(btn){
+   function cloneTemplate(template) {
+        return template.clone().removeClass("template").addClass("cloned");
+    }
 
-    $.post("http://localhost:8000/query", query).fail(function() {
-        warning_box.attr("class", "alert alert-danger col-lg-12");
-        warning_box.text("Deletion has failed!");
-    });
-    $.getJSON("http://localhost:8000/json", function(data, status, xhr) {
-        warning_box.attr("class", "alert alert-info col-lg-12");
-        warning_box.text("Your edge was deleted. Please rerun your query");
-    });
-});
+
+    //Make a new key-value pair form template
+    var propTemplate = $(".node-prop-pair.template");
+    var cloned = cloneTemplate(propTemplate);
+
+    //Generate unique IDs for fields 
+    var idUnique = Math.floor(Math.random()*1000);
+    cloned.find("#nodeKey").attr("id", "nodeKey"+idUnique);
+    cloned.find("#nodeKeyLabel").attr("id", "nodeKeyLabel"+idUnique)
+                                .attr("for", "nodeKey"+idUnique);
+    cloned.find("#nodeVal").attr("id", "nodeVal"+idUnique);
+    cloned.find("#nodeValLabel").attr("id", "nodeValLabel"+idUnique)
+                                .attr("for", "nodeVal"+idUnique);
+    //Append the new key-value input fields to the right section
+    var relatedSection = $(btn).attr("data-related");
+    var divToAddTo = $("#"+relatedSection + "-properties");
+    divToAddTo.append(cloned);
+}
+
+function addEdge(){
+
+    //Returns an object with the properties required required by the fields
+    function getProperties(propertiesSection){
+        var children = propertiesSection.children();
+        var obj = {};
+        for(var i = 0;i<children.size();i++){
+          var child = $(children[i]);
+          var key = child.find(".nodeKey").val();
+          var val = child.find(".nodeVal").val();
+          obj[key] = val;
+        }
+        return obj;
+    }
+
+    //Takes an object and converts it into its string representation as accepted
+    //by Graphflow
+    function createPropertyString(properties){
+        var answer = "{";
+        for(var key in properties){
+            if(key === ""){
+                continue;
+            }
+            answer+=key;
+            answer+=':';
+            answer+=properties[key];
+            answer+=','
+        }
+        if(answer.length > 1){
+          return answer.slice(0, answer.length-1)+"}";
+        }else{
+          return "{}";
+        }
+    }
+
+    //Get the requested properties
+    var sourceNodeId = $("#node1Id").val();
+    var sourceNodeType = $("#node1Type").val();
+    var sourceNodePropElem = $("#node1-properties");
+    var sourceProps = getProperties(sourceNodePropElem);
+
+    var destNodeId = $("#node2Id").val();
+    var destNodeType = $("#node2Type").val();
+    var destNodePropElem = $("#node2-properties");
+    var destProps = getProperties(destNodePropElem);
+
+    var edgeType = $("#edgeType").val();
+    var edgePropElem = $("#edge-properties");
+    var edgeProps = getProperties(edgePropElem);
+
+    //Build up the query
+    var query = "CREATE ("+sourceNodeId+":"+sourceNodeType+" " + 
+      createPropertyString(sourceProps) +")"+"-[:"+edgeType+" "+
+      createPropertyString(edgeProps)+"]->("+destNodeId+":"+destNodeType+" "+
+      createPropertyString(destProps)+");";  
+
+    //Run the query
+    processQueryNoUpdate(query);
+}
+
+//Handles the deletion of a node or edge
+function deleteData() {
+    //TODO: This is currently not working on Node
+    var type = $(".edit-type:first").text();
+    var query = "";
+    if (type === "Node"){
+        var node_id = $("#node-id").text();
+        query = "DELETE ("+node_id+");";
+    }
+    else if (type === "Link"){
+        var from_id = $("#from-id").text();
+        var to_id = $("#to-id").text();
+        var query = "DELETE ("+from_id+")->("+to_id+");";
+    }
+    processQueryNoUpdate(query);
+}
+
+//Handles updating properties of a node or edge
+function saveChange(){
+    //TODO: This is currently not working
+    var newString = $("#node-properties-text").val();
+
+    var query="";
+    var type = $(".edit-type:first").text();
+    if (type === "Node"){
+        var node_id = $("#node-id").text();
+        query = "DELETE ("+node_id+")";
+    }
+    else if (type === "Link"){
+        var from_id = $("#from-id").text();
+        var to_id = $("#to-id").text();
+        var query = "DELETE ("+from_id+")->("+to_id+");";
+    }
+    console.log("Will run " + query);
+    console.log("To update values to be " + newString);
+}
+
 
 // Processing functions
+
+// Runs a query and displays result at the top of the screen
+function processQueryNoUpdate(query){
+    warning_box = $("#graphflow-alert");
+    warning_box.addClass("hidden");
+
+    function failQuery(){
+        warning_box.attr("class", "alert alert-danger col-lg-12");
+        warning_box.text("Query has failed!");
+    }
+    function successDelete(){
+        warning_box.attr("class", "alert alert-info col-lg-12");
+        warning_box.text("Query sucess! ");
+    }
+
+    $.post("http://localhost:8000/query", query, function(data, success, xhr){
+        if (data.is_error){
+            failQuery();
+        }
+        else{
+            successDelete();
+        }
+    }, "json").fail(failQuery);
+}
+
+// Runs a query and displays result in the tabs as needed
 function processQuery(inputStr) {
     warning_box = $("#graphflow-alert");
     warning_box.addClass("hidden");
-    $.post("http://localhost:8000/query", inputStr, function(data, success, xhr){
+    $.post("http://localhost:8000/query", inputStr, function(data){
         setRawResults(data);
         if (QUERY_RESPONSE_TYPES.SUBGRAPHS === data.response_type) {
             updateTabs([UI_TABS.TABULAR, UI_TABS.GRAPHICAL, UI_TABS.RAW]);
@@ -50,7 +182,8 @@ function processQuery(inputStr) {
             renderPlan(data["plan"]);
             updateTabs([UI_TABS.EXPLAIN, UI_TABS.RAW]);
         }
-        else if (QUERY_RESPONSE_TYPES.MESSAGE === data.response_type && data.isError) {
+        else if (QUERY_RESPONSE_TYPES.MESSAGE === data.response_type 
+            && data.isError) {
             updateTabs([UI_TABS.RAW]);
             warning_box.text(data.message);
             warning_box.attr("class", "alert alert-warning col-lg-12");
@@ -172,7 +305,7 @@ function setTabularResults(data) {
             var subgraph_vertex_idx = vertexMap[headerName];
             var graph_vertex_idx = verticiesToAdd[subgraph_vertex_idx];
             var vertex = data.vertices[graph_vertex_idx];
-            row.push(vertex.properties);
+            row.push(vertex);
         }
 
         // Populate the edges
@@ -203,7 +336,6 @@ function setDownloadResults(data) {
 }
 
 // Modify the results for Graphical results tab
-// May need to be modified after API changes
 function setGraphicalResults(data) {
     var nodes = [];
     var edges = []; 
@@ -287,10 +419,13 @@ function unhoverNode(d) {
     hideToolbar();
 }
 
-//Handling clicking nodes
 function clickNode(d) {
     $("#updateNodeModal").modal('show');
+
     var currNode = vertexData[d.id.toString()];
+    $(".edit-type").text("Node");
+    $("#node-id").text(currNode.id);
+
     $("#node-properties-text").val(JSON.stringify(currNode));
 }
 
@@ -299,7 +434,6 @@ function hoverLink(d) {
     showToolbarEdge(d);
 }
 
-//Handling clicking Edges
 function clickLink(d) {
     $("#updateNodeModal").modal('show');
     var copiedNode = {};
@@ -310,11 +444,12 @@ function clickLink(d) {
             break;
         }
     }
+
     $("#from-id").text(copiedNode.from_vertex_id);
     $("#to-id").text(copiedNode.to_vertex_id);
+    $(".edit-type").text("Link");
     $("#node-properties-text").val(JSON.stringify(copiedNode));
 }
-
 
 // Define the div for the tooltip
 var div = d3.select("body").append("div")    
@@ -343,9 +478,10 @@ function render(graph) {
         .enter().append("line")
         .attr("stroke-width", 5);
 
-    link.on("click", clickLink);
     link.on("mouseover", hoverLink)
         .on("mouseout", unhoverNode);
+
+    link.on("click", clickLink);
 
     var node = svg.append("g")
         .attr("class", "nodes")
@@ -362,10 +498,10 @@ function render(graph) {
     node.append("title")
         .text(function(d) { return d.id; });
 
-    node.on("click", clickNode);
-
     node.on("mouseover", hoverNode)
         .on("mouseout", unhoverNode);
+
+    node.on("click", clickNode);
 
     simulation
         .nodes(graph.nodes)
