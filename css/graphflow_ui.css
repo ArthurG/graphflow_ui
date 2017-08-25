@@ -5,14 +5,6 @@
     font-family: 'Lato', sans-serif;
 }
 
-#node-id, #from-id, #to-id {
-    display: none;
-}
-
-#query-form {
-    padding-bottom: 1em;
-}
-
 textarea#query-box {
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
     border: 1px solid rgba(124, 128, 129, 0.2);
@@ -23,6 +15,30 @@ textarea#query-box {
     max-width: 100%;
 }
 
+pre {
+    overflow: auto;
+    word-wrap: normal;
+    white-space: pre;
+}
+
+.hidden {
+    display: none;
+}
+
+.template {
+    display: none;
+}
+
+/* Node addition forms */
+
+#node-id, #from-id, #to-id {
+    display: none;
+}
+
+#query-form {
+    padding-bottom: 1em;
+}
+
 .node-prop-pair{
     float: left;
 }
@@ -31,22 +47,7 @@ textarea#query-box {
     min-height: 500px;
 }
 
-.hidden {
-    display: none;
-}
-
-pre {
-    overflow: auto;
-    word-wrap: normal;
-    white-space: pre;
-}
-
-.template {
-    display: none;
-}
-
 /* Header navbar styling */
-
 .navbar-default {
     background-color: #E8EEF4;
     padding: 0.5em;
@@ -61,24 +62,24 @@ pre {
     font-weight: 300;
 }
 
-#top-right-nav li{
+#top-right-nav li {
     padding: 5px;
     margin: 0 10px;
 }
 
-#top-right-nav li a{
+#top-right-nav li a {
     padding: 10px;
     transition: background-color 0.5s ease;
 }
 
-#top-right-nav li a:hover{
+#top-right-nav li a:hover {
     background-color: rgba(188, 202, 206, 0.15);
     padding: 9px;
     border: 1px solid rgba(119, 119, 119, 0.5);
 }
 
 /* Footer styling */
-footer{
+footer {
     background: #E8EEF4;
     color: #7c8081;
     padding: 5em;
@@ -87,7 +88,8 @@ footer{
     font-weight: 300;
 }
 
-/* Graphical content */
+/* D3 Graphical content 
+ * For styling D3 code (node-edge link graph) */
 #graphical-content {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -107,11 +109,6 @@ footer{
     grid-column: 1 / 7;
     grid-row: 1 / 5;
 }
-
-
-/* Graphical Layout 
- * For styling D3 code (node-edge link graph) */
-
 
 .links line {
     stroke: #999;
@@ -144,7 +141,6 @@ div.tooltip {
 
 /* Planviewer
  * General Styling */
-
 #explain-contents {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -167,7 +163,6 @@ h3 {
 
 /* Planviewer 
  * Specific Element Styling */
-
 #stageSet {
     margin: 2em;
     grid-column: 1 / 7;
