@@ -103,7 +103,7 @@ function deleteData() {
     var query = "";
     if (type === "Node"){
         var node_id = $("#node-id").text();
-        query = "DELETE ("+node_id+")";
+        query = "DELETE ("+node_id+");";
     }
     else if (type === "Link"){
         var from_id = $("#from-id").text();
@@ -152,7 +152,7 @@ function processQueryNoUpdate(query){
 
     $.post("http://localhost:8000/query", query, function(data, success, xhr){
         if (data.is_error){
-            failQuery()();
+            failQuery();
         }
         else{
             successDelete();
