@@ -162,7 +162,7 @@
 
             <div class="resultset col-lg-12">
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-pills" role="tablist">
                     <li role="presentation" class="active result-tab graphical-tab">
                         <a href="#graphical-rs" aria-controls="graphical-rs" 
                           role="tab" data-toggle="tab">Graphical</a>
@@ -198,7 +198,7 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="graphical-rs">
+                    <div role="tabpanel" class="tab-pane active fade in" id="graphical-rs">
                         <div id="graphical-content">
                             <div id="d3-wrapper">
                                 <svg width="960" height="600"></svg>
@@ -211,7 +211,7 @@
                             </div>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="tabular-rs">
+                    <div role="tabpanel" class="tab-pane fade" id="tabular-rs">
                         <div class="table-responsive">
                             <table class="table table-sm" id="query-result-table">
                                 <thead>
@@ -228,10 +228,10 @@
                             </table>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="raw-rs">
+                    <div role="tabpanel" class="tab-pane fade" id="raw-rs">
                         <pre id="query-result-raw"></pre>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="explain-rs">
+                    <div role="tabpanel" class="tab-pane fade" id="explain-rs">
                         <div id="explain-contents">
                             <div id="legend" class="legend">
                                 <div>

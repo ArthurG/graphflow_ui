@@ -200,10 +200,7 @@ function processQuery(inputStr) {
 
 //Hides the tabs for the result-set
 function hideTabs() {
-    $(".resultset .result-tab").addClass("hidden");
-    $(".resultset .result-tab").removeClass("active");
-    $(".tab-pane").removeClass("active");
-    $(".tab-pane").addClass("hidden");
+    $(".resultset .result-tab").hide();
 }
 
 //Shows the tabs in result-set which are also in tabArr, other tabs are hidden
@@ -211,14 +208,10 @@ function updateTabs(tabArr) {
     hideTabs();
     for(var i = 0;i<tabArr.length;i++) {
         var tabCssSelector = "."+tabArr[i].toLowerCase()+"-tab";
-        var tabContentCssSelector = "#"+tabArr[i].toLowerCase()+"-rs";
+        $(tabCssSelector).show();
         if (i === 0) {
-            $(tabCssSelector).addClass("active");
-            $(tabContentCssSelector).addClass("active");
+            $(tabCssSelector +" a").tab('show');
         }
-        tab = tabArr[i];
-        $(tabCssSelector).removeClass("hidden");
-        $(tabContentCssSelector).removeClass("hidden");
     }
 }
 
