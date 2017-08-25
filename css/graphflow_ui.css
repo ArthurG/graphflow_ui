@@ -2,7 +2,7 @@
  * General styling */
 
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 #node-id, #from-id, #to-id {
@@ -22,11 +22,11 @@ textarea {
 }
 
 .node-prop-pair{
-  float: left;
+    float: left;
 }
 
 #graphical-rs, #tabular-rs, #raw-rs {
-    height: 500px;
+    min-height: 500px;
 }
 
 .hidden {
@@ -41,6 +41,42 @@ pre {
 
 .template {
     display: none;
+}
+
+#logo-name {
+    font-weight: 900;
+}
+#logo-by {
+    font-weight: 300;
+}
+
+#top-right-nav li{
+    padding: 10px;
+    margin: 0 10px;
+}
+
+#top-right-nav li a{
+    text-transform: uppercase;
+    font-weight: 300;
+    padding: 5px;
+}
+
+#top-right-nav li a:hover{
+    background: rgba(188, 202, 206, 0.15);
+}
+
+.navbar-default {
+    background: #E8EEF4;
+    background-color: #E8EEF4;
+}
+
+footer{
+    background: #E8EEF4;
+    color: #7c8081;
+    padding: 5em;
+    text-align: center;
+    font-size: 1.25em;
+    font-weight: 300;
 }
 
 /* Graphical content */

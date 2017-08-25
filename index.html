@@ -10,12 +10,36 @@
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
               crossorigin="anonymous">
         <!-- Google fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,900">
         <!-- Custom css file -->
         <link rel="stylesheet" href="css/graphflow_ui.css">
     </head>
 
     <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="navbar-brand"><a id="logo-name" href="http://graphflow.io">Graphflow </a> <span id="logo-by">By <a href="http://dsg.uwaterloo.ca/">UWaterloo DSG</a></span></span>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="top-right-nav">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="https://github.com/graphflow/graphflow">GitHub</a></li>
+                        <li><a href="http://graphflow.io/">Website</a></li>
+                        <li><a href="mailto:graphflow@uwaterloo.ca">Contact</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
         <!-- Updating Modal -->
         <div class="modal fade" id="updateNodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -68,11 +92,11 @@
                                 <div id="node1-properties"></div>
 
                                 <div class="form-group row template node-prop-pair">
-                                    <div class="prop-key col-lg-5">
+                                    <div class="prop-key col-lg-6">
                                         <label id="nodeKeyLabel" for="nodeKey">Node Property Key</label>
                                         <input type="text" class="form-control nodeKey" id="nodeKey" placeholder="Ex: name">
                                     </div>
-                                    <div class="prop-val col-lg-5">
+                                    <div class="prop-val col-lg-6">
                                         <label id="nodeValLabel" for="nodeVal">Node Property Value</label>
                                         <input type="text" class="form-control nodeVal" id="nodeVal" placeholder='Ex: "a"'>
                                     </div>
@@ -126,7 +150,7 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container" id="content">
             <div class="col-lg-12">
                 <p class="alert alert-danger hidden" role="alert" id="graphflow-alert"></p>
             </div>
@@ -242,8 +266,18 @@
                         </div>
                     </div>
                 </div>
-                </div><!-- /.resultset-->
+            </div><!-- /.resultset-->
         </div><!-- /.container -->
+        <footer>
+          <p class="copyright">
+              Copyright © 2017 
+              <a target="_blank" href="https://github.com/graphflow">GRAPHFLOW</a>
+          </p>
+          <p class="copyright">
+              Released under <a href="https://github.com/graphflow/graphflow-dev/blob/master/LICENSE">Apache 2.0 Licence</a>
+          </p>
+
+        </footer>
 
         <!-- jQuery -->
         <script type="text/javascript" src="js/jquery.min.js"></script>
