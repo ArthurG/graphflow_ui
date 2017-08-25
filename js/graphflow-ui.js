@@ -168,7 +168,7 @@ function processQueryNoUpdate(query){
 function processQuery(inputStr) {
     warning_box = $("#graphflow-alert");
     warning_box.addClass("hidden");
-    $.post("http://localhost:8000/query", inputStr, function(data, success, xhr){
+    $.post("http://localhost:8000/query", inputStr, function(data){
         setRawResults(data);
         if (QUERY_RESPONSE_TYPES.SUBGRAPHS === data.response_type) {
             updateTabs([UI_TABS.TABULAR, UI_TABS.GRAPHICAL, UI_TABS.RAW]);
@@ -186,7 +186,8 @@ function processQuery(inputStr) {
             renderPlan(data["plan"]);
             updateTabs([UI_TABS.EXPLAIN, UI_TABS.RAW]);
         }
-        else if (QUERY_RESPONSE_TYPES.MESSAGE === data.response_type && data.isError) {
+        else if (QUERY_RESPONSE_TYPES.MESSAGE === data.response_type 
+            && data.isError) {
             updateTabs([UI_TABS.RAW]);
             warning_box.text(data.message);
             warning_box.attr("class", "alert alert-warning col-lg-12");
@@ -308,7 +309,7 @@ function setTabularResults(data) {
             var subgraph_vertex_idx = vertexMap[headerName];
             var graph_vertex_idx = verticiesToAdd[subgraph_vertex_idx];
             var vertex = data.vertices[graph_vertex_idx];
-            row.push(vertex.properties);
+            row.push(vertex);
         }
 
         // Populate the edges
