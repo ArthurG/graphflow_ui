@@ -5,6 +5,10 @@
     font-family: 'Lato', sans-serif;
 }
 
+button {
+    border-radius: 0px !important;
+}
+
 textarea#query-box {
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
     border: 1px solid rgba(124, 128, 129, 0.2);
@@ -29,8 +33,68 @@ pre {
     display: none;
 }
 
-/* Node addition forms */
+.resultset {
+    margin-top: 1em;
+}
 
+/* Tabs for selecting active viewer*/
+#nav-tabs {
+    margin: 1em 0;
+}
+
+#nav-tabs li a {
+    border-radius: 0px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    transition: padding 0.2s ease;
+}
+
+
+#nav-tabs li a:hover {
+    padding-top: 0.5em;
+    padding-bottom: 1.5em;
+    background-color: inherit;
+    border-width: 0;
+}
+
+#nav-tabs li.active a:hover {
+    border-width: 1px;
+    border-bottom-color: white;
+}
+
+
+#nav-tabs li.active .tab-icon path {
+    fill: black;
+    stroke: black;
+}
+
+svg.tab-icon {
+    margin: auto;
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+.tab-icon path {
+    fill: rgb(51, 122, 183);
+    stroke: rgb(51, 122, 183);
+}
+
+li.active .tab-icon .graph-circle {
+    fill: auto;
+}
+
+.graph-line {
+    fill:#4C5870;
+}
+
+.graph-circle {
+    fill:#269AF2;
+}
+
+/* Node addition forms */
 #node-id, #from-id, #to-id {
     display: none;
 }
