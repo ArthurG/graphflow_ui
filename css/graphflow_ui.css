@@ -110,6 +110,7 @@ li.active .tab-icon .graph-circle {
     padding-top: 0.5em;
     padding-bottom: 1.5em;
     background-color: inherit;
+    color: rgb(51, 122, 183);
     transition: padding 0.2s ease;
 }
 
