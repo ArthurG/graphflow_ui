@@ -5,14 +5,13 @@
     font-family: 'Lato', sans-serif;
 }
 
-button {
+button, textarea, a, input, .panel, .modal-content {
     border-radius: 0px !important;
 }
 
 textarea#query-box {
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
     border: 1px solid rgba(124, 128, 129, 0.2);
-    border-radius: 0px;
     font-size: 1.25em;
     min-height: 100%;
     min-width: 100%;
@@ -43,7 +42,6 @@ pre {
 }
 
 #nav-tabs li a {
-    border-radius: 0px;
     border-left-width: 2px;
     border-right-width: 2px;
     padding-top: 1em;
@@ -226,7 +224,7 @@ div.tooltip {
     font: 12px sans-serif;      
     background: lightsteelblue; 
     border: 0px;        
-    border-radius: 8px;         
+    border-radius: 8px;
     pointer-events: none;           
 }
 

@@ -413,7 +413,7 @@ function unhoverNode(d) {
 }
 
 function clickNode(d) {
-    $("#updateNodeModal").modal('show');
+    $("#update-node-modal").modal('show');
 
     var currNode = vertexData[d.id.toString()];
     $(".edit-type").text("Node");
@@ -428,7 +428,7 @@ function hoverLink(d) {
 }
 
 function clickLink(d) {
-    $("#updateNodeModal").modal('show');
+    $("#update-node-modal").modal('show');
     var copiedNode = {};
     for(var i in edgeData){
         if (edgeData[i].from_vertex_id.toString() === d.source.id && 
