@@ -200,10 +200,7 @@ function processQuery(inputStr) {
 
 //Hides the tabs for the result-set
 function hideTabs() {
-    $(".resultset .result-tab").addClass("hidden");
-    $(".resultset .result-tab").removeClass("active");
-    $(".tab-pane").removeClass("active");
-    $(".tab-pane").addClass("hidden");
+    $(".resultset .result-tab").hide();
 }
 
 //Shows the tabs in result-set which are also in tabArr, other tabs are hidden
@@ -211,14 +208,10 @@ function updateTabs(tabArr) {
     hideTabs();
     for(var i = 0;i<tabArr.length;i++) {
         var tabCssSelector = "."+tabArr[i].toLowerCase()+"-tab";
-        var tabContentCssSelector = "#"+tabArr[i].toLowerCase()+"-rs";
+        $(tabCssSelector).show();
         if (i === 0) {
-            $(tabCssSelector).addClass("active");
-            $(tabContentCssSelector).addClass("active");
+            $(tabCssSelector +" a").tab('show');
         }
-        tab = tabArr[i];
-        $(tabCssSelector).removeClass("hidden");
-        $(tabContentCssSelector).removeClass("hidden");
     }
 }
 
@@ -420,7 +413,7 @@ function unhoverNode(d) {
 }
 
 function clickNode(d) {
-    $("#updateNodeModal").modal('show');
+    $("#update-node-modal").modal('show');
 
     var currNode = vertexData[d.id.toString()];
     $(".edit-type").text("Node");
@@ -435,7 +428,7 @@ function hoverLink(d) {
 }
 
 function clickLink(d) {
-    $("#updateNodeModal").modal('show');
+    $("#update-node-modal").modal('show');
     var copiedNode = {};
     for(var i in edgeData){
         if (edgeData[i].from_vertex_id.toString() === d.source.id && 
@@ -456,7 +449,7 @@ var div = d3.select("body").append("div")
 .attr("class", "tooltip")                
 .style("opacity", 0);
 
-var svg = d3.select("svg"),
+var svg = d3.select("svg#d3-root"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
@@ -521,6 +514,7 @@ function render(graph) {
             .attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });
     }
+    simulation.restart();
 }
 
 function dragstarted(d) {

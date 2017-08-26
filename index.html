@@ -10,7 +10,7 @@
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
               crossorigin="anonymous">
         <!-- Google fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,900">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,500,600,900">
         <!-- Custom css file -->
         <link rel="stylesheet" href="css/graphflow_ui.css">
     </head>
@@ -41,7 +41,7 @@
         </nav>
 
         <!-- Updating Modal -->
-        <div class="modal fade" id="updateNodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="update-node-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -51,7 +51,7 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <textarea class="col-lg-12 form-control animated" placeholder="Properties JSON" id="node-properties-text"></textarea>
+                                <textarea class="col-lg-12 form-control animated primary" placeholder="Properties JSON" id="node-properties-text"></textarea>
                             </div>
                         </form>
                         <p id="node-id"></p>
@@ -60,81 +60,81 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" onclick="deleteData()" class="btn btn-danger" data-dismiss="modal" id="delete-node">Delete <span class="edit-type">Node</span></button>
-                        <button type="button" onclick="saveChange()" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                        <button type="button" class="btn btn-custom btn-default-custom" data-dismiss="modal">Cancel</button>
+                        <button type="button" onclick="deleteData()" class="btn btn-custom btn-danger-custom" data-dismiss="modal" id="delete-node">Delete <span class="edit-type">Node</span></button>
+                        <button type="button" onclick="saveChange()" class="btn btn-custom btn-primary-custom" data-dismiss="modal">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Creation Modal -->
-        <div class="modal fade" id="createNodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="create-node-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Add Edge</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title modal-title-custom" id="myModalLabel">Add Edge</h4>
                     </div>
                     <div class="modal-body"> 
 
                         <div class="panel panel-default">
-                            <div class="panel-heading">Source Node</div>
+                            <div class="panel-heading panel-heading-custom">Source Node</div>
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label for="node1Id">Node ID</label>
-                                    <input type="text" class="form-control" id="node1Id" placeholder="Ex: 4">
+                                    <input type="text" class="form-control primary" id="node1Id" placeholder="Ex: 4">
                                 </div>
                                 <div class="form-group">
                                     <label for="node1Type">Node Type</label>
-                                    <input type="text" class="form-control" id="node1Type" placeholder="Ex: Person">
+                                    <input type="text" class="form-control primary" id="node1Type" placeholder="Ex: Person">
                                 </div>
                                 <div id="node1-properties"></div>
 
                                 <div class="form-group row template node-prop-pair">
                                     <div class="prop-key col-lg-6">
                                         <label id="nodeKeyLabel" for="nodeKey">Node Property Key</label>
-                                        <input type="text" class="form-control nodeKey" id="nodeKey" placeholder="Ex: name">
+                                        <input type="text" class="form-control nodeKey primary" id="nodeKey" placeholder="Ex: name">
                                     </div>
                                     <div class="prop-val col-lg-6">
                                         <label id="nodeValLabel" for="nodeVal">Node Property Value</label>
-                                        <input type="text" class="form-control nodeVal" id="nodeVal" placeholder='Ex: "a"'>
+                                        <input type="text" class="form-control nodeVal primary" id="nodeVal" placeholder='Ex: "a"'>
                                     </div>
                                 </div>
 
-                                <button onclick="addPropertySection(this)" data-related="node1"  class="col-lg-12 btn btn-primary">
+                                <button onclick="addPropertySection(this)" data-related="node1"  class="col-lg-12 btn btn-custom btn-primary-custom">
                                     Add Node Property
                                   </button>
                             </div>
                         </div>
                         
                         <div class="panel panel-default">
-                            <div class="panel-heading">Destination Node</div>
+                            <div class="panel-heading panel-heading-custom">Destination Node</div>
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label for="node2Id">Node ID</label>
-                                    <input type="text" class="form-control" id="node2Id" placeholder="Ex: 4">
+                                    <input type="text" class="form-control primary" id="node2Id" placeholder="Ex: 4">
                                 </div>
                                 <div class="form-group">
                                     <label for="node2Type">Node Type</label>
-                                    <input type="text" class="form-control" id="node2Type" placeholder="Ex: Person">
+                                    <input type="text" class="form-control primary" id="node2Type" placeholder="Ex: Person">
                                 </div>
                                 <div id="node2-properties"></div>
-                                <button onclick="addPropertySection(this)" data-related="node2"  class="col-lg-12 btn btn-primary">
+                                <button onclick="addPropertySection(this)" data-related="node2"  class="col-lg-12 btn btn-custom btn-primary-custom">
                                     Add Node Property
                                   </button>
                             </div>
                         </div>
 
                         <div class="panel panel-default">
-                            <div class="panel-heading">Edge</div>
+                            <div class="panel-heading panel-heading-custom">Edge</div>
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label for="node2Type">Edge Type</label>
-                                    <input type="text" class="form-control" id="edgeType" placeholder="Ex: likes">
+                                    <input type="text" class="form-control primary" id="edgeType" placeholder="Ex: likes">
                                 </div>
                                 <div id="edge-properties"></div>
-                                <button onclick="addPropertySection(this)" data-related="edge"  class="col-lg-12 btn btn-primary">
+                                <button onclick="addPropertySection(this)" data-related="edge"  class="col-lg-12 btn btn-custom btn-primary-custom">
                                     Add Edge Property
                                   </button>
                             </div>
@@ -143,8 +143,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" onclick="addEdge()" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                        <button type="button" class="btn btn-custom btn-default-custom" data-dismiss="modal">Cancel</button>
+                        <button type="button" onclick="addEdge()" class="btn btn-custom btn-primary-custom" data-dismiss="modal">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -156,62 +156,144 @@
             </div>
             <div class="query-input col-lg-12">
                 <form id="query-form">
-                    <textarea class="form-control animated" placeholder="Query"></textarea>
+                    <textarea class="form-control animated primary" placeholder="Query" id="query-box"></textarea>
                 </form>
             </div>
 
             <div class="resultset col-lg-12">
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-tabs" role="tablist" id="nav-tabs" >
                     <li role="presentation" class="active result-tab graphical-tab">
                         <a href="#graphical-rs" aria-controls="graphical-rs" 
-                          role="tab" data-toggle="tab">Graphical</a>
+                          role="tab" data-toggle="tab">
+                            <svg class="tab-icon" version="1.1" viewBox="0 0 512 512">
+                                <g>
+                                    <path class="graph-line" d="M349.3,409.1c-2.8,0.9-5.7,1.5-8.6,1.5c-10.4,0.3-16.9-5.6-14.4-13.2L433.6,75.6c2.6-7.6,13.1-14,23.5-14.2
+                                      c10.4-0.3,16.9,5.6,14.4,13.2L364.3,396.4C362.4,401.8,356.4,406.7,349.3,409.1z"/>
+                                    <path class="graph-line" d="M344,390.2c-2.4,0.2-5-0.3-7.3-1.9l-144.8-94.9c-7-4.5-10-15.4-6.9-24.2c3.1-8.8,11.3-12.2,18.3-7.8L348,356.2
+                                      c7,4.5,10,15.4,6.9,24.2C352.8,386.3,348.6,389.7,344,390.2z"/>
+                                    <path class="graph-line" d="M30.1,491.1c-3.8-0.1-7.5-1.4-10.7-4.1c-7.1-6-7.9-16.8-1.8-23.9l172.3-201.2c6-7.1,16.8-7.9,23.9-1.8
+                                      c7.1,6,7.9,16.8,1.8,23.9L43.3,485.1C39.8,489.1,34.9,491.1,30.1,491.1z"/>
+                                    <path class="graph-line" d="M27.1,95.6c-1.9-3.3-2.9-7-2.4-11.1C25.7,75.4,34,69.2,43,70.6l254.9,40.2c9,1.4,15.3,9.9,14.3,19
+                                      c-1.1,9.1-9.3,15.3-18.3,13.9L38.9,103.6C33.9,102.7,29.7,99.6,27.1,95.6z"/>
+                                </g>
+                                <g>
+                                    <ellipse class="graph-circle" cx="196.5" cy="285.7" rx="41.2" ry="40.8"/>
+                                    <ellipse class="graph-circle" cx="46.4" cy="463.6" rx="41.2" ry="40.8"/>
+                                    <ellipse class="graph-circle" cx="350.7" cy="372.6" rx="41.2" ry="40.8"/>
+                                    <ellipse class="graph-circle" cx="453.4" cy="66.4" rx="41.2" ry="40.8"/>
+                                    <ellipse class="graph-circle" cx="272.3" cy="137" rx="41.2" ry="40.8"/>
+                                    <ellipse class="graph-circle" cx="58.2" cy="86.1" rx="41.2" ry="40.8"/>
+                                </g>
+                            </svg>
+                        Graphical
+                        </a>
                     </li>
                     <li role="presentation" class="result-tab tabular-tab">
                         <a href="#tabular-rs" aria-controls="tabular-rs" 
-                          role="tab" data-toggle="tab" >Tabular</a>
+                          role="tab" data-toggle="tab" >
+                          <svg class="tab-icon" viewBox="0 0 475.1 475.1">
+                              <g>
+                                  <path d="M429.4,36.5H0 M0,72v320.8c0,12.6,0,24.1,0,36.6c0,9,0,9,0,9h429.4c45.7,0,45.7,0,45.7,0s0,12.6,0,0V70.4 M146.2,392.9
+                                      c0,2.7-0.9,4.9-2.6,6.6c-1.7,1.7-3.9,2.6-6.6,2.6H45.7c-2.7,0-4.9-0.9-6.6-2.6c-1.7-1.7-2.6-3.9-2.6-6.6V338c0-2.7,0.9-4.9,2.6-6.6
+                                      c1.7-1.7,3.9-2.6,6.6-2.6H137c2.7,0,4.9,0.9,6.6,2.6c1.7,1.7,2.6,3.9,2.6,6.6L146.2,392.9L146.2,392.9z M146.2,283.2
+                                      c0,2.7-0.9,4.9-2.6,6.6c-1.7,1.7-3.9,2.6-6.6,2.6H45.7c-2.7,0-4.9-0.9-6.6-2.6c-1.7-1.7-2.6-3.9-2.6-6.6v-54.8
+                                      c0-2.7,0.9-4.9,2.6-6.6c1.7-1.7,3.9-2.6,6.6-2.6H137c2.7,0,4.9,0.9,6.6,2.6c1.7,1.7,2.6,3.9,2.6,6.6L146.2,283.2L146.2,283.2z
+                                      M146.2,173.6c0,2.7-0.9,4.9-2.6,6.6c-1.7,1.7-3.9,2.6-6.6,2.6H45.7c-2.7,0-4.9-0.9-6.6-2.6c-1.7-1.7-2.6-3.9-2.6-6.6v-54.8
+                                      c0-2.7,0.9-4.9,2.6-6.6c1.7-1.7,3.9-2.6,6.6-2.6H137c2.7,0,4.9,0.9,6.6,2.6c1.7,1.7,2.6,3.9,2.6,6.6L146.2,173.6L146.2,173.6z
+                                      M292.4,392.9c0,2.7-0.9,4.9-2.6,6.6c-1.7,1.7-3.9,2.6-6.6,2.6h-91.4c-2.7,0-4.9-0.9-6.6-2.6c-1.7-1.7-2.6-3.9-2.6-6.6V338
+                                      c0-2.7,0.9-4.9,2.6-6.6c1.7-1.7,3.9-2.6,6.6-2.6h91.4c2.7,0,4.9,0.9,6.6,2.6c1.7,1.7,2.6,3.9,2.6,6.6L292.4,392.9L292.4,392.9
+                                      L292.4,392.9z M292.4,283.2c0,2.7-0.9,4.9-2.6,6.6c-1.7,1.7-3.9,2.6-6.6,2.6h-91.4c-2.7,0-4.9-0.9-6.6-2.6
+                                      c-1.7-1.7-2.6-3.9-2.6-6.6v-54.8c0-2.7,0.9-4.9,2.6-6.6c1.7-1.7,3.9-2.6,6.6-2.6h91.4c2.7,0,4.9,0.9,6.6,2.6
+                                      c1.7,1.7,2.6,3.9,2.6,6.6L292.4,283.2L292.4,283.2z M292.4,173.6c0,2.7-0.9,4.9-2.6,6.6c-1.7,1.7-3.9,2.6-6.6,2.6h-91.4
+                                      c-2.7,0-4.9-0.9-6.6-2.6c-1.7-1.7-2.6-3.9-2.6-6.6v-54.8c0-2.7,0.9-4.9,2.6-6.6c1.7-1.7,3.9-2.6,6.6-2.6h91.4
+                                      c2.7,0,4.9,0.9,6.6,2.6c1.7,1.7,2.6,3.9,2.6,6.6L292.4,173.6L292.4,173.6z M438.5,392.9c0,2.7-0.9,4.9-2.6,6.6
+                                      c-1.7,1.7-3.9,2.6-6.6,2.6H338c-2.7,0-4.9-0.9-6.6-2.6c-1.7-1.7-2.6-3.9-2.6-6.6V338c0-2.7,0.8-4.9,2.6-6.6
+                                      c1.7-1.7,3.9-2.6,6.6-2.6h91.4c2.7,0,4.9,0.9,6.6,2.6c1.7,1.7,2.6,3.9,2.6,6.6V392.9z M438.5,283.2c0,2.7-0.9,4.9-2.6,6.6
+                                      c-1.7,1.7-3.9,2.6-6.6,2.6H338c-2.7,0-4.9-0.9-6.6-2.6c-1.7-1.7-2.6-3.9-2.6-6.6v-54.8c0-2.7,0.8-4.9,2.6-6.6
+                                      c1.7-1.7,3.9-2.6,6.6-2.6h91.4c2.7,0,4.9,0.9,6.6,2.6c1.7,1.7,2.6,3.9,2.6,6.6V283.2z M438.5,173.6c0,2.7-0.9,4.9-2.6,6.6
+                                      c-1.7,1.7-3.9,2.6-6.6,2.6H338c-2.7,0-4.9-0.9-6.6-2.6c-1.7-1.7-2.6-3.9-2.6-6.6v-54.8c0-2.7,0.8-4.9,2.6-6.6
+                                      c1.7-1.7,3.9-2.6,6.6-2.6h91.4c2.7,0,4.9,0.9,6.6,2.6c1.7,1.7,2.6,3.9,2.6,6.6V173.6z"/>
+                              </g>
+                          </svg>
+                          
+                          
+                          Tabular</a>
                     </li>
                     <li role="presentation" class="result-tab raw-tab">
                         <a href="#raw-rs" aria-controls="raw-rs" 
-                          role="tab" data-toggle="tab">Raw</a>
+                          role="tab" data-toggle="tab">
+                          <svg version="1.1" class="tab-icon" viewBox="0 0 522.468 522.469">
+                              <g>
+                                  <path d="M325.762,70.513l-17.706-4.854c-2.279-0.76-4.524-0.521-6.707,0.715c-2.19,1.237-3.669,3.094-4.429,5.568L190.426,440.53
+                                          c-0.76,2.475-0.522,4.809,0.715,6.995c1.237,2.19,3.09,3.665,5.568,4.425l17.701,4.856c2.284,0.766,4.521,0.526,6.71-0.712
+                                          c2.19-1.243,3.666-3.094,4.425-5.564L332.042,81.936c0.759-2.474,0.523-4.808-0.716-6.999
+                                          C330.088,72.747,328.237,71.272,325.762,70.513z"/>
+                                  <path d="M166.167,142.465c0-2.474-0.953-4.665-2.856-6.567l-14.277-14.276c-1.903-1.903-4.093-2.857-6.567-2.857
+                                          s-4.665,0.955-6.567,2.857L2.856,254.666C0.95,256.569,0,258.759,0,261.233c0,2.474,0.953,4.664,2.856,6.566l133.043,133.044
+                                          c1.902,1.906,4.089,2.854,6.567,2.854s4.665-0.951,6.567-2.854l14.277-14.268c1.903-1.902,2.856-4.093,2.856-6.57
+                                          c0-2.471-0.953-4.661-2.856-6.563L51.107,261.233l112.204-112.201C165.217,147.13,166.167,144.939,166.167,142.465z"/>
+                                  <path d="M519.614,254.663L386.567,121.619c-1.902-1.902-4.093-2.857-6.563-2.857c-2.478,0-4.661,0.955-6.57,2.857l-14.271,14.275
+                                          c-1.902,1.903-2.851,4.09-2.851,6.567s0.948,4.665,2.851,6.567l112.206,112.204L359.163,373.442
+                                          c-1.902,1.902-2.851,4.093-2.851,6.563c0,2.478,0.948,4.668,2.851,6.57l14.271,14.268c1.909,1.906,4.093,2.854,6.57,2.854
+                                          c2.471,0,4.661-0.951,6.563-2.854L519.614,267.8c1.903-1.902,2.854-4.096,2.854-6.57
+                                          C522.468,258.755,521.517,256.565,519.614,254.663z"/>
+                              </g>
+                          </svg>
+                          Raw</a>
                     </li>
                     <li role="presentation" class="result-tab explain-tab">
                         <a href="#explain-rs" aria-controls="explain-rs"
-                          role="tab" data-toggle="tab">Explain</a>
+                          role="tab" data-toggle="tab">
+                          <svg version="1.1" class="tab-icon"
+                             viewBox="0 0 21.589 21.589" >
+                              <g>
+                                  <path d="M18.622,8.371l-0.545-1.295c0,0,1.268-2.861,1.156-2.971l-1.679-1.639c-0.116-0.113-2.978,1.193-2.978,1.193l-1.32-0.533
+                                    c0,0-1.166-2.9-1.326-2.9H9.561c-0.165,0-1.244,2.906-1.244,2.906L6.999,3.667c0,0-2.922-1.242-3.034-1.131L2.289,4.177
+                                    C2.173,4.29,3.507,7.093,3.507,7.093L2.962,8.386c0,0-2.962,1.141-2.962,1.295v2.322c0,0.162,2.969,1.219,2.969,1.219l0.545,1.291
+                                    c0,0-1.268,2.859-1.157,2.969l1.678,1.643c0.114,0.111,2.977-1.195,2.977-1.195l1.321,0.535c0,0,1.166,2.898,1.327,2.898h2.369
+                                    c0.164,0,1.244-2.906,1.244-2.906l1.322-0.535c0,0,2.916,1.242,3.029,1.133l1.678-1.641c0.117-0.115-1.22-2.916-1.22-2.916
+                                    l0.544-1.293c0,0,2.963-1.143,2.963-1.299v-2.32C21.59,9.425,18.622,8.371,18.622,8.371z M14.256,10.794
+                                    c0,1.867-1.553,3.387-3.461,3.387c-1.906,0-3.461-1.52-3.461-3.387s1.555-3.385,3.461-3.385
+                                    C12.704,7.41,14.256,8.927,14.256,10.794z"/>
+                              </g>
+                          </svg>
+                          Explain
+                        </a>
                     </li>
                     <li class="pull-right">
-                        <p class="navbar-btn" id="clipboard-btn" 
-                        onclick="copyResultToClipboard('#query-result-raw')">
-                            <a href="#" class="btn btn-default">
-                                <span class="glyphicon glyphicon-copy"></span>
-                            </a>
-                        </p>
+                        <button href="#" class="btn btn-default btn-moveup"
+                          onclick="copyResultToClipboard('#query-result-raw')">
+                            <span class="glyphicon glyphicon-copy"></span>
+                            Copy Result
+                        </button>
                     </li>
                     <li class="pull-right">
-                        <p class="navbar-btn">
-                            <a href="#" class="btn btn-default" id="download-btn">
-                                <span class="glyphicon glyphicon-download-alt"></span>
-                            </a>
-                        </p>
+                        <button href="#" class="btn btn-default btn-moveup">
+                            <span class="glyphicon glyphicon-download-alt"></span>
+                            Download Result
+                        </button>
                     </li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="graphical-rs">
+                    <div role="tabpanel" class="tab-pane active fade in" id="graphical-rs">
                         <div id="graphical-content">
                             <div id="d3-wrapper">
-                                <svg width="960" height="600"></svg>
+                                <svg id="d3-root" width="960" height="600"></svg>
                             </div>
                             <div id="node-manipulators">
                                 <div class="list-group add-buttons">
                                       <button type="button" class="list-group-item" 
-                                        onclick="$('#createNodeModal').modal()">Add Edge</button>
+                                        onclick="$('#create-node-modal').modal()">
+                                        Add Edge
+                                      </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="tabular-rs">
+                    <div role="tabpanel" class="tab-pane fade" id="tabular-rs">
                         <div class="table-responsive">
                             <table class="table table-sm" id="query-result-table">
                                 <thead>
@@ -228,10 +310,10 @@
                             </table>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="raw-rs">
+                    <div role="tabpanel" class="tab-pane fade" id="raw-rs">
                         <pre id="query-result-raw"></pre>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="explain-rs">
+                    <div role="tabpanel" class="tab-pane fade" id="explain-rs">
                         <div id="explain-contents">
                             <div id="legend" class="legend">
                                 <div>

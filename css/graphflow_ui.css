@@ -5,32 +5,24 @@
     font-family: 'Lato', sans-serif;
 }
 
-#node-id, #from-id, #to-id {
-    display: none;
+button, textarea, a, input, .panel, .modal-content, .alert {
+    border-radius: 0px !important;
 }
 
-#query-form {
-    padding-bottom: 1em;
+textarea.primary:focus, input.primary:focus {
+    border: 1px solid #83d3c9 !important;
+    box-shadow: none; 
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
-textarea {
+textarea#query-box {
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+    border: 1px solid rgba(124, 128, 129, 0.2);
+    font-size: 1.25em;
+    min-height: 100%;
     min-width: 100%;
     max-width: 100%;
-    box-sizing: border-box;    
-    -moz-box-sizing: border-box;    /* For Firefox */
-    -webkit-box-sizing: border-box; /* For Safari */
-}
-
-.node-prop-pair{
-    float: left;
-}
-
-#graphical-rs, #tabular-rs, #raw-rs {
-    min-height: 500px;
-}
-
-.hidden {
-    display: none;
 }
 
 pre {
@@ -39,38 +31,193 @@ pre {
     white-space: pre;
 }
 
+.hidden {
+    display: none;
+}
+
 .template {
     display: none;
+}
+
+.resultset {
+    margin: 2em 0;
+}
+
+#graphical-rs, #tabular-rs, #raw-rs {
+    min-height: 500px;
+}
+
+/* Tabs for selecting active viewer*/
+#nav-tabs {
+    margin: 1em 0;
+}
+
+#nav-tabs li a {
+    border-left-width: 2px;
+    border-right-width: 2px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    transition: padding 0.2s ease;
+}
+
+#nav-tabs li a:hover {
+    padding-top: 0.5em;
+    padding-bottom: 1.5em;
+    background-color: inherit;
+    border-width: 0;
+}
+
+#nav-tabs li.active a:hover {
+    border-width: 1px;
+    border-bottom-color: white;
+}
+
+#nav-tabs li.active .tab-icon path {
+    fill: black;
+    stroke: black;
+}
+
+svg.tab-icon {
+    margin: auto;
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+.tab-icon path {
+    fill: rgb(51, 122, 183);
+    stroke: rgb(51, 122, 183);
+}
+
+li.active .tab-icon .graph-circle {
+    fill: auto;
+}
+
+.graph-line {
+    fill:#4C5870;
+}
+
+.graph-circle {
+    fill:#269AF2;
+}
+
+/* Icons to download and copy to clipboard */
+.btn-moveup span{
+    font-size: 25px;
+    display: block;
+}
+
+.btn-moveup {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: 3px;
+    border: 0px;
+    color: rgb(51, 122, 183);
+}
+
+.btn-moveup:hover {
+    padding-top: 0.5em;
+    padding-bottom: 1.5em;
+    background-color: inherit;
+    color: rgb(51, 122, 183);
+    transition: padding 0.2s ease;
+}
+
+.btn-moveup:active {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+/* Node addition forms */
+#node-id, #from-id, #to-id {
+    display: none;
+}
+
+#query-form {
+    padding-bottom: 1em;
+}
+
+.node-prop-pair {
+    float: left;
+}
+
+.form-group label {
+    font-weight: 300;
+}
+
+.btn-danger-custom {
+    background-color: rgb(231, 116, 111);
+    border-width: 0;
+}
+
+.btn-danger-custom:hover {
+    background-color: rgba(231, 116, 111, 0.9);
+}
+
+.btn-primary-custom {
+    background-color: #83d3c9;
+    border-width: 0;
+}
+
+.btn-primary-custom:hover {
+    background-color: #96dad1;
+}
+
+.btn-custom {
+    padding: 0.8em 1.5em;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-default-custom:hover {
+    background-color: rgba(188, 202, 206, 0.15);
+}
+
+.modal-title.modal-title-custom {
+    letter-spacing: 0.20em;
+    padding: 0.25em;
+}
+
+.panel-heading.panel-heading-custom{
+    background-color: #E8EEF4;
+    text-transform: uppercase;
+    padding: 1.25em;
+    letter-spacing: 0.10em;
+}
+
+/* Header navbar styling */
+.navbar-default {
+    background-color: #E8EEF4;
+    padding: 0.5em;
+    text-transform: uppercase;
 }
 
 #logo-name {
     font-weight: 900;
 }
+
 #logo-by {
     font-weight: 300;
 }
 
-#top-right-nav li{
-    padding: 10px;
+#top-right-nav li {
+    padding: 5px;
     margin: 0 10px;
 }
 
-#top-right-nav li a{
-    text-transform: uppercase;
-    font-weight: 300;
-    padding: 5px;
+#top-right-nav li a {
+    padding: 10px;
+    transition: background-color 0.5s ease;
 }
 
-#top-right-nav li a:hover{
-    background: rgba(188, 202, 206, 0.15);
+#top-right-nav li a:hover {
+    background-color: rgba(188, 202, 206, 0.15);
+    padding: 9px;
+    border: 1px solid rgba(119, 119, 119, 0.5);
 }
 
-.navbar-default {
-    background: #E8EEF4;
-    background-color: #E8EEF4;
-}
-
-footer{
+/* Footer styling */
+footer {
     background: #E8EEF4;
     color: #7c8081;
     padding: 5em;
@@ -79,7 +226,8 @@ footer{
     font-weight: 300;
 }
 
-/* Graphical content */
+/* D3 Graphical content 
+ * For styling D3 code (node-edge link graph) */
 #graphical-content {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -99,11 +247,6 @@ footer{
     grid-column: 1 / 7;
     grid-row: 1 / 5;
 }
-
-
-/* Graphical Layout 
- * For styling D3 code (node-edge link graph) */
-
 
 .links line {
     stroke: #999;
@@ -130,13 +273,12 @@ div.tooltip {
     font: 12px sans-serif;      
     background: lightsteelblue; 
     border: 0px;        
-    border-radius: 8px;         
+    border-radius: 8px;
     pointer-events: none;           
 }
 
 /* Planviewer
  * General Styling */
-
 #explain-contents {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -159,7 +301,6 @@ h3 {
 
 /* Planviewer 
  * Specific Element Styling */
-
 #stageSet {
     margin: 2em;
     grid-column: 1 / 7;
