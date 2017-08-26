@@ -5,8 +5,15 @@
     font-family: 'Lato', sans-serif;
 }
 
-button, textarea, a, input, .panel, .modal-content {
+button, textarea, a, input, .panel, .modal-content, .alert {
     border-radius: 0px !important;
+}
+
+textarea.primary:focus, input.primary:focus {
+    border: 1px solid #83d3c9 !important;
+    box-shadow: none; 
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 textarea#query-box {
@@ -33,7 +40,11 @@ pre {
 }
 
 .resultset {
-    margin-top: 1em;
+    margin: 2em 0;
+}
+
+#graphical-rs, #tabular-rs, #raw-rs {
+    min-height: 500px;
 }
 
 /* Tabs for selecting active viewer*/
@@ -49,7 +60,6 @@ pre {
     transition: padding 0.2s ease;
 }
 
-
 #nav-tabs li a:hover {
     padding-top: 0.5em;
     padding-bottom: 1.5em;
@@ -61,7 +71,6 @@ pre {
     border-width: 1px;
     border-bottom-color: white;
 }
-
 
 #nav-tabs li.active .tab-icon path {
     fill: black;
@@ -129,12 +138,39 @@ li.active .tab-icon .graph-circle {
     padding-bottom: 1em;
 }
 
-.node-prop-pair{
+.node-prop-pair {
     float: left;
 }
 
-#graphical-rs, #tabular-rs, #raw-rs {
-    min-height: 500px;
+.form-group label {
+    font-weight: 300;
+}
+
+.btn-danger-custom {
+    background-color: rgb(231, 116, 111);
+    border-width: 0;
+}
+
+.btn-danger-custom:hover {
+    background-color: rgba(231, 116, 111, 0.9);
+}
+
+.btn-primary-custom {
+    background-color: #83d3c9;
+    border-width: 0;
+}
+
+.btn-primary-custom:hover {
+    background-color: #96dad1;
+}
+
+.btn-custom {
+    padding: 0.8em 1.5em;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-default-custom:hover {
+    background-color: rgba(188, 202, 206, 0.15);
 }
 
 /* Header navbar styling */

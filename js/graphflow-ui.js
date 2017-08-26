@@ -514,6 +514,7 @@ function render(graph) {
             .attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });
     }
+    simulation.restart();
 }
 
 function dragstarted(d) {
