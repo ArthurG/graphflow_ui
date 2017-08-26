@@ -173,6 +173,18 @@ li.active .tab-icon .graph-circle {
     background-color: rgba(188, 202, 206, 0.15);
 }
 
+.modal-title.modal-title-custom {
+    letter-spacing: 0.20em;
+    padding: 0.25em;
+}
+
+.panel-heading.panel-heading-custom{
+    background-color: #E8EEF4;
+    text-transform: uppercase;
+    padding: 1.25em;
+    letter-spacing: 0.10em;
+}
+
 /* Header navbar styling */
 .navbar-default {
     background-color: #E8EEF4;
