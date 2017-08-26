@@ -94,6 +94,33 @@ li.active .tab-icon .graph-circle {
     fill:#269AF2;
 }
 
+/* Icons to download and copy to clipboard */
+.btn-moveup span{
+    font-size: 25px;
+    display: block;
+}
+
+.btn-moveup {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: 3px;
+    border: 0px;
+    color: rgb(51, 122, 183);
+}
+
+.btn-moveup:hover {
+    padding-top: 0.5em;
+    padding-bottom: 1.5em;
+    background-color: inherit;
+    transition: padding 0.2s ease;
+}
+
+.btn-moveup:active {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
 /* Node addition forms */
 #node-id, #from-id, #to-id {
     display: none;
