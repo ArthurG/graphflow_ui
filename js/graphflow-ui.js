@@ -16,8 +16,6 @@ function addPropertySection(btn){
    function cloneTemplate(template) {
         return template.clone().removeClass("template").addClass("cloned");
     }
-
-
     //Make a new key-value pair form template
     var propTemplate = $(".node-prop-pair.template");
     var cloned = cloneTemplate(propTemplate);
@@ -36,13 +34,12 @@ function addPropertySection(btn){
     divToAddTo.append(cloned);
 }
 
-function addEdge(){
-
+function addEdge() {
     //Returns an object with the properties required required by the fields
     function getProperties(propertiesSection){
         var children = propertiesSection.children();
         var obj = {};
-        for(var i = 0;i<children.size();i++){
+        for(var i = 0;i<children.size();i++) {
           var child = $(children[i]);
           var key = child.find(".nodeKey").val();
           var val = child.find(".nodeVal").val();
@@ -53,10 +50,10 @@ function addEdge(){
 
     //Takes an object and converts it into its string representation as accepted
     //by Graphflow
-    function createPropertyString(properties){
+    function createPropertyString(properties) {
         var answer = "{";
-        for(var key in properties){
-            if(key === ""){
+        for(var key in properties) {
+            if(key === "") {
                 continue;
             }
             answer+=key;
@@ -64,9 +61,9 @@ function addEdge(){
             answer+=properties[key];
             answer+=','
         }
-        if(answer.length > 1){
+        if(answer.length > 1) {
           return answer.slice(0, answer.length-1)+"}";
-        }else{
+        } else {
           return "{}";
         }
     }
@@ -96,7 +93,6 @@ function addEdge(){
     processQueryNoUpdate(query);
 }
 
-//Handles the deletion of a node or edge
 function deleteData() {
     //TODO: This is currently not working on Node
     var type = $(".edit-type:first").text();
@@ -114,17 +110,17 @@ function deleteData() {
 }
 
 //Handles updating properties of a node or edge
-function saveChange(){
+function saveChange() {
     //TODO: This is currently not working
     var newString = $("#node-properties-text").val();
 
     var query="";
     var type = $(".edit-type:first").text();
-    if (type === "Node"){
+    if (type === "Node") {
         var node_id = $("#node-id").text();
         query = "DELETE ("+node_id+")";
     }
-    else if (type === "Link"){
+    else if (type === "Link") {
         var from_id = $("#from-id").text();
         var to_id = $("#to-id").text();
         var query = "DELETE ("+from_id+")->("+to_id+");";
@@ -137,24 +133,24 @@ function saveChange(){
 // Processing functions
 
 // Runs a query and displays result at the top of the screen
-function processQueryNoUpdate(query){
+function processQueryNoUpdate(query) {
     warning_box = $("#graphflow-alert");
     warning_box.addClass("hidden");
 
-    function failQuery(){
+    function failQuery() {
         warning_box.attr("class", "alert alert-danger col-lg-12");
         warning_box.text("Query has failed!");
     }
-    function successDelete(){
+    function successDelete() {
         warning_box.attr("class", "alert alert-info col-lg-12");
         warning_box.text("Query sucess! ");
     }
 
-    $.post("http://localhost:8000/query", query, function(data, success, xhr){
-        if (data.is_error){
+    $.post("http://localhost:8000/query", query, function(data, success, xhr) {
+        if (data.is_error) {
             failQuery();
         }
-        else{
+        else {
             successDelete();
         }
     }, "json").fail(failQuery);
@@ -164,7 +160,7 @@ function processQueryNoUpdate(query){
 function processQuery(inputStr) {
     warning_box = $("#graphflow-alert");
     warning_box.addClass("hidden");
-    $.post("http://localhost:8000/query", inputStr, function(data){
+    $.post("http://localhost:8000/query", inputStr, function(data) {
         setRawResults(data);
         if (QUERY_RESPONSE_TYPES.SUBGRAPHS === data.response_type) {
             updateTabs([UI_TABS.TABULAR, UI_TABS.GRAPHICAL, UI_TABS.RAW]);
@@ -174,11 +170,11 @@ function processQuery(inputStr) {
             vertexData = getVertexData(data);
             edgeData = getEdgeData(data);
         }
-        else if (QUERY_RESPONSE_TYPES.TUPLES === data.response_type){
+        else if (QUERY_RESPONSE_TYPES.TUPLES === data.response_type) {
             setTuplesData(data);
             updateTabs([UI_TABS.TABULAR, UI_TABS.RAW]);
         }
-        else if (data["plan"]){
+        else if (data["plan"]) {
             renderPlan(data["plan"]);
             updateTabs([UI_TABS.EXPLAIN, UI_TABS.RAW]);
         }
@@ -230,7 +226,7 @@ function setTuplesData(data) {
 
 // Mutates the DOM Tabular View to have headers as headers and dataArr as the
 // displayed data
-function updateTable(headers, dataArr){
+function updateTable(headers, dataArr) {
     function cloneTemplate(template) {
         return template.clone().removeClass("template").attr("class", "cloned");
     }

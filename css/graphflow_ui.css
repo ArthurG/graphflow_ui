@@ -102,7 +102,7 @@ li.active .tab-icon .graph-circle {
 }
 
 /* Icons to download and copy to clipboard */
-.btn-moveup span{
+.btn-moveup span {
     font-size: 2em;
     display: block;
 }
@@ -388,7 +388,7 @@ h3.planviewer-title {
 }
 
 
-.legend>div{
+.legend>div {
     margin: 0.6em;
 }
 .legend-item {
