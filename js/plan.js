@@ -11,6 +11,7 @@ function renderPlan(planArray) {
     } else {
         stageSet += '<div id="planContainer"></div>';
     }
+    $('#stageSet').empty();
     $('#stageSet').append(stageSet);
 
     for (var k = 0; k < planArray.length; ++k) {
@@ -33,9 +34,9 @@ function renderPlan(planArray) {
  * Renders a plan column at the {@code id}-th column position
  */
 function renderPlanStages(plan, id) {
-    var name = '<h3 class="center">' + plan.name + '</h3>';
+    var name = '<h3 class="planviewer-title center">' + plan.name + '</h3>';
     $('#name' + id).append(name);
-    var ordering = '<h3 class="center">Variable Ordering:<br />' + 
+    var ordering = '<h3 class="planviewer-title center">Variable Ordering:<br />' + 
       plan.var_ordering.join(', ') + '</h3>';
     $('#ordering' + id).append(ordering);
 
@@ -51,7 +52,7 @@ function renderPlanStages(plan, id) {
     // renders the filter information if present
     var stage1Filter = getFilters(stages[0][0]);
     if (stage1Filter) {
-        stage1Filter = '<div class="center stage"><h3 style="margin-bottom: 0px">Filter (&sigma;)</h3>' + stage1Filter;
+        stage1Filter = '<div class="center stage"><h3 class="planviewer-title" style="margin-bottom: 0px">Filter (&sigma;)</h3>' + stage1Filter;
         stage1Filter += '</div>';
         stageContainers.push(stage1Filter);
     }
@@ -60,9 +61,9 @@ function renderPlanStages(plan, id) {
         var intersectionRules = stages[i];
         var stageContainer = '<div class="center stage">';
         if (hasFilter(intersectionRules)) {
-            stageContainer += '<h3>Intersection-And-Filter (&cap;&sigma;)</h3>';
+            stageContainer += '<h3 class="planviewer-title">Intersection-And-Filter (&cap;&sigma;)</h3>';
         } else {
-            stageContainer += '<h3>Intersection (&cap;)</h3>';
+            stageContainer += '<h3 class="planviewer-title">Intersection (&cap;)</h3>';
         }
 
         // creates HTML code snippet of all intersection rules of a stage
@@ -92,7 +93,7 @@ function renderPlanStages(plan, id) {
         if (operator.type) {
             operatorDiv += '<b>' + operator.type + '</b>: ' + operator.name;
         } else {
-            operatorDiv += '<h3>' + operator.name + '</h3>';
+            operatorDiv += '<h3 class="planviewer-title">' + operator.name + '</h3>';
         }
 
         var operatorArgs = operator.args;
